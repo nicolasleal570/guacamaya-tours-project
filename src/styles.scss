@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Anton|Roboto&display=swap');
+
+$primaryColor: #F05256;
+$secondaryColor: #323232;
+$darkColor: #262626;
+$cardGradient: radial-gradient(72.17% 72.17% at 50% 27.83%, rgba(38, 38, 38, 0.34) 0%, #262626 100%);
+
+$fontFamily: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    background: $darkColor;
+    font-size: 16px;
+    font-family: $fontFamily;
+}
+
+/**
+ * TABLET
+*/
+@media (min-width: 768px) and (max-width: 1199px) {
+    body {
+        background: green;
+    }
+}
+
+/**
+ * PHONE HORIZONTAL
+*/
+@media (max-width: 767px) {
+    body {
+        background: yellow;
+    }
+}
+
+/**
+ * PHONE
+*/
+@media (max-width: 480px) {
+    body {
+        background: violet;
+    }
+}
+
+.wrap {
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-right: auto;
+    margin-left: auto;
+
+    /**
+    * PHONE
+    */
+    @media (max-width: 480px) {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.navbar-divider {
+    margin-top: 100px;
+}
+
+.mx-auto {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    font-weight: 300;
+    padding-top: 10px;
+    padding-right: 30px !important;
+    padding-bottom: 10px;
+    padding-left: 30px !important;
+    text-decoration: none;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+
+    /**
+    * PHONE
+    */
+    @media (max-width: 480px) {
+        padding: 8px;
+        font-size: 13px;
+        border-radius: 2px;
+    }
+
+    &.btn-primary {
+        background: $primaryColor;
+        color: #fff;
+    }
+
+    &.btn-primary-outline {
+        background: none;
+        border: 1px $primaryColor solid;
+        color: #fff;
+    }
+}
