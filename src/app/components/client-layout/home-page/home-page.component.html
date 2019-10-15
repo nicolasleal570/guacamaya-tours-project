@@ -1,19 +1,11 @@
 <app-navbar></app-navbar>
 
-<header class="header">
-    <div class="header-callToAction">
-        <h1>Guacamaya Tour</h1>
-        <div class="btn-callToAction">
-            <a href="#" class="btn btn-primary mx-auto">Crear Itinerario</a>
-            <a href="#" class="btn btn-primary-outline mx-auto">Ver todos los destinos</a>
-        </div>
-    </div>
-    <div class="header-background" style="background-image: url('../../../assets/img/salto-angel.jpg')"></div>
-</header>
+<app-header></app-header>
 
+<!-- EXPLORA EL MUNDO -->
 <section class="section wrap">
     <div class="section-header">
-        <h1>Explora el Mundo</h1>
+        <h1>Explora Venezuela</h1>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
             asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam
@@ -51,9 +43,15 @@
                 <div class="card-background" style="background-image: url('../../../assets/img/principal.jpg');"></div>
             </a>
         </div>
+        
+    </div>
+    <div class="section-footer">
+        <a href="#" class="card-btn-action">Ver Todos los Destinos <i class="fa fa-chevron-right"></i></a>
     </div>
 </section>
+<!-- FIN EXPLORA EL MUNDO -->
 
+<!-- SECCIONES DE HOTELES -->
 <section class="section wrap">
     <div class="section-header">
         <h1>Hoteles y Posadas</h1>
@@ -62,140 +60,18 @@
             asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam
         </p>
     </div>
+    <!-- HOTELES -->
     <div class="section-body">
-        <!-- HOTEL 1 -->
-        <div class="table-section-horizontal card">
-            <div class="card-brand">
-                <img src="../../../assets/img/3771_hesperia_wtc_valencia_5804.jpg" alt="Hotel Hesperia">
-            </div>
-            <div class="card-body">
-                <div class="card-body-title">
-                    <h1>Hotel Hesperia</h1>
-                    <ul class="ranking">
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                    </ul>
-                </div>
-                <div class="card-body-content">
-                    <div class="box-lg">
-                        <h2>Servicios</h2>
-                        <ul>
-                            <li>
-                                <p>Item 1</p>
-                            </li>
-                            <li>
-                                <p>Item 2</p>
-                            </li>
-                            <li>
-                                <p>Item 3</p>
-                            </li>
-                            <li>
-                                <p>Item 4</p>
-                            </li>
-                            <li>
-                                <p>Item 5</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="box-lg">
-                        <h2>Actividades</h2>
-                        <ul>
-                            <li>
-                                <p>Item 1</p>
-                            </li>
-                            <li>
-                                <p>Item 2</p>
-                            </li>
-                            <li>
-                                <p>Item 3</p>
-                            </li>
-                            <li>
-                                <p>Item 4</p>
-                            </li>
-                            <li>
-                                <p>Item 5</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="box-sm">
-                        <a href="#" class="btn btn-primary">Ver Más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="table-section-horizontal card">
-            <div class="card-brand">
-                <img src="../../../assets/img/posadaturisticafamiliarbarca.jpg" alt="Hotel Hesperia">
-            </div>
-            <div class="card-body">
-                <div class="card-body-title">
-                    <h1>Posada Turística</h1>
-                    <ul class="ranking">
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
-                    </ul>
-                </div>
-                <div class="card-body-content">
-                    <div class="box-lg">
-                        <h2>Servicios</h2>
-                        <ul>
-                            <li>
-                                <p>Item 1</p>
-                            </li>
-                            <li>
-                                <p>Item 2</p>
-                            </li>
-                            <li>
-                                <p>Item 3</p>
-                            </li>
-                            <li>
-                                <p>Item 4</p>
-                            </li>
-                            <li>
-                                <p>Item 5</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="box-lg">
-                        <h2>Actividades</h2>
-                        <ul>
-                            <li>
-                                <p>Item 1</p>
-                            </li>
-                            <li>
-                                <p>Item 2</p>
-                            </li>
-                            <li>
-                                <p>Item 3</p>
-                            </li>
-                            <li>
-                                <p>Item 4</p>
-                            </li>
-                            <li>
-                                <p>Item 5</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="box-sm">
-                        <a href="#" class="btn btn-primary">Ver Más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN HOTEL 2 -->
+        <app-hotel-card></app-hotel-card>
+        <app-hotel-card></app-hotel-card>
     </div>
     <div class="section-footer">
         <a href="#" class="card-btn-action">Ver más Hoteles <i class="fa fa-chevron-right"></i></a>
     </div>
 </section>
+<!-- FIN SECCIONES DE HOTELES -->
 
+<!-- CONTACT FORM -->
 <div class="section wrap">
     <section class="contact-card">
         <h1 class="contact-card-title">Contáctanos</h1>
@@ -217,3 +93,4 @@
         </form>
     </section>
 </div>
+<!-- FIN CONTACT FORM -->
