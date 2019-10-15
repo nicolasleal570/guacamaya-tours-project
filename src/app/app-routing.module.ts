@@ -4,11 +4,7 @@ import { ClientLayoutComponent } from './components/client-layout/client-layout.
 import { HomePageComponent } from './components/client-layout/home-page/home-page.component';
 
 
-const routes: Routes = [
-  { path: '', component: ClientLayoutComponent, children: [
-    { path: '', component: HomePageComponent }
-  ] },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

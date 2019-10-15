@@ -3,24 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientLayoutComponent } from './components/client-layout/client-layout.component';
-import { NavbarComponent } from './components/client-layout/partials/navbar/navbar.component';
-import { HomePageComponent } from './components/client-layout/home-page/home-page.component';
-import { HotelCardComponent } from './components/client-layout/partials/hotel-card/hotel-card.component';
-import { HeaderComponent } from './components/client-layout/partials/header/header.component';
+import { ClientModule } from './client/client.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientLayoutComponent,
-    NavbarComponent,
-    HomePageComponent,
-    HeaderComponent,
-    HotelCardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ClientModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
