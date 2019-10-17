@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Anton|Roboto&display=swap');
-
-$primaryColor: #F05256;
-$secondaryColor: #323232;
-$darkColor: #262626;
-$cardGradient: radial-gradient(72.17% 72.17% at 50% 27.83%, rgba(38, 38, 38, 0.34) 0%, #262626 100%);
-
-$fontFamily: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@import 'variables';
 
 .header {
     display: block;
@@ -213,7 +206,7 @@ $fontFamily: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 row-gap: 16px;
             }
 
-            .card {
+            & >.card {
                 display: block;
                 position: relative;
                 width: 100%;
@@ -253,16 +246,26 @@ $fontFamily: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     left: 0;
                     z-index: 1;
                     background-size: cover;
+                    background-position: center;
                     overflow: hidden;
+
+                    &:hover {
+                        &::before, &::after{
+                            transform: scale(1.5);
+                            transition: $transitionConfig ease-in-out;
+                        }
+                    }
 
                     &::before,
                     &::after {
                         content: '';
                         display: block;
                         position: absolute;
+                        top: 0;
+                        left: 0;
                         width: 100%;
                         height: 100%;
-                        transition: all 200ms ease-in-out;
+                        transition: $transitionConfig ease-in-out;
                     }
 
                     &::before {
@@ -274,11 +277,6 @@ $fontFamily: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                         z-index: 3;
                         transform: translateY(100%);
                         opacity: 0;
-                    }
-
-                    &:hover::after {
-                        transform: translateY(0);
-                        opacity: 1;
                     }
                 }
 

@@ -2,13 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { TreeviewComponent } from './partials/treeview/treeview.component';
+import { AllHotelsComponent } from './hotels/all-hotels/all-hotels.component';
+import { CreateHotelComponent } from './hotels/create-hotel/create-hotel.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AllDestinosComponent } from './destinos/all-destinos/all-destinos.component';
+import { CreateDestinoComponent } from './destinos/create-destino/create-destino.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

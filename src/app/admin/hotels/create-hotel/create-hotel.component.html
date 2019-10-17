@@ -1,0 +1,122 @@
+<div class="admin-box admin-box-sm">
+    <div class="box-header with-border">
+        <h3 class="box-title">Datos Básicos del Hotel</h3>
+    </div>
+    <div class="box-body">
+
+        <form [formGroup]="createHotelForm" class="form-control" (ngSubmit)="onSubmit()">
+
+            <div class="input-group">
+                <label for="hotelName">Nombre del Hotel</label>
+                <input formControlName="name" type="text" id="hotelName">
+                <small>Este va a ser el nombre que se le mostrará al público.</small>
+            </div>
+
+            <div class="input-group">
+                <label for="hotelStars">Número de Estrellas</label>
+                <input formControlName="stars" type="text" id="hotelStars">
+            </div>
+
+            <div class="input-group">
+                <label for="hotelLatitud">Latitud del Hotel</label>
+                <input formControlName="latitud" type="text" id="hotelLatitud">
+            </div>
+
+            <div class="input-group">
+                <label for="hotelLongitud">Longitud del Hotel</label>
+                <input formControlName="longitud" type="text" id="hotelLongitud">
+            </div>
+
+            <div class="input-group">
+                <label for="hotelDirection">Dirección del Hotel</label>
+                <input formControlName="direccion" type="text" id="hotelDirection">
+            </div>
+
+            <div class="input-group">
+                <label for="hotelState">Estado donde está el Hotel</label>
+                <select name="hotelState" id="hotelState" formControlName="state">
+                    <option value="">Seleccione el estado donde está el hotel ubicado</option>
+                    <option value="margarita">Margarita</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="hotelBanner">Imagen Representativa (Banner)</label>
+                <input type="file" id="hotelBanner" formControlName="imgBanner">
+            </div>
+
+            <div class="input-group">
+                <div class="checkbox">
+                    <label for="hotelFullday">
+                        <input type="checkbox" name="hotelFullday" id="hotelFullday" formControlName="fullDay"> Full Day (opcional)
+                    </label>
+                </div>
+                <small>Seleccione solo si el hotel cuenta con el servicio full day</small>
+            </div>
+
+            <h3 class="form-section-title with-border">
+                Datos sobre Habitaciones
+            </h3>
+
+            <section class="hab" formArrayName="habs">
+                <div *ngFor="let hab of habsForm.controls; let i=index" [formGroupName]="i">
+
+                    <p class="hab-title">Habitacion {{ i + 1 }}</p>
+
+                    <div class="input-group">
+                        <label for="">Nombre de la Habitación</label>
+                        <input type="text" formControlName="habName">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="">Precio por noche</label>
+                        <input type="number" formControlName="pricePerNight">
+                        <small>El precio que se ponga aquí será por persona.</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="">Número máximo de personas</label>
+                        <input type="text" formControlName="maxPersons">
+                    </div>
+
+                    <div class="input-group">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteRoom(i)">Eliminar Habitación</button>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <button type="button" class="btn btn-info btn-sm" (click)="addRoom()">Agregar Habitación</button>
+                </div>
+            </section>
+
+            <h3 class="form-section-title with-border">
+                Imágenes para la Galería
+            </h3>
+
+            <section class="imgGallery" formArrayName="imgGallery">
+                <div *ngFor="let hab of galleryForm.controls; let i=index" [formGroupName]="i">
+
+                    <p class="img-title">Image {{ i + 1 }}</p>
+
+                    <div class="input-group">
+                        <label for="">Seleccione su imagen</label>
+                        <input type="file" formControlName="path">
+                    </div>
+                    <div class="input-group">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteImage(i)">Eliminar Imagen</button>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <button type="button" class="btn btn-info btn-sm" (click)="addImage()">Agregar Imagenes</button>
+                </div>
+            </section>
+
+
+            <button type="submit" class="btn btn-primary">Enviar Datos</button>
+        </form>
+
+    </div>
+</div>

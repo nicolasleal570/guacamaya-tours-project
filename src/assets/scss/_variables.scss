@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Roboto&display=swap');
+
+$primaryColor: #F05256;
+$primaryColorDarken: darken($color: $primaryColor, $amount: 2%);
+$secondaryColor: #323232;
+$darkColor: #262626;
+
+$infoColor: #367fa9;
+$dangerColor: #d73925;
+
+$cardGradient: radial-gradient(72.17% 72.17% at 50% 27.83%, rgba(38, 38, 38, 0.34) 0%, #262626 100%);
+
+$transitionConfig: all 200ms ease-out;
+
+$fontFamily: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

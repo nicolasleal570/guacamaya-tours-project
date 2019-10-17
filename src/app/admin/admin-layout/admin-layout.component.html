@@ -1,0 +1,34 @@
+<div [class.sidebarHidden]="sideBarHidden" class="admin-layout">
+    <header class="main-header">
+        <a href="" class="logo">GuacamayaTours</a>
+        <nav class="navbar">
+
+            <!-- BTN TO HIDE SIDEBAR -->
+            <button class="sidebar-toggle" (click)="hideSideBarMenu()"> <i class="fas fa-bars fa-lg"></i></button>
+            <!-- RIGHT MENU -->
+            <div class="custom-items">
+                <ul class="navbar-wrapper">
+                    <li>
+                        <a href=""><i class="fas fa-sign-out-alt fa-lg"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="main-sidebar">
+        <app-sidebar></app-sidebar>
+    </aside>
+
+    <section class="main-content">
+        <div class="content-header">
+            <h1>
+                {{contentTitle}}
+                <small>{{contentDescription}}</small>
+            </h1>
+        </div>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+</div>

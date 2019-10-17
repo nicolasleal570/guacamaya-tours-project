@@ -1,0 +1,13 @@
+<li class="treeview" [class.menuOpen]="treeOpen">
+    <button class="btn-treeview" (click)="toggleTree()">
+        <i class="fas {{icon}}"></i>
+        {{title}} 
+        <span><i class="fas fa-chevron-down"></i></span>
+    </button>
+    <ul>
+        <li *ngFor="let opt of options">
+            <a routerLink="{{opt.url}}" routerLinkActive="active"  [routerLinkActiveOptions]="{exact:
+                true}">{{opt.opt}}</a>
+        </li>
+    </ul>
+</li>

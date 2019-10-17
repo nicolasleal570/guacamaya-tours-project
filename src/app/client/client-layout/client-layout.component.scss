@@ -1,0 +1,249 @@
+@import 'variables';
+
+nav.navbar-lg,
+nav.navbar-sm {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100px;
+}
+
+nav.navbar-lg {
+
+    /**
+        * PHONE
+        */
+    @media (max-width: 480px) {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        // background: #000;
+        padding-top: 40px;
+
+        li {
+            list-style: none;
+            // background: #ccc;
+            height: 100%;
+            line-height: 50px;
+            display: block;
+            position: relative;
+
+            &:nth-child(1) {
+                height: 40px;
+            }
+
+            &:nth-child(2) {
+                height: 40px;
+            }
+
+            &:nth-child(4) {
+                height: 40px;
+            }
+
+            &:nth-child(5) {
+                height: 40px;
+            }
+
+            &.active-link::before {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 50%;
+                height: 2px;
+                background: $primaryColor;
+                bottom: 0;
+                left: 0;
+            }
+
+            &:nth-child(3)::before {
+                display: none;
+            }
+
+            .search-box {
+                display: block;
+                width: 100%;
+                height: 100%;
+                // background: #000;
+
+                a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    transition: 1s all ease-in;
+
+                    &.desactivate {
+                        opacity: 0;
+                        display: none;
+                        transition: 1s all ease-out;
+                    }
+                }
+
+                form.search-form {
+                    display: grid;
+                    grid-template-columns: auto 50px;
+                    width: 100%;
+                    height: 100%;
+                    transition: 1s all ease-in;
+
+                    &.desactivate {
+                        display: none;
+                        transition: 1s all ease-out;
+                    }
+
+                    .search-box {
+                        display: block;
+                        outline: none;
+                        border: none;
+                        border-top-left-radius: 3px;
+                        border-bottom-left-radius: 3px;
+                        background: rgba($primaryColor, .5);
+                        color: #fff;
+                        font-size: 16px;
+                        padding-right: 10px;
+                        padding-left: 10px;
+                    }
+
+                    .btn-search {
+                        display: block;
+                        outline: none;
+                        border: none;
+                        border-bottom-right-radius: 3px;
+                        border-top-right-radius: 3px;
+                        background: $primaryColor;
+                        color: #fff;
+                        font-size: 20px;
+                        line-height: 50px;
+                        text-align: center;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+            a {
+                display: block;
+                text-decoration: none;
+                color: #fff;
+                text-transform: uppercase;
+                height: 100%;
+
+                i {
+                    font-size: inherit;
+                    line-height: inherit;
+                    font-weight: inherit;
+                }
+
+                img {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+nav.navbar-sm {
+
+    display: none;
+
+    /**
+    * PHONE
+    */
+    @media (max-width: 480px) {
+        display: block;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        height: 100%;
+
+        li {
+            list-style: none;
+            width: 80px;
+            height: 100%;
+            padding: 20px;
+
+            a {
+
+                overflow: hidden;
+                color: #fff;
+                cursor: pointer;
+
+                i {
+                    line-height: 50px;
+                    float: right;
+                    margin: 0 auto;
+                    font-size: 1.7rem;
+                }
+
+                img {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    .navbar-items {
+        display: none;
+        position: absolute;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 100px);
+        transition: 300ms all ease-in;
+
+        &.active {
+            display: block;
+            right: 0%;
+            transition: 300ms all ease-in;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background: $darkColor;
+
+            li {
+                list-style: none;
+                position: relative;
+                width: 100%;
+
+                a {
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    padding: 10px 0;
+                    position: relative;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 1px;
+                        bottom: 0;
+                        left: 0;
+                        background: $primaryColor;
+                    }
+    
+                    &:hover::before{
+                        width: 25%;
+                        transition: all 300ms ease-in;
+                    }
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,79 @@
+@import 'variables';
+
+li.treeview {
+
+    span {
+        float: right;
+        margin-right: 15px;
+        transform: rotateX(0deg);
+        transition: $transitionConfig;
+    }
+
+    &.menuOpen {
+        &>ul {
+            display: block;
+            transition: $transitionConfig;
+        }
+
+        span {
+            transform: rotateX(180deg);
+            transition: $transitionConfig;
+        }
+    }
+
+    &>ul {
+        display: none;
+        background-color: lighten($color: #222d32, $amount: 5%);
+        transition: $transitionConfig;
+
+        li {
+            display: block;
+            font-size: 14px;
+            border-left: none !important;
+
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-left: 3px solid transparent;
+                font-size: 14px;
+                padding: 12px 5px 12px 15px;
+                text-decoration: none;
+                color: #fff;
+
+                &.active {
+                    border-left: 3px solid #F05256;
+                    // background: darken($color: #222d32, $amount: 2%);
+                }
+            }
+
+        }
+    }
+
+    &>button {
+        outline: none;
+        border: none;
+        font-size: inherit;
+        color: inherit;
+        width: 100%;
+        text-align: inherit;
+        background: none;
+        cursor: pointer;
+    }
+
+    &>a,
+    &>button {
+        padding: 12px 5px 12px 15px;
+        display: block;
+        border-left: 3px solid transparent;
+        font-size: 14px;
+        color: #fff;
+
+        i {
+            color: #fff;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+    }
+
+}

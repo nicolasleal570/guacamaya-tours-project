@@ -1,0 +1,163 @@
+@import 'variables';
+
+.main-header,
+.main-sidebar,
+.main-content {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.admin-layout {
+
+    &.sidebarHidden {
+
+        &>.main-content {
+            margin-left: 0 !important;
+            transition: $transitionConfig ;
+        }
+
+        &>.main-sidebar {
+            transform: translateX(-230px) !important;
+            transition: $transitionConfig ;
+        }
+    }
+
+}
+
+.main-header {
+    width: 100%;
+    min-height: 50px;
+    max-height: 100px;
+    position: relative;
+    background: $primaryColor;
+    z-index: 1000;
+    overflow: hidden;
+
+    .logo {
+        float: left;
+        width: 230px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        padding: 0 15px;
+        text-decoration: none;
+        transition: all 280ms ;
+        color: #fff;
+    }
+
+    .navbar {
+        margin-bottom: 0;
+        margin-left: 230px;
+        min-height: 50px;
+
+        button {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: inherit;
+            font-size: inherit;
+
+            &:hover {
+                background: $primaryColorDarken;
+            }
+        }
+
+        .sidebar-toggle {
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        .custom-items {
+            float: right;
+
+            .navbar-wrapper {
+                float: left;
+                list-style: none;
+                padding: 0 10px;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+
+                &>li {
+                    float: left;
+                    min-width: 50px;
+                    line-height: 50px;
+                    text-align: center;
+
+                    &:hover {
+                        background: $primaryColorDarken;
+                    }
+
+                    a {
+                        min-width: 50px;
+                        height: 100%;
+                        display: block;
+                        // background: #000;
+                        color: #fff;
+                        text-decoration: none;
+
+                        i {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 230px;
+    z-index: 800;
+    background: #222d32;
+    transition: $transitionConfig ;
+
+
+}
+
+.main-content {
+    background: #ecf0f5;
+    color: #333;
+    margin-left: 230px;
+    z-index: 800;
+    min-height: calc(100vh - 50px);
+    transition: $transitionConfig ;
+
+    .content-header {
+        width: 100%;
+        padding: 15px;
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.1;
+            font-weight: 500;
+
+            &>small {
+                font-size: 18px;
+                display: inline-block;
+                padding-left: 4px;
+                font-weight: 300;
+            }
+        }
+    }
+
+    .content {
+        min-height: 250px;
+        padding: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+}
+
