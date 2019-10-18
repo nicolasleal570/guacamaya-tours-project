@@ -36,19 +36,11 @@ nav.navbar-lg {
             display: block;
             position: relative;
 
-            &:nth-child(1) {
-                height: 40px;
-            }
-
-            &:nth-child(2) {
-                height: 40px;
-            }
-
-            &:nth-child(4) {
-                height: 40px;
-            }
-
-            &:nth-child(5) {
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6) {
                 height: 40px;
             }
 
@@ -67,67 +59,6 @@ nav.navbar-lg {
                 display: none;
             }
 
-            .search-box {
-                display: block;
-                width: 100%;
-                height: 100%;
-                // background: #000;
-
-                a {
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    transition: 1s all ease-in;
-
-                    &.desactivate {
-                        opacity: 0;
-                        display: none;
-                        transition: 1s all ease-out;
-                    }
-                }
-
-                form.search-form {
-                    display: grid;
-                    grid-template-columns: auto 50px;
-                    width: 100%;
-                    height: 100%;
-                    transition: 1s all ease-in;
-
-                    &.desactivate {
-                        display: none;
-                        transition: 1s all ease-out;
-                    }
-
-                    .search-box {
-                        display: block;
-                        outline: none;
-                        border: none;
-                        border-top-left-radius: 3px;
-                        border-bottom-left-radius: 3px;
-                        background: rgba($primaryColor, .5);
-                        color: #fff;
-                        font-size: 16px;
-                        padding-right: 10px;
-                        padding-left: 10px;
-                    }
-
-                    .btn-search {
-                        display: block;
-                        outline: none;
-                        border: none;
-                        border-bottom-right-radius: 3px;
-                        border-top-right-radius: 3px;
-                        background: $primaryColor;
-                        color: #fff;
-                        font-size: 20px;
-                        line-height: 50px;
-                        text-align: center;
-                        cursor: pointer;
-                    }
-                }
-            }
-
-
             a {
                 display: block;
                 text-decoration: none;
@@ -135,15 +66,9 @@ nav.navbar-lg {
                 text-transform: uppercase;
                 height: 100%;
 
-                i {
-                    font-size: inherit;
-                    line-height: inherit;
-                    font-weight: inherit;
-                }
-
                 img {
+                    width: 100%;
                     height: 100%;
-                    width: auto;
                 }
             }
         }
