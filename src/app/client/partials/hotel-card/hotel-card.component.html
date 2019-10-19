@@ -1,10 +1,10 @@
 <div class="table-section-horizontal card">
     <div class="card-brand">
-        <img src="assets/img/3771_hesperia_wtc_valencia_5804.jpg" alt="Hotel Hesperia">
+        <img src="{{hotel.img}}" alt="Hotel Hesperia">
     </div>
     <div class="card-body">
         <div class="card-body-title">
-            <h1>Hotel Hesperia</h1>
+            <h1>{{hotel.name}}</h1>
             <ul class="ranking">
                 <li><a href="#"><i class="fa fa-star-o"></i></a></li>
                 <li><a href="#"><i class="fa fa-star-o"></i></a></li>
@@ -17,40 +17,16 @@
             <div class="box-lg">
                 <h2>Servicios</h2>
                 <ul>
-                    <li>
-                        <p>Item 1</p>
-                    </li>
-                    <li>
-                        <p>Item 2</p>
-                    </li>
-                    <li>
-                        <p>Item 3</p>
-                    </li>
-                    <li>
-                        <p>Item 4</p>
-                    </li>
-                    <li>
-                        <p>Item 5</p>
+                    <li *ngFor="let service of hotel.services">
+                        <p>{{ service.name }}</p>
                     </li>
                 </ul>
             </div>
             <div class="box-lg">
                 <h2>Actividades</h2>
                 <ul>
-                    <li>
-                        <p>Item 1</p>
-                    </li>
-                    <li>
-                        <p>Item 2</p>
-                    </li>
-                    <li>
-                        <p>Item 3</p>
-                    </li>
-                    <li>
-                        <p>Item 4</p>
-                    </li>
-                    <li>
-                        <p>Item 5</p>
+                    <li *ngFor="let act of hotel.activities">
+                        <p>{{act.name}}</p>
                     </li>
                 </ul>
             </div>

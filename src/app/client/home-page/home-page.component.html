@@ -1,49 +1,19 @@
-<!-- <app-navbar></app-navbar> -->
+<app-navbar></app-navbar>
 
 <app-header></app-header>
 
 <!-- EXPLORA EL MUNDO -->
 <section class="section wrap">
-    <div class="section-header">
-        <h1>Explora Venezuela</h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
-            asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam
-        </p>
-    </div>
+    <app-titulo title="Explora Venezuela" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
+            asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
+
     <div class="section-body">
         <div class="table-section-vertical">
-            <a href="#" class="card">
-                <div class="card-footer">
-                    <h2>Nieve</h2>
-                    <p>Merida</p>
-                </div>
-                <div class="card-background" style="background-image: url('assets/img/download.jpg');"></div>
-            </a>
-            <a href="#" class="card">
-                <div class="card-footer">
-                    <h2>Desierto</h2>
-                    <p>Medanos de Coro</p>
-                </div>
-                <div class="card-background"
-                    style="background-image: url('assets/img/Los-Médanos-de-Coro-arena-e1464301993257.png');"></div>
-            </a>
-            <a href="#" class="card">
-                <div class="card-footer">
-                    <h2>Selva</h2>
-                    <p>Amazonas</p>
-                </div>
-                <div class="card-background" style="background-image: url('assets/img/selva-venezolana.jpg');"></div>
-            </a>
-            <a href="#" class="card">
-                <div class="card-footer">
-                    <h2>Trópico</h2>
-                    <p>Los Roques</p>
-                </div>
-                <div class="card-background" style="background-image: url('assets/img/principal.jpg');"></div>
-            </a>
+            <app-display title="NIEVE" subtitle="Merida" img="assets/img/merida.jpg"> </app-display>
+            <app-display title="Desierto" subtitle="Medanos de Coro" img="assets/img/medanos.png"> </app-display>
+            <app-display title="SELVA" subtitle="Amazonas" img="assets/img/selva.jpg"> </app-display>
+            <app-display title="TRÓPICO" subtitle="Los Roques" img="assets/img/los-roques.jpg"> </app-display>
         </div>
-        
     </div>
     <div class="section-footer">
         <a href="#" class="card-btn-action">Ver Todos los Destinos <i class="fas fa-chevron-right"></i></a>
@@ -53,17 +23,15 @@
 
 <!-- SECCIONES DE HOTELES -->
 <section class="section wrap">
-    <div class="section-header">
-        <h1>Hoteles y Posadas</h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
-            asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam
-        </p>
-    </div>
+
+        <app-titulo title="Hoteles y Posadas" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
+        asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
+
     <!-- HOTELES -->
     <div class="section-body">
-        <app-hotel-card></app-hotel-card>
-        <app-hotel-card></app-hotel-card>
+        <ng-container *ngFor="let hotel of hotels">
+            <app-hotel-card [hotel]="hotel"></app-hotel-card>
+        </ng-container>
     </div>
     <div class="section-footer">
         <a href="#" class="card-btn-action">Ver más Hoteles <i class="fas fa-chevron-right"></i></a>

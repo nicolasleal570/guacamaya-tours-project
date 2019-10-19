@@ -1,0 +1,77 @@
+@import 'variables';
+
+.general-buscar{
+	margin-top: 100px;
+	padding: 100px 0;
+	color: #ffffff;
+	font-family: Roboto;
+}
+
+.section-header{
+	text-align: center;
+	height: 100%;
+	width: 60%;
+	margin: auto;
+}
+
+.text{
+	margin-right: 2%;
+}
+
+.section-buscar{
+    display: flex;
+	justify-content: center;
+	margin: 2%;
+	appearance: none;
+	border-radius: 0%;
+}
+
+
+.blocks{
+	text-align: center;
+	background-color: #343434;
+	height: 100%;
+	width: 60%;
+	padding: 10px;
+	margin: auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.selector{
+	outline: none;
+	border: none;
+	// padding: 10px 0;
+	color: #ffffff;
+	background-color: #262626;
+}
+
+.select-items{
+	color: #ffffff;
+  	padding: 8px 16px;
+  	border: 1px solid transparent;
+  	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  	cursor: pointer;
+}
+
+.button-buscar{
+	margin: 2%;
+	display: flex;
+	justify-content: center;
+    box-shadow:inset 0px -50px 0px -15px $primaryColor;
+	background-color:$primaryColor;
+	border:1px solid $primaryColor;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px $primaryColor;
+}
+
+.button-buscar:active {
+	position:relative;
+	top:1px;
+}

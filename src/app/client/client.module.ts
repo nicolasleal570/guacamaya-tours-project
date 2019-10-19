@@ -7,10 +7,13 @@ import { HeaderComponent } from './partials/header/header.component';
 import { ClientLayoutComponent } from './client-layout/client-layout.component';
 import { HotelCardComponent } from './partials/hotel-card/hotel-card.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
+import { BuscarComponent } from './buscar/buscar.component';
+import { TituloComponent } from './partials/titulo/titulo.component';
+import { DisplayComponent } from './partials/display/display.component';
 
 
 @NgModule({
-  declarations: [HomePageComponent, HeaderComponent, ClientLayoutComponent, HotelCardComponent, NavbarComponent],
+  declarations: [HomePageComponent, HeaderComponent, ClientLayoutComponent, HotelCardComponent, NavbarComponent, BuscarComponent, TituloComponent, DisplayComponent],
   imports: [
     CommonModule,
     ClientRoutingModule

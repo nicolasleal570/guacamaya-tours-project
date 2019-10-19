@@ -20,6 +20,8 @@ nav.navbar-lg {
         display: none;
     }
 
+
+
     ul {
         display: flex;
         justify-content: space-between;
@@ -42,6 +44,11 @@ nav.navbar-lg {
 
             &:nth-child(2) {
                 height: 40px;
+            }
+
+            &:nth-child(3){
+                height: 160%;
+                width: auto;
             }
 
             &:nth-child(4) {
