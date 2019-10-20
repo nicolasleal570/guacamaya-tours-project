@@ -46,6 +46,11 @@ nav.navbar-lg {
                 height: 40px;
             }
 
+            &:nth-child(3){
+                height: 150%;
+                width: auto;
+            }
+
             &.active-link::before {
                 content: '';
                 display: block;
