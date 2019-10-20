@@ -1,0 +1,23 @@
+<header class="header">
+    <div class="header-callToAction">
+        <h1>Los Roques <span>Trópico</span></h1>
+
+    </div>
+    <div class="header-background" style="background-image: url('assets/img/los-roques2.jpg')"></div>
+</header>
+
+<div class="section wrap">
+    <app-titulo title="Hoteles y Posadas" description="lorem ipsum"></app-titulo>
+
+    <ng-container *ngFor="let hotel of hotels">
+        <app-hotel-card [hotel]="hotel"> </app-hotel-card>
+    </ng-container>
+
+    <div class="section-footer">
+        <a href="#" class="card-btn-action">Ver Todos los Hoteles en Los Roques <i class="fas fa-chevron-right"></i></a>
+    </div>
+</div>
+
+<div class="section wrap">
+    <app-titulo title="Cultura y Gastronomia" description="lorem ipsum"></app-titulo>
+</div>

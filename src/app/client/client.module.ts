@@ -10,11 +10,19 @@ import { NavbarComponent } from './partials/navbar/navbar.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { TituloComponent } from './partials/titulo/titulo.component';
 import { DisplayComponent } from './partials/display/display.component';
+import { DestinoComponent } from './destino/destino.component';
 import { NavbarTreeviewComponent } from './partials/navbar-treeview/navbar-treeview.component';
+import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
 
 
 @NgModule({
-  declarations: [HomePageComponent, HeaderComponent, ClientLayoutComponent, HotelCardComponent, NavbarComponent, BuscarComponent, TituloComponent, DisplayComponent, NavbarTreeviewComponent],
+  declarations: [
+    HomePageComponent, HeaderComponent, ClientLayoutComponent,
+    HotelCardComponent, NavbarComponent, BuscarComponent,
+    TituloComponent, DisplayComponent, DestinoComponent,
+    NavbarTreeviewComponent,
+    SelectedDestinoComponent
+  ],
   imports: [
     CommonModule,
     ClientRoutingModule

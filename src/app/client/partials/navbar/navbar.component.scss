@@ -28,7 +28,6 @@ nav.navbar-lg {
         align-items: center;
         height: 100%;
         // background: #000;
-        padding-top: 40px;
 
         li {
             list-style: none;
@@ -81,6 +80,10 @@ nav.navbar-lg {
                 img {
                     width: 100%;
                     height: 100%;
+                }
+
+                & > i.fa-2x {
+                    font-size: 1.5rem;
                 }
             }
         }

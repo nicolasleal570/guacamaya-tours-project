@@ -1,7 +1,5 @@
 <nav class="navbar-lg wrap">
     <ul>
-
-        <!-- OPCION PARA EL INICIO -->
         <app-navbar-treeview title="Inicio" [options]="[
             { title: 'Inicio', url: '' },
             { title: 'Acerca de Nosotros', url: '' },
@@ -20,26 +18,18 @@
 
         <!-- LOGO -->
         <li>
-            <a href="#">
-                <img src="assets/img/guacamaya-tours-logo.svg" alt="Logo">
+            <a routerLink="">
+                <img src="assets/img/guacamaya-tours-logo.svg" alt="Guacamaya Tours">
             </a>
         </li>
         <!-- FIN LOGO -->
 
-        <!-- OPCION PARA ITINERARIO -->
-        <app-navbar-treeview title="Itinerario" [options]="[
-            { title: 'Ver Itinerario', url: '/itinerario' },
-            { title: 'Crear Itinerario', url: '/itinerario/crear' }
-        ]">
-        </app-navbar-treeview>
-        <!-- FIN OPCION PARA ITINERARIO -->
-
         <li>
-            <a routerLink="shopping/cart"><i class="fas fa-shopping-cart"></i> </a>
+            <a routerLink="shopping/cart"><i class="fas fa-shopping-cart fa-2x"></i> </a>
         </li>
 
         <li>
-            <a routerLink="buscar"><i class="fas fa-search"></i> </a>
+            <a routerLink="buscar"><i class="fas fa-search fa-2x"></i> </a>
         </li>
 
     </ul>
