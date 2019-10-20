@@ -32,4 +32,12 @@ export class NavbarTreeviewComponent implements OnInit {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+  mouseOver(){
+    this.showDropdown();
+  }
+
+  mouseOut(){
+    this.hideDropdown();
+  }
+
 }

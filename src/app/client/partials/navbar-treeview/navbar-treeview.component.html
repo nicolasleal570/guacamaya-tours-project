@@ -1,11 +1,12 @@
 <li routerLinkActive="active-link" 
     [routerLinkActiveOptions]="{exact: true}" 
-    [class.dropdownOpen]="dropdownOpen"
+    [class.dropdownOpen]="dropdownOpen" 
+    (mouseover)="showDropdown()"
 >
-    <a (click)="toggleDropdown()" >
+    <a (click)="toggleDropdown()">
         {{title}} <i class="fas fa-chevron-down icon"></i>
     </a>
-    <ul>
+    <ul (mouseover)="showDropdown()" (mouseout)="hideDropdown()">
         <li *ngFor="let opt of options">
             <a routerLink="{{ opt.url }}" (click)="hideDropdown()">{{opt.title}}</a>
         </li>
