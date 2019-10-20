@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelService } from 'src/app/services/hotel.service';
+import { Hotel } from 'src/app/models/hotel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -7,49 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  hotels: any[] = [];
+  hotels: Hotel[];
 
-  constructor() {
-    this.hotels =  [
-      { 
-        name: 'Hotel Hesperia',
-        description: '',
-        services: [
-          { name: 'Servicio 1' },
-          { name: 'Servicio 2' },
-          { name: 'Servicio 3' },
-          { name: 'Servicio 4' },
-        ],
-        activities: [
-          { name: 'Actividad 1' },
-          { name: 'Actividad 2' },
-          { name: 'Actividad 3' },
-          { name: 'Actividad 4' },
-        ],
-        img: 'assets/img/hesperia.jpg'
-     },
-     { 
-       name: 'Posada La Ardileña',
-       description: '',
-       services: [
-         { name: 'Servicio 1' },
-         { name: 'Servicio 2' },
-         { name: 'Servicio 3' },
-         { name: 'Servicio 4' },
-       ],
-       activities: [
-         { name: 'Actividad 1' },
-         { name: 'Actividad 2' },
-         { name: 'Actividad 3' },
-         { name: 'Actividad 4' },
-       ],
-       img: 'assets/img/posada.jpg'
-    }
-    ]
-
+  constructor(private hotelService: HotelService) {
   }
 
   ngOnInit() {
+    this.hotelService.getFamousHotels.subscribe(hotel => {
+      this.hotels = hotel;
+    });
   }
 
 }

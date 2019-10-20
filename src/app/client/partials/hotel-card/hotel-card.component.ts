@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Hotel } from 'src/app/models/hotel';
 
 @Component({
   selector: 'app-hotel-card',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HotelCardComponent implements OnInit {
 
   constructor() { }
-  @Input() hotel: object;
+  @Input() hotel: Hotel;
 
   ngOnInit() {
   }

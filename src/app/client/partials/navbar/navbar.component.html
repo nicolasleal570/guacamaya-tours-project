@@ -1,19 +1,47 @@
 <nav class="navbar-lg wrap">
     <ul>
-        <li class="active-link"><a href="/">Inicio <i class="fas fa-chevron-down"></i></a></li>
-        <li><a href="#">Explorar <i class="fas fa-chevron-down"></i></a></li>
+
+        <!-- OPCION PARA EL INICIO -->
+        <app-navbar-treeview title="Inicio" [options]="[
+            { title: 'Inicio', url: '' },
+            { title: 'Acerca de Nosotros', url: '' },
+            { title: 'Contactános', url: '' }
+        ]">
+        </app-navbar-treeview>
+        <!-- FIN DE LA OPCION PARA EL INICIO -->
+
+        <!-- OPCION PARA EXPLORAR -->
+        <app-navbar-treeview title="Explorar" [options]="[
+            { title: 'Destinos Disponibles', url: '/destinos' },
+            { title: 'Hoteles Disponibles', url: '/hoteles' }
+        ]">
+        </app-navbar-treeview>
+        <!-- FIN OPCION PARA EXPLORAR -->
+
+        <!-- LOGO -->
         <li>
             <a href="#">
                 <img src="assets/img/guacamaya-tours-logo.svg" alt="Logo">
             </a>
         </li>
-        <li><a href="#">Itinerario <i class="fas fa-chevron-down"></i></a></li>
+        <!-- FIN LOGO -->
+
+        <!-- OPCION PARA ITINERARIO -->
+        <app-navbar-treeview title="Itinerario" [options]="[
+            { title: 'Ver Itinerario', url: '/itinerario' },
+            { title: 'Crear Itinerario', url: '/itinerario/crear' }
+        ]">
+        </app-navbar-treeview>
+        <!-- FIN OPCION PARA ITINERARIO -->
+
         <li>
-            <a href="#"><i class="fas fa-shopping-cart"></i> </a>
+            <a routerLink="shopping/cart"><i class="fas fa-shopping-cart"></i> </a>
         </li>
+
         <li>
-            <a href="#"><i class="fas fa-search"></i> </a>
+            <a routerLink="buscar"><i class="fas fa-search"></i> </a>
         </li>
+
     </ul>
 </nav>
 
@@ -25,9 +53,14 @@
     </ul>
     <div class="navbar-items">
         <ul>
-            <li><a href="#">Inicio</a></li>
+            <li>
+                <a href="#">Inicio</a>
+            </li>
+
             <li><a href="#">Explorar</a></li>
+
             <li><a href="#">Itinerario</a></li>
+
             <li><a href="#">Buscar</a></li>
         </ul>
     </div>

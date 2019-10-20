@@ -18,7 +18,6 @@
     }
 
     &.card {
-        height: 250px;
         overflow: hidden;
         position: relative;
         margin-bottom: 30px;
@@ -33,12 +32,15 @@
 
     .card-brand {
         position: relative;
-        width: 100%;
+        width: 300px;
         height: 100%;
         // background: #000;
         grid-column-start: 1;
         grid-column-end: 2;
         overflow: hidden;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
         /**
         * PHONE
@@ -49,8 +51,8 @@
         }
 
         img {
-            width: auto;
-            height: 100%;
+            width: 100%;
+            height: auto;
 
             /**
             * PHONE
@@ -81,20 +83,26 @@
         }
 
         &-title {
-            display: flex;
-            flex-direction: row;
+            // display: flex;
+            // flex-direction: row;
 
             /**
             * PHONE
             */
             @media (max-width: 480px) {
+                display: flex;
                 flex-direction: column;
                 margin-bottom: 20px;
             }
 
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
             h1 {
                 display: block;
-                height: 50px;
+                // height: 50px;
                 font-size: 40px;
                 font-weight: 900;
                 text-transform: uppercase;
@@ -111,7 +119,6 @@
 
             ul.ranking {
                 display: flex;
-                margin-left: 20px;
 
                 /**
                 * PHONE
@@ -122,7 +129,7 @@
 
                 li {
                     list-style: none;
-                    margin-left: 5px;
+                    margin-left: 10px;
 
                     &:first-child {
                         margin-left: 0;
@@ -134,6 +141,10 @@
                         line-height: 50px;
                         color: #fff;
                         text-decoration: none;
+
+                        i {
+                            color: #ecec27;
+                        }
                     }
                 }
             }
