@@ -4,6 +4,7 @@ import { ClientLayoutComponent } from './client-layout/client-layout.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { DestinoComponent } from './destino/destino.component';
+import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
 
 
 
@@ -12,6 +13,7 @@ const routes: Routes = [
     { path: '', component: HomePageComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: 'destinos', component: DestinoComponent },
+    { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
   ] }
 ];
 

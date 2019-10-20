@@ -9,8 +9,6 @@ import { Destino } from 'src/app/models/destino';
 export class DestinoComponent implements OnInit {
 
   constructor() { }
-  // @Input name: string;
-  // @Input categorie: string;
 
   destinos: Destino[] = [
     {
@@ -50,7 +48,6 @@ export class DestinoComponent implements OnInit {
   ];
 
   ngOnInit() {
-
   }
 
 }

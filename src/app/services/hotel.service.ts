@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Hotel } from '../models/hotel';
 import { Observable } from 'rxjs';
+import { Destino } from '../models/destino';
 
 @Injectable({
   providedIn: 'root'
@@ -123,6 +124,20 @@ export class HotelService {
         observer.next(
           this.hotels.filter((hotel: Hotel) => {
             return hotel.stars > 3;
+          } )
+        );
+      }, 1000);
+    });
+
+  }
+
+  getHotelsInDestino(state: string): Observable<Hotel[]> {
+
+    return new Observable<Hotel[]>(observer => {
+      setTimeout(() => {
+        observer.next(
+          this.hotels.filter((hotel: Hotel) => {
+            return hotel.state.name === state;
           } )
         );
       }, 1000);
