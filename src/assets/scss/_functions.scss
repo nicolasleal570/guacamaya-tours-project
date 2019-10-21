@@ -1,0 +1,11 @@
+@mixin each($num) {
+    &:nth-child(#{$num}n){
+        @content
+    }
+}
+
+@mixin between($first, $last) {
+    &:nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+        @content
+    }
+}
