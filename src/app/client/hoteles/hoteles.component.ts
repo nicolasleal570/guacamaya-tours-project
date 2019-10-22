@@ -31,8 +31,18 @@ export class HotelesComponent implements OnInit {
       imgPresentation: "adfwa",
       gallery: [],
       fullDay: false,
-      services: [],
-      activities: [],
+      services: [
+        'Servicio 1',
+        'Servicio 1',
+        'Servicio 1',
+        'Servicio 1',
+      ],
+      activities: [
+        'Actividad 1',
+        'Actividad 1',
+        'Actividad 1',
+        'Actividad 1',
+      ],
       rooms: [],
     },
 
