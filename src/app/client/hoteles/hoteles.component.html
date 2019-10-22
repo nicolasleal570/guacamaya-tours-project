@@ -1,0 +1,17 @@
+<!-- HEADER -->
+<header class="header header-secondary">
+    <div class="header-callToAction secondary-CallToAction">
+        <h1 class="subtitle">Hoteles</h1>
+    </div>
+    <div class="header-background" style="background-image: url('assets/img/principal.jpg')"></div>
+</header>
+<!-- FIN HEADER -->
+
+<!-- FICHAS -->
+<div class="section wrap">
+    
+    <ng-container *ngFor="let hotel of hotels">
+        <app-hotel-card [hotel]="hotel"> </app-hotel-card>
+    </ng-container>
+</div>
+<!-- FIN DE FICHAS -->

@@ -13,6 +13,7 @@ import { DisplayComponent } from './partials/display/display.component';
 import { DestinoComponent } from './destino/destino.component';
 import { NavbarTreeviewComponent } from './partials/navbar-treeview/navbar-treeview.component';
 import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
+import { HotelesComponent } from './hoteles/hoteles.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SelectedDestinoComponent } from './selected-destino/selected-destino.co
     HotelCardComponent, NavbarComponent, BuscarComponent,
     TituloComponent, DisplayComponent, DestinoComponent,
     NavbarTreeviewComponent,
-    SelectedDestinoComponent
+    SelectedDestinoComponent,
+    HotelesComponent
   ],
   imports: [
     CommonModule,

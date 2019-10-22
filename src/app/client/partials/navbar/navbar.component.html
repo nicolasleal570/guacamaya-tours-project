@@ -24,6 +24,12 @@
         </li>
         <!-- FIN LOGO -->
 
+        <app-navbar-treeview title="Itinerario" [options]="[
+            { title: 'Crea tu Aventura', url: '/crear' },
+            { title: 'Revisa tu itinerario', url: '/revisar-itinerario' }
+        ]">
+        </app-navbar-treeview>
+
         <li>
             <a routerLink="/shopping/cart"><i class="fas fa-shopping-cart fa-2x"></i> </a>
         </li>
