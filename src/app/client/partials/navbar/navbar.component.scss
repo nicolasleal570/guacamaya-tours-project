@@ -82,8 +82,17 @@ nav.navbar-lg {
                     height: 100%;
                 }
 
+                &:hover {
+                    i.fa-2x {
+                        font-size: 1.7rem;
+                        transition: all 200ms ease-in-out;
+                    }
+                }
+
                 & > i.fa-2x {
                     font-size: 1.5rem;
+                    transition: all 200ms ease-in-out;
+
                 }
             }
         }

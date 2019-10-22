@@ -1,7 +1,6 @@
 <li routerLinkActive="active-link" 
     [routerLinkActiveOptions]="{exact: true}" 
-    [class.dropdownOpen]="dropdownOpen" 
-    (mouseover)="showDropdown()"
+    [class.dropdownOpen]="dropdownOpen"
 >
     <a (click)="toggleDropdown()">
         {{title}} <i class="fas fa-chevron-down icon"></i>
