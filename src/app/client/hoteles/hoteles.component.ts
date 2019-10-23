@@ -28,7 +28,7 @@ export class HotelesComponent implements OnInit {
         description: "Estado principal de Venezuela",
         image: "",
       },
-      imgPresentation: "adfwa",
+      imgPresentation: "assets/img/tamanaco.jpg",
       gallery: [],
       fullDay: false,
       services: [
@@ -48,7 +48,7 @@ export class HotelesComponent implements OnInit {
 
     {
       $key: "hjewgf",
-      name: "Tamanaco Intercontinental",
+      name: "Ikin Margarita",
       stars: 4,
       location: {
         $key: "hdgkhf",
@@ -62,11 +62,21 @@ export class HotelesComponent implements OnInit {
         description: "Estado principal de Venezuela",
         image: "",
       },
-      imgPresentation: "adfwa",
+      imgPresentation: "assets/img/ikin.jpg",
       gallery: [],
       fullDay: false,
-      services: [],
-      activities: [],
+      services: [
+        'Servicio 1',
+        'Servicio 1',
+        'Servicio 1',
+        'Servicio 1',
+      ],
+      activities: [
+        'Actividad 1',
+        'Actividad 1',
+        'Actividad 1',
+        'Actividad 1',
+      ],
       rooms: [],
     }
   ]
