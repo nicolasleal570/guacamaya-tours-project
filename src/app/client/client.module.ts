@@ -16,6 +16,7 @@ import { SelectedDestinoComponent } from './selected-destino/selected-destino.co
 import { HotelesComponent } from './hoteles/hoteles.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './partials/contact/contact.component';
+import { HabitacionesComponent } from './habitaciones/habitaciones.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ContactComponent } from './partials/contact/contact.component';
     NavbarTreeviewComponent,
     SelectedDestinoComponent,
     HotelesComponent,
-    ContactComponent
+    ContactComponent,
+    HabitacionesComponent
   ],
   imports: [
     CommonModule,
