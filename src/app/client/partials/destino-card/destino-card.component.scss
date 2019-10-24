@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 300px 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+    
 
     &:last-child {
         margin-bottom: 0;
@@ -72,6 +73,8 @@
         background: $secondaryColor;
         padding: 20px 40px;
         color: #fff;
+        
+        
 
         /**
         * PHONE
@@ -98,6 +101,7 @@
             a {
                 text-decoration: none;
                 color: inherit;
+
             }
 
             h1 {
@@ -130,7 +134,28 @@
                 flex-direction: column;
                 width: 100%;
             }
+        }        
+        
 
-        }    
     }
+    .card-footer{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        padding: 15px 0;
+
+        .box-sm{
+            display: flex;
+            width: 100%;
+            
+
+            .btnMover{
+                
+                justify-content: flex-end;
+
+            }
+        }
+    }
+    
+    
+
 }

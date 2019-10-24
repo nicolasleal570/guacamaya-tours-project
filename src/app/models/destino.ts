@@ -10,8 +10,6 @@ export interface Destino {
     description: string;
     category: Category;
     location: Location;
-    services: string[];
-    activities: string[];
     state: State;
     city?: string;
 
