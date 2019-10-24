@@ -14,6 +14,8 @@ import { DestinoComponent } from './destino/destino.component';
 import { NavbarTreeviewComponent } from './partials/navbar-treeview/navbar-treeview.component';
 import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
 import { HotelesComponent } from './hoteles/hoteles.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ContactComponent } from './partials/contact/contact.component';
 
 
 @NgModule({
@@ -23,11 +25,13 @@ import { HotelesComponent } from './hoteles/hoteles.component';
     TituloComponent, DisplayComponent, DestinoComponent,
     NavbarTreeviewComponent,
     SelectedDestinoComponent,
-    HotelesComponent
+    HotelesComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ClientModule { }
