@@ -69,7 +69,7 @@ export class DestinoService {
         longitud: '',
         direction: ''
       },
-      imgBanner: 'assets/img/los-roques.jpg',
+      imgBanner: 'assets/img/merida2.jpg',
       state: {
         $key: 'VNCBRYEUH',
         name: 'Ciudad',
@@ -92,7 +92,7 @@ export class DestinoService {
         longitud: '',
         direction: ''
       },
-      imgBanner: 'assets/img/los-roques.jpg',
+      imgBanner: 'assets/img/medanos.png',
       state: {
         $key: 'VNCBRYEUH',
         name: 'Medanos',
@@ -115,7 +115,7 @@ export class DestinoService {
         longitud: '',
         direction: ''
       },
-      imgBanner: 'assets/img/los-roques.jpg',
+      imgBanner: 'assets/img/granSabana.jpg',
       state: {
         $key: 'VNCBRYEUH',
         name: 'Sabana',
