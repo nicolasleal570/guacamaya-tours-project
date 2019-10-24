@@ -14,6 +14,9 @@ import { DestinoComponent } from './destino/destino.component';
 import { NavbarTreeviewComponent } from './partials/navbar-treeview/navbar-treeview.component';
 import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
 import { DestinoCardComponent } from './partials/destino-card/destino-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ContactComponent } from './partials/contact/contact.component';
+import { HotelesComponent } from './hoteles/hoteles.component';
 
 
 @NgModule({
@@ -23,11 +26,15 @@ import { DestinoCardComponent } from './partials/destino-card/destino-card.compo
     TituloComponent, DisplayComponent, DestinoComponent,
     NavbarTreeviewComponent,
     SelectedDestinoComponent,
-    DestinoCardComponent
+    DestinoCardComponent,
+    ContactComponent,
+    HotelesComponent
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    ReactiveFormsModule
+
   ]
 })
 export class ClientModule { }

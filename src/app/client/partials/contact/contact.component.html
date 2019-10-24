@@ -1,0 +1,23 @@
+<!-- CONTACT FORM -->
+<div class="section wrap" id="contacto">
+    <section class="contact-card">
+        <h1 class="contact-card-title">Contáctanos</h1>
+        <form action="mailto: elena.7moya@gmail.com" method="POST" [formGroup]="contact">
+            <div class="form-group">
+                <input type="text" name="name" id="contactName" placeholder="Ingrese su Nombre" [formControl]="name">
+                <input type="text" name="email" id="contactEmail" placeholder="Ingrese su Email" [formControl]="email">
+            </div>
+            <div class="form-group">
+                <input type="text" name="asunto" id="contactAsunto" placeholder="Ingrese el Asunto de su Mensaje" [formControl]="asunto">
+            </div>
+            <div class="form-group">
+                <textarea name="message" id="contactMessage" placeholder="Ingrese su Mensaje" [formControl]="message"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-envelope"></i> Enviar Mensaje
+            </button>
+        </form>
+    </section>
+</div>
+<!-- FIN CONTACT FORM -->
