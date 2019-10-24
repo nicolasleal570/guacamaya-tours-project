@@ -9,76 +9,125 @@ export class DestinoService {
 
   destinos: Destino[] = [
     {
-      $key: 'wdvbnjg',
+      $key: 'TOJWHVH',
       name: 'Los Roques',
-      description: '',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatum officia accusamus vitae aliquid in quasi sequi dolorem ullam maiores.',
       category: {
-        $key: 'sdfgh',
-        name: 'Trópico',
+        $key: 'pvhuwun',
+        name: 'Tropico',
         img: ''
       },
       location: {
-        $key: '',
+        $key: 'QPEICBNEU',
         latitud: '',
         longitud: '',
         direction: ''
       },
+      imgBanner: 'assets/img/los-roques.jpg',
       state: {
-        $key: '',
-        name: 'Archipelago',
+        $key: 'VNCBRYEUH',
+        name: 'Archipielago',
         description: '',
         image: ''
       }
     },
     {
-      $key: 'oiuytg',
-      name: 'La Tortuga',
-      description: '',
+      $key: 'AWVOZEW',
+      name: 'Margarita',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatum officia accusamus vitae aliquid in quasi sequi dolorem ullam maiores.',
       category: {
-        $key: 'sdfgh',
-        name: 'Trópico',
+        $key: 'mprtatx',
+        name: 'Tropico',
         img: ''
       },
       location: {
-        $key: '',
+        $key: 'PDRAQWC',
         latitud: '',
         longitud: '',
         direction: ''
       },
+      imgBanner: 'assets/img/los-roques.jpg',
       state: {
-        $key: '',
-        name: 'Archipelago',
+        $key: 'ZDTOHFRA',
+        name: 'Isla',
         description: '',
         image: ''
       }
     },
     {
-      $key: 'woctnjbu',
-      name: 'Mérida',
-      description: '',
+      $key: 'GURFSWEH',
+      name: 'Merida',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatum officia accusamus vitae aliquid in quasi sequi dolorem ullam maiores.',
       category: {
-        $key: 'sdfgh',
+        $key: 'lptwesx',
         name: 'Nieve',
         img: ''
       },
       location: {
-        $key: '',
+        $key: 'QPWODLG',
         latitud: '',
         longitud: '',
         direction: ''
       },
+      imgBanner: 'assets/img/los-roques.jpg',
       state: {
-        $key: '',
-        name: 'Archipelago',
+        $key: 'VNCBRYEUH',
+        name: 'Ciudad',
         description: '',
         image: ''
       }
     },
+    {
+      $key: 'QWSXCVBG',
+      name: 'Medanos de Coro',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatum officia accusamus vitae aliquid in quasi sequi dolorem ullam maiores.',
+      category: {
+        $key: 'pvhuwun',
+        name: 'Desierto',
+        img: ''
+      },
+      location: {
+        $key: 'QPEICBNEU',
+        latitud: '',
+        longitud: '',
+        direction: ''
+      },
+      imgBanner: 'assets/img/los-roques.jpg',
+      state: {
+        $key: 'VNCBRYEUH',
+        name: 'Medanos',
+        description: '',
+        image: ''
+      }
+    },
+    {
+      $key: 'POIUYTGHJ',
+      name: 'Gran Sabana',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatum officia accusamus vitae aliquid in quasi sequi dolorem ullam maiores.',
+      category: {
+        $key: 'pvhuwun',
+        name: 'Selva',
+        img: ''
+      },
+      location: {
+        $key: 'QPEICBNEU',
+        latitud: '',
+        longitud: '',
+        direction: ''
+      },
+      imgBanner: 'assets/img/los-roques.jpg',
+      state: {
+        $key: 'VNCBRYEUH',
+        name: 'Sabana',
+        description: '',
+        image: ''
+      }
+    }
   ];
 
   constructor() { }
 
-  get getDestinos() {
+  get getDestinos(): Observable<Destino[]> {
 
     return new Observable<Destino[]>(observer => {
       setTimeout(() => {
@@ -86,6 +135,12 @@ export class DestinoService {
       }, 1000);
     });
 
+  }
+
+  getDestinoFromId(id: string) {
+    return this.destinos.find((destino: Destino) => {
+      return destino.$key === id;
+    });
   }
 
 }

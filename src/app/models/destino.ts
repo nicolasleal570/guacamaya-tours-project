@@ -11,5 +11,6 @@ export interface Destino {
     location: Location;
     state: State;
     city?: string;
+    imgBanner: string;
 
 }

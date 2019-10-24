@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DestinoService } from 'src/app/services/destino.service';
+import { Destino } from 'src/app/models/destino';
 
 @Component({
   selector: 'app-selected-destino',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectedDestinoComponent implements OnInit {
 
-  constructor() { }
+  destino: Destino;
+
+  constructor(private route: ActivatedRoute, private dService: DestinoService) {
+    this.route.paramMap.subscribe(params => {
+      this.destino = this.dService.getDestinoFromId(params.get('destinoId'));
+    });
+  }
 
   ngOnInit() {
   }

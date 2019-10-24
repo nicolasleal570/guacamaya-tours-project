@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Destino } from 'src/app/models/destino';
+import { DestinoService } from 'src/app/services/destino.service';
 
 @Component({
   selector: 'app-all-destinos',
@@ -7,13 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllDestinosComponent implements OnInit {
 
-  destinos: [];
+  destinos: Destino[];
 
-  constructor() {
-    this.destinos = [];
+  constructor(private dService: DestinoService) {
   }
 
   ngOnInit() {
+    this.dService.getDestinos.subscribe(destino => {
+      this.destinos = destino;
+    });
   }
 
 }

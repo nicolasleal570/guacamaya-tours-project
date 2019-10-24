@@ -13,8 +13,8 @@ export class AdminLayoutComponent implements OnInit {
   contentDescription: string;
 
   constructor() {
-    this.contentTitle = 'Page title';
-    this.contentDescription = 'Description of the content';
+    this.contentTitle = 'Administrador, ';
+    this.contentDescription = 'aquí encontrarás todo lo necesario para suministrarle información a la plataforma';
   }
 
   ngOnInit() {
