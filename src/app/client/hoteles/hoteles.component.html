@@ -2,6 +2,7 @@
 <header class="header header-secondary">
     <div class="header-callToAction secondary-CallToAction">
         <h1 class="subtitle">Hoteles</h1>
+        
     </div>
     <div class="header-background" style="background-image: url('assets/img/principal.jpg')"></div>
 </header>
@@ -9,9 +10,10 @@
 
 <!-- FICHAS -->
 <div class="section wrap">
-    
     <ng-container *ngFor="let hotel of hotels">
+        <a routerLink="/habitaciones" class="card" target="_blank"> 
         <app-hotel-card [hotel]="hotel"> </app-hotel-card>
+        </a>
     </ng-container>
 </div>
 <!-- FIN DE FICHAS -->
