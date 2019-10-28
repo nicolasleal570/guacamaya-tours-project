@@ -9,7 +9,7 @@ import { CreateDestinoComponent } from './destinos/create-destino/create-destino
 
 
 const routes: Routes = [
-  { path: 'admin', component: AdminLayoutComponent, children: [
+  { path: '', component: AdminLayoutComponent, children: [
     { path: '', component: DashboardComponent },
     { path: 'hoteles', component: AllHotelsComponent },
     { path: 'hoteles/crear', component: CreateHotelComponent },

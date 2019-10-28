@@ -7,6 +7,7 @@ import { DestinoComponent } from './destino/destino.component';
 import { HotelesComponent } from './hoteles/hoteles.component';
 import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
 import { HabitacionesComponent } from './habitaciones/habitaciones.component';
+import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 
 
 
@@ -18,6 +19,8 @@ const routes: Routes = [
     { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
     { path: 'hoteles', component: HotelesComponent },
     { path: 'habitaciones', component: HabitacionesComponent },
+    { path: 'itinerario/ver', component: ShowItinerarioComponent },
+    { path: 'itinerario/crear', component: ShowItinerarioComponent },
   ] }
 ];
 

@@ -13,6 +13,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        margin-top: 100px;
 
         &.secondary-CallToAction {
             display: flex;
@@ -131,7 +132,7 @@
     }
 }
 .general-buscar{
-	margin-top: 200px;
+	margin-top: 100px;
 	color: #ffffff;
 	font-family: Roboto;
 }
@@ -144,49 +145,40 @@
 }
 
 .text{
-    margin-right: 2%;
+    margin-bottom: 2%;
     line-height: 31px;
+    color: #fff;
 }
 
 .section-buscar{
     display: flex;
-	justify-content: center;
-	margin: 2%;
+    justify-content: center;
+    flex-direction: column;
 	appearance: none;
 	border-radius: 0%;
-	margin-top: 5%;
 }
 
 
 .blocks{
 	text-align: center;
 	background-color: #343434;
-	height: 180px;
 	width: 60%;
-	padding: 10px;
+	padding: 40px;
 	margin: auto;
-	margin-top: 5%;
-	margin-bottom: 5%;
+    margin-top: 5%;
     border-radius: 3px;
+	margin-bottom: 5%;
 }
 
 .selector{
 	outline: none;
 	border: none;
-    padding: 5px 45px;
+    padding: 10px;
     padding-left: 5px;
     font-size: inherit;
     font-family: inherit;
 	color: #ffffff;
 	background-color: #262626;
-}
-
-.select-items{
-	color: #ffffff;
-  	padding: 8px 16px;
-  	border: 1px solid transparent;
-  	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  	cursor: pointer;
 }
 
 .button-buscar{

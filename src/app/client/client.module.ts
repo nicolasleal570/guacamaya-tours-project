@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './partials/contact/contact.component';
 import { HotelesComponent } from './hoteles/hoteles.component';
 import { HabitacionesComponent } from './habitaciones/habitaciones.component';
+import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { HabitacionesComponent } from './habitaciones/habitaciones.component';
     ContactComponent,
     HotelesComponent,
     ContactComponent,
-    HabitacionesComponent
+    HabitacionesComponent,
+    ShowItinerarioComponent
   ],
   imports: [
     CommonModule,

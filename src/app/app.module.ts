@@ -15,7 +15,7 @@ import { AdminModule } from './admin/admin.module';
     BrowserModule,
     AppRoutingModule,
     ClientModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
