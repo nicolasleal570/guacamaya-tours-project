@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
+
 import { ClientRoutingModule } from './client-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderComponent } from './partials/header/header.component';
@@ -38,7 +42,9 @@ import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.compo
   imports: [
     CommonModule,
     ClientRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
 
   ]
 })
