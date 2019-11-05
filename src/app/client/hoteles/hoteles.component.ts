@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/models/hotel';
+import { HotelService } from 'src/app/services/hotel.service';
 
 
 @Component({
@@ -9,80 +10,14 @@ import { Hotel } from 'src/app/models/hotel';
 })
 export class HotelesComponent implements OnInit {
 
-  constructor() { }
+  hotels: Hotel[];
 
-  hotels: Hotel[]= [
-    {
-      $key: "hjewgf",
-      name: "Tamanaco Intercontinental",
-      stars: 4,
-      location: {
-        $key: "hdgkhf",
-        latitud: "hjgfj",
-        longitud: "hgfku",
-        direction: "fkf",
-      },
-      state:{
-        $key: "",
-        name: "Distrito Capital",
-        description: "Estado principal de Venezuela",
-        image: "",
-      },
-      imgPresentation: "assets/img/tamanaco.jpg",
-      gallery: [],
-      fullDay: false,
-      services: [
-        'Servicio 1',
-        'Servicio 1',
-        'Servicio 1',
-        'Servicio 1',
-      ],
-      activities: [
-        'Actividad 1',
-        'Actividad 1',
-        'Actividad 1',
-        'Actividad 1',
-      ],
-      rooms: [],
-    },
-
-    {
-      $key: "hjewgf",
-      name: "Ikin Margarita",
-      stars: 4,
-      location: {
-        $key: "hdgkhf",
-        latitud: "hjgfj",
-        longitud: "hgfku",
-        direction: "fkf",
-      },
-      state:{
-        $key: "",
-        name: "Distrito Capital",
-        description: "Estado principal de Venezuela",
-        image: "",
-      },
-      imgPresentation: "assets/img/ikin.jpg",
-      gallery: [],
-      fullDay: false,
-      services: [
-        'Servicio 1',
-        'Servicio 1',
-        'Servicio 1',
-        'Servicio 1',
-      ],
-      activities: [
-        'Actividad 1',
-        'Actividad 1',
-        'Actividad 1',
-        'Actividad 1',
-      ],
-      rooms: [],
-    }
-  ]
-  
+  constructor(private hotelService: HotelService) { }
 
   ngOnInit() {
+    this.hotelService.getHotels.subscribe(items => {
+      this.hotels = items;
+    });
   }
 
 }

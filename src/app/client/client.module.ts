@@ -17,7 +17,7 @@ import { DestinoCardComponent } from './partials/destino-card/destino-card.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './partials/contact/contact.component';
 import { HotelesComponent } from './hoteles/hoteles.component';
-import { HabitacionesComponent } from './habitaciones/habitaciones.component';
+import { SelectedHotelComponent } from './selected-hotel/selected-hotel.component';
 import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 
@@ -33,7 +33,7 @@ import { CreateItinerarioComponent } from './create-itinerario/create-itinerario
     ContactComponent,
     HotelesComponent,
     ContactComponent,
-    HabitacionesComponent,
+    SelectedHotelComponent,
     ShowItinerarioComponent,
     CreateItinerarioComponent
   ],

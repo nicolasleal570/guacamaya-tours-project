@@ -146,7 +146,7 @@ export class HotelService {
 
   }
 
-  getHotelById(id: string){
+  getHotelFromId(id: string){
     return this.hotels.find((hotel: Hotel) => {
       return hotel.$key === id;
     });
