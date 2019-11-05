@@ -42,7 +42,7 @@
 
             <div class="input-group">
                 <label for="hotelBanner">Imagen Representativa (Banner)</label>
-                <input type="file" id="hotelBanner" formControlName="imgBanner">
+                <input type="text" id="hotelBanner" placeholder="Ingresa una URL de Imagen para el Banner" formControlName="imgBanner">
             </div>
 
             <div class="input-group">
@@ -101,7 +101,7 @@
 
                     <div class="input-group">
                         <label for="">Seleccione su imagen</label>
-                        <input type="file" formControlName="path">
+                        <input type="text" formControlName="path" placeholder="Ingresa la URL de tu imagen">
                     </div>
                     <div class="input-group">
                         <button type="button" class="btn btn-danger btn-sm" (click)="deleteImage(i)">Eliminar Imagen</button>

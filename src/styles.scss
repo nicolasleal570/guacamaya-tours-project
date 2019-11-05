@@ -49,6 +49,23 @@ h6 {
     font-weight: 500;
 }
 
+label {
+    display: block;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+select, input {
+    outline: none;
+    border: none;
+    padding: 5px 45px;
+    padding-left: 5px;
+    font-size: inherit;
+    font-family: inherit;
+    color: #fff;
+    background-color: $darkColor;
+}
+
 .wrap {
     padding-right: 100px;
     padding-left: 100px;
@@ -97,6 +114,11 @@ h6 {
         border-radius: 2px;
     }
 
+    &.btn-block {
+        display: block;
+        width: 100%;
+    }
+
     &.btn-sm {
         font-size: 12px;
         padding-top: 8px;
@@ -134,7 +156,7 @@ h6 {
 
 ::-webkit-scrollbar {
     width: 5px;
-    height: 5px;
+    height: 0;
 }
 
 ::-webkit-scrollbar-button {
@@ -263,7 +285,7 @@ h6 {
                     td {
                         padding: 5px 10px;
 
-                        &>a.btn{
+                        &>a.btn {
                             margin: 0 5px;
                         }
                     }
@@ -302,6 +324,7 @@ h6 {
                 }
 
                 &>input,
+                textarea,
                 select {
                     display: block;
                     width: 100%;
@@ -320,6 +343,13 @@ h6 {
                     &:focus {
                         border: 1px solid $primaryColor;
                     }
+                }
+
+                textarea {
+                    min-height: 34px;
+                    max-height: 200px;
+                    min-width: 100%;
+                    max-width: 100%;
                 }
 
                 select option {

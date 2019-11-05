@@ -19,6 +19,7 @@ import { ContactComponent } from './partials/contact/contact.component';
 import { HotelesComponent } from './hoteles/hoteles.component';
 import { HabitacionesComponent } from './habitaciones/habitaciones.component';
 import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
+import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.compo
     HotelesComponent,
     ContactComponent,
     HabitacionesComponent,
-    ShowItinerarioComponent
+    ShowItinerarioComponent,
+    CreateItinerarioComponent
   ],
   imports: [
     CommonModule,

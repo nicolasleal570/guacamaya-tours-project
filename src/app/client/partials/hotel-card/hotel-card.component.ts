@@ -8,8 +8,11 @@ import { Hotel } from 'src/app/models/hotel';
 })
 export class HotelCardComponent implements OnInit {
 
-  constructor() { }
   @Input() hotel: Hotel;
+  @Input() darkColor: boolean = false;
+  @Input() footer: boolean = false;
+
+  constructor() { }
 
   ngOnInit() {
   }

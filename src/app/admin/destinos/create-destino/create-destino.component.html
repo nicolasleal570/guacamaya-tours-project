@@ -1,1 +1,80 @@
-<p>create-destino works!</p>
+<div class="admin-box admin-box-sm">
+    <div class="box-header with-border">
+        <h3 class="box-title">Datos Básicos de un Destino</h3>
+    </div>
+    <div class="box-body">
+
+        <form [formGroup]="createHotelForm" class="form-control" (ngSubmit)="onSubmit()">
+
+            <div class="input-group">
+                <label for="destinoName">Nombre del Destino</label>
+                <input formControlName="name" type="text" id="destinoName">
+                <small>Este va a ser el nombre que se le mostrará al público.</small>
+            </div>
+
+            <div class="input-group">
+                <label for="destinoDescript">Descripción del Sitio</label>
+                <textarea formControlName="description" type="text" id="destinoDescript">
+                        </textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="destinoLatitud">Latitud del Destino</label>
+                <input formControlName="latitud" type="text" id="destinoLatitud">
+            </div>
+
+            <div class="input-group">
+                <label for="destinoLongitud">Longitud del Destino</label>
+                <input formControlName="longitud" type="text" id="destinoLongitud">
+            </div>
+
+            <div class="input-group">
+                <label for="destinoDirection">Dirección del Destino</label>
+                <textarea formControlName="direccion" type="text" id="destinoDirection">
+                    </textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="destino">Estado donde está el Destino</label>
+                <select id="destino" formControlName="state">
+                    <option value="">Seleccione el estado donde está el destino ubicado</option>
+                    <option value="sw2345">Margarita</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="destinoBanner">Imagen Representativa (Banner)</label>
+                <input type="text" id="destinoBanner" placeholder="Ingresa una URL de Imagen para el Banner"
+                    formControlName="imgBanner">
+            </div>
+
+            <h3 class="form-section-title with-border">
+                Imágenes para la Galería
+            </h3>
+
+            <section class="imgGallery" formArrayName="imgGallery">
+                <div *ngFor="let hab of galleryForm.controls; let i=index" [formGroupName]="i">
+
+                    <p class="img-title">Image {{ i + 1 }}</p>
+
+                    <div class="input-group">
+                        <input type="text" formControlName="path" placeholder="Ingresa la URL de tu imagen">
+                    </div>
+                    <div class="input-group">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteImage(i)">Eliminar
+                            Imagen</button>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <button type="button" class="btn btn-info btn-sm" (click)="addImage()">Agregar Imagenes</button>
+                </div>
+            </section>
+
+
+            <button type="submit" class="btn btn-primary">Enviar Datos</button>
+        </form>
+
+    </div>
+</div>

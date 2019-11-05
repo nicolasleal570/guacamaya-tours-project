@@ -9,6 +9,10 @@
         margin-bottom: 0;
     }
 
+    &.bgDark > .card-body {
+        background: $darkColor;
+    }
+
     /**
     * PHONE
     */
