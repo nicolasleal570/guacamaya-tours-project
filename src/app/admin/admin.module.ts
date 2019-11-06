@@ -11,6 +11,9 @@ import { CreateHotelComponent } from './hotels/create-hotel/create-hotel.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AllDestinosComponent } from './destinos/all-destinos/all-destinos.component';
 import { CreateDestinoComponent } from './destinos/create-destino/create-destino.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -20,6 +23,8 @@ import { CreateDestinoComponent } from './destinos/create-destino/create-destino
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ]
 })
 export class AdminModule { }
