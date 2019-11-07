@@ -32,8 +32,26 @@ export class CreateItinerarioComponent implements OnInit {
       habs: new FormArray([]),
     });
 
-    this.hotelService.getHotels.subscribe(hotels => {
-      this.hotels = hotels;
+    
+    this.hotelService.getHotels.subscribe((hotels) => {
+      hotels.forEach(item => {
+        const data = item.payload.doc.data();
+        const hotel: Hotel = {
+          $key: item.payload.doc.id,
+          name: data.name,
+          stars: data.stars,
+          location: data.location,
+          stateId: data.stateId,
+          imgPresentation: data.imgPresentation,
+          gallery: data.gallery,
+          fullDay: data.fullDay,
+          services: data.services,
+          activities: data.activities,
+          rooms: data.rooms,
+        }
+
+        this.hotels.push(hotel);
+      });
     });
   }
 
@@ -73,7 +91,7 @@ export class CreateItinerarioComponent implements OnInit {
 
   // SE EJECUTA CUANDO SE SELECCIONA UN HOTEL
   onHotelClick(id){
-    this.selectedHotel = this.hotelService.getHotelById(id);
+    this.selectedHotel = this.hotelService.getHotelFromId(id);
   }
 
   // SE EJECUTA CUANDO SE ENVIA EL FORM

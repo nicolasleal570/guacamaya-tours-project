@@ -14,10 +14,11 @@ import { CreateDestinoComponent } from './destinos/create-destino/create-destino
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { LoaderComponent } from './partials/loader/loader.component';
 
 
 @NgModule({
-  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent],
+  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -4,11 +4,11 @@ import { Room } from './room';
 
 export interface Hotel {
 
-    $key: string;
+    $key?: string;
     name: string;
     stars: number;
     location: Location;
-    state: State;
+    stateId: string;
     city?: string;
     imgPresentation: string;
     gallery: string[];

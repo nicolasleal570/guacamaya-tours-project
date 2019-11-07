@@ -3,132 +3,23 @@ import { Hotel } from '../models/hotel';
 import { Observable } from 'rxjs';
 import { Destino } from '../models/destino';
 import { Room } from '../models/room';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
 
-  hotels: Hotel[] = [
-    {
-      $key: 'AKCHHRHSBCJ',
-      name: 'Hotel Hesperia Margarita',
-      stars: 4,
-      imgPresentation: 'assets/img/hesperia-marg.jpg',
-      location: {
-        $key: 'WGBXZSUKL',
-        latitud: '',
-        longitud: '',
-        direction: ''
-      },
-      state: {
-        $key: 'IUYGFBGF',
-        name: 'Distrito Capital',
-        description: '',
-        image: '',
-      },
-      gallery: [
-        ''
-      ],
-      fullDay: false,
-      services: [
-        'Servicio 1',
-        'Servicio 2',
-        'Servicio 3',
-      ],
-      activities: [
-        'Actividad 1',
-        'Actividad 2',
-        'Actividad 3',
-      ],
-      rooms: [
+  hotelCollection: AngularFirestoreCollection<Hotel>;
+  hotels: Hotel[] = [];
 
-        {
-          $key: '23EDVBG',
-          name: 'Suite',
-          gallery: [],
-          maxPersons: 2,
-          adventajes: [],
-          pricePerson: 12
-        },
-        {
-          $key: '23EQPVB',
-          name: 'Individual',
-          gallery: [],
-          maxPersons: 1,
-          adventajes: [],
-          pricePerson: 12
-        },
-        {
-          $key: '23EAKBY',
-          name: 'Matrimonial',
-          gallery: [],
-          maxPersons: 4,
-          adventajes: [],
-          pricePerson: 12
-        },
+  constructor(private afs: AngularFirestore) {
+    this.hotelCollection = this.afs.collection('hotels');
+  }
 
-      ]
+  get getHotels(){
 
-    },
-    {
-      $key: 'LOIJHYGBFDX',
-      name: 'Posada',
-      stars: 5,
-      imgPresentation: 'assets/img/posada.jpg',
-      location: {
-        $key: 'WGBXZSUKL',
-        latitud: '',
-        longitud: '',
-        direction: ''
-      },
-      state: {
-        $key: 'IUYGFBGF',
-        name: 'Distrito Capital',
-        description: '',
-        image: '',
-      },
-      gallery: [
-        ''
-      ],
-      fullDay: false,
-      services: [
-        'Servicio 1',
-        'Servicio 2',
-        'Servicio 3',
-      ],
-      activities: [
-        'Actividad 1',
-        'Actividad 2',
-        'Actividad 3',
-      ],
-      rooms: [
-        {
-          $key: 'AZXCASDCHGHF',
-          name: 'Individual',
-          gallery: [],
-          maxPersons: 1,
-          adventajes: [
-            'Comodidad 1',
-            'Comodidad 2',
-            'Comodidad 3',
-          ],
-          pricePerson: 4
-        }
-      ]
-
-    }
-  ];
-
-  constructor() { }
-
-  get getHotels(): Observable<Hotel[]> {
-
-    return new Observable<Hotel[]>(observer => {
-      setTimeout(() => {
-        observer.next(this.hotels);
-      }, 1000);
-    });
+    return this.hotelCollection.snapshotChanges();
 
   }
 
@@ -149,27 +40,6 @@ export class HotelService {
   getHotelFromId(id: string){
     return this.hotels.find((hotel: Hotel) => {
       return hotel.$key === id;
-    });
-  }
-
-  getHotelsInDestino(state: string): Observable<Hotel[]> {
-
-    return new Observable<Hotel[]>(observer => {
-      setTimeout(() => {
-        observer.next(
-          this.hotels.filter((hotel: Hotel) => {
-            return hotel.state.name === state;
-          })
-        );
-      }, 1000);
-    });
-  }
-
-  findRoomById(id: string) {
-    return this.hotels.forEach((hotel: Hotel) => {
-      hotel.rooms.find(room => {
-        return room.$key === id;
-      });
     });
   }
 

@@ -18,7 +18,6 @@ export class DestinoService {
         img: ''
       },
       location: {
-        $key: 'QPEICBNEU',
         latitud: '',
         longitud: '',
         direction: ''
@@ -41,7 +40,6 @@ export class DestinoService {
         img: ''
       },
       location: {
-        $key: 'PDRAQWC',
         latitud: '',
         longitud: '',
         direction: ''
@@ -64,7 +62,6 @@ export class DestinoService {
         img: ''
       },
       location: {
-        $key: 'QPWODLG',
         latitud: '',
         longitud: '',
         direction: ''
@@ -87,7 +84,6 @@ export class DestinoService {
         img: ''
       },
       location: {
-        $key: 'QPEICBNEU',
         latitud: '',
         longitud: '',
         direction: ''
@@ -110,7 +106,6 @@ export class DestinoService {
         img: ''
       },
       location: {
-        $key: 'QPEICBNEU',
         latitud: '',
         longitud: '',
         direction: ''

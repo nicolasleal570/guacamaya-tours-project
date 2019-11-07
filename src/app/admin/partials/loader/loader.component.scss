@@ -1,0 +1,124 @@
+@import 'variables';
+
+.loader-wrap {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#bars6 {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+#bars6 span {
+    position: absolute;
+    display: block;
+    bottom: 50%;
+    width: 9px;
+    height: 5px;
+    background: $darkColor;
+    -webkit-animation: bars6 1.5s infinite ease-in-out;
+    animation: bars6 1.5s infinite ease-in-out;
+}
+
+#bars6 span:nth-child(2) {
+    left: 11px;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+#bars6 span:nth-child(3) {
+    left: 22px;
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+
+#bars6 span:nth-child(4) {
+    left: 33px;
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+#bars6 span:nth-child(5) {
+    left: 44px;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+}
+
+@keyframes bars6 {
+    0% {
+        height: 5px;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    25% {
+        height: 30px;
+        -webkit-transform: translateY(15px);
+        transform: translateY(15px);
+        -webkit-transform: translateY(15px);
+        transform: translateY(15px);
+        background: #0057e7;
+    }
+
+    50% {
+        height: 5px;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+        height: 5px;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: rgba(0, 0, 0, 0.25);
+    }
+}
+
+@-webkit-keyframes bars6 {
+    0% {
+        height: 5px;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    25% {
+        height: 30px;
+        -webkit-transform: translateY(15px);
+        transform: translateY(15px);
+        background: #0057e7;
+    }
+
+    50% {
+        height: 5px;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+        height: 5px;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: rgba(0, 0, 0, 0.25);
+    }
+}
+
+/** END of bars6 */
