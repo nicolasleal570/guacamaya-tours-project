@@ -126,7 +126,7 @@
         </ng-container>
 
         <!-- TIPO HABITACIONES -->
-        <ng-container *ngFor="let hab of habs.controls; let i = index">
+        <ng-container *ngFor="let hab of formItinerario['controls'].habs['controls']; let i = index">
             <div class="card">
                 <div class="card-body" [formGroup]="hab">
                     <div class="input-group vertical">
@@ -134,15 +134,32 @@
                     </div>
                     <div class="input-group vertical">
 
-                        <select formControlName="habType"
-                        (change)="onChangeHabType($event, hab)">
+                        <select formControlName="habType" (change)="onChangeHabType($event, i)">
                             <option value="">Selecciona el Tipo de tu Habitación</option>
-                            <option *ngFor="let room of selectedHotel.rooms" value="{{room.$key}}">{{room.name}}
+                            <option *ngFor="let room of selectedHotel.rooms" value="{{room.$key}}">
+                                {{room.name}}
                             </option>
                         </select>
 
-
-
+                    </div>
+                    <div class="input-group vertical">
+                        <div formArrayName="persons">
+                            <ng-container *ngFor="let person of hab['controls'].persons['controls']; let ip=index">
+                                <div class="input-group vertical">
+                                    <h3>Acompañante {{ip + 1}}</h3>
+                                </div>
+                                <div formGroupName="{{ip}}">
+                                    <div class="input-group vertical">
+                                        <input type="text" formControlName="name"
+                                            placeholder="Ingresar el nombre del acompañante">
+                                    </div>
+                                    <div class="input-group vertical">
+                                        <input type="text" formControlName="lastName"
+                                            placeholder="Ingresar el apellido del acompañante">
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
                     </div>
                 </div>
             </div>

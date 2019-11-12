@@ -11,16 +11,25 @@ import { Hotel } from 'src/app/models/hotel';
 export class SelectedHotelComponent implements OnInit {
 
   hotel: Hotel;
+  hotelId: string = '';
+  loading: boolean = false;
 
   constructor(private route: ActivatedRoute, private hotelService: HotelService) {
     this.route.paramMap.subscribe(params => {
-      console.log(params.get('hotelId'));
-      
-      this.hotel = this.hotelService.getHotelFromId(params.get('hotelId'));
+      this.hotelId = params.get('hotelId');
     });
   }
-
+  
   ngOnInit() {
+    this.loading = true;
+    console.log(this.loading);
+
+    this.hotelService.getHotelFromId(this.hotelId).then(doc => {
+      this.hotel = doc;
+    }).finally(() => {
+      this.loading = false;
+      console.log(this.loading);
+    });
   }
 
 }

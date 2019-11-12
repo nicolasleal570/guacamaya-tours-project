@@ -33,9 +33,24 @@ export class CreateDestinoComponent implements OnInit {
   addImage() {
     const img = this.fb.group({
       path: [],
+      Ys: this.fb.array([
+        this.initY()
+      ])
     });
 
     this.galleryForm.push(img);
+  }
+
+  initY(){
+    return this.fb.group({
+      Y1: [''],
+      Y2: [''],
+    });
+  }
+
+  addY(index){
+    const control = (<FormArray>this.createHotelForm.controls['imgGallery']).at(index).get('Ys') as FormArray;
+    control.push(this.initY());
   }
 
   deleteImage(i: number) {

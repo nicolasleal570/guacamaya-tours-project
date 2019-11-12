@@ -15,24 +15,12 @@ export class HotelesComponent implements OnInit {
   constructor(private hotelService: HotelService) { }
 
   ngOnInit() {
-    this.hotelService.getHotels.subscribe(items => {
-      items.forEach(item => {
-        const data = item.payload.doc.data();
-        const hotel: Hotel = {
+    this.hotelService.getHotels.subscribe(actionArray => {
+      this.hotels = actionArray.map(item => {
+        return {
           $key: item.payload.doc.id,
-          name: data.name,
-          stars: data.stars,
-          location: data.location,
-          stateId: data.stateId,
-          imgPresentation: data.imgPresentation,
-          gallery: data.gallery,
-          fullDay: data.fullDay,
-          services: data.services,
-          activities: data.activities,
-          rooms: data.rooms,
-        }
-
-        this.hotels.push(hotel);
+          ...item.payload.doc.data()
+        } as Hotel;
       });
     });
   }

@@ -1,6 +1,6 @@
 export interface Room {
 
-    $key: string;
+    $key?: string;
     name: string;
     gallery: string[];
     maxPersons: number;

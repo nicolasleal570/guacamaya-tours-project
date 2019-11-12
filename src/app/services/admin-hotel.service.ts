@@ -16,7 +16,7 @@ export class AdminHotelService {
   }
 
   getHotelById(docId: string) {
-    return this.hotelCollection.doc(docId).snapshotChanges();
+    return this.hotelCollection.doc(docId).snapshotChanges()  ;
   }
 
   getHotels() {

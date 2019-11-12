@@ -38,8 +38,10 @@ export class HotelService {
   }
 
   getHotelFromId(id: string){
-    return this.hotels.find((hotel: Hotel) => {
-      return hotel.$key === id;
+    return this.hotelCollection.doc<Hotel>(id).get().toPromise().then((doc) => {
+      if ( doc.exists ) {
+        return doc.data() as Hotel;
+      }
     });
   }
 

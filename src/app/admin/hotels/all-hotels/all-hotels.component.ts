@@ -20,15 +20,15 @@ export class AllHotelsComponent implements OnInit {
     this.getHotelsFromService();
   }
 
-  deleteHotel($key) {
+  deleteHotel($key: string) {
     this.hService.deleteHotel($key).then(() => {
 
       console.log('Object eliminado');
-      this.hotels = [];
+      // this.hotels = [];
 
     }).finally(() => {
 
-      this.getHotelsFromService();
+      // this.getHotelsFromService();
 
     });
   }
@@ -36,24 +36,14 @@ export class AllHotelsComponent implements OnInit {
   getHotelsFromService() {
     this.loading = true;
     this.hotels = [];
-    this.hService.getHotels().subscribe((hotels) => {
-      hotels.forEach(item => {
-        const data = item.payload.doc.data();
+    this.hService.getHotels().subscribe((actionArray) => {
+      this.hotels = actionArray.map(item => {
         const hotel: Hotel = {
           $key: item.payload.doc.id,
-          name: data.name,
-          stars: data.stars,
-          location: data.location,
-          stateId: data.stateId,
-          imgPresentation: data.imgPresentation,
-          gallery: data.gallery,
-          fullDay: data.fullDay,
-          services: data.services,
-          activities: data.activities,
-          rooms: data.rooms,
+          ...item.payload.doc.data()
         }
 
-        this.hotels.push(hotel);
+        return hotel;
       });
 
       this.loading = false;

@@ -17,7 +17,7 @@
                 <h2>Servicios</h2>
                 <ul>
                     <li *ngFor="let service of hotel.services">
-                        <p>{{ service }}</p>
+                        <p>{{ service.path }}</p>
                     </li>
                 </ul>
             </div>
@@ -25,7 +25,7 @@
                 <h2>Actividades</h2>
                 <ul>
                     <li *ngFor="let activity of hotel.activities">
-                        <p>{{ activity }}</p>
+                        <p>{{ activity.path }}</p>
                     </li>
                 </ul>
             </div>
