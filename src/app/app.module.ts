@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ClientModule } from './client/client.module';
 import { AdminModule } from './admin/admin.module';
 import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import { environment } from '../environments/environment';
     ClientModule,
     AdminModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireFunctionsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

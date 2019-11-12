@@ -4,6 +4,10 @@ import { Contact } from 'src/app/models/contact';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ContactService } from 'src/app/services/contact.service';
+import { AngularFireFunctions } from '@angular/fire/functions';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-contact',
@@ -14,9 +18,11 @@ export class ContactComponent implements OnInit {
   contactForm: FormGroup;
   contact: Contact;
 
+
   constructor(private fb: FormBuilder, private _route: ActivatedRoute, 
     private service: FirestoreService, 
-    private contactServ: ContactService) {
+    private contactServ: ContactService
+    ) {
    }
 
   ngOnInit() {
@@ -27,6 +33,7 @@ export class ContactComponent implements OnInit {
       contactMessage: [''],
     });
   }
+  
 
   contactar(){
 
@@ -38,7 +45,7 @@ export class ContactComponent implements OnInit {
     }
     console.log(this.contact);
     
-    // this.service.createDoc('contacto', this.contact);
+  
     this.contactServ.createContact(this.contact).then(item => {
       console.log(item);
     });

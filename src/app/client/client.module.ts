@@ -25,7 +25,6 @@ import { SelectedHotelComponent } from './selected-hotel/selected-hotel.componen
 import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 
-
 @NgModule({
   declarations: [
     HomePageComponent, HeaderComponent, ClientLayoutComponent,
