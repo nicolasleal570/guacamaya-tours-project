@@ -30,7 +30,7 @@
 
             <div class="input-group">
                 <label for="destinoDirection">Dirección del Destino</label>
-                <textarea formControlName="direccion" type="text" id="destinoDirection">
+                <textarea formControlName="direction" type="text" id="destinoDirection">
                     </textarea>
             </div>
 
@@ -61,26 +61,13 @@
             </h3>
 
             <section class="imgGallery" formArrayName="imgGallery">
-                <div *ngFor="let hab of createHotelForm['controls'].imgGallery['controls']; let i=index" [formGroupName]="i">
+                <div *ngFor="let hab of createDestinoForm['controls'].imgGallery['controls']; let i=index" [formGroupName]="i">
 
                     <p class="img-title">Image {{ i + 1 }}</p>
 
                     <div class="input-group">
                         <input type="text" formControlName="path" placeholder="Ingresa la URL de tu imagen">
                     </div>
-
-                    <!-- PRUEBA -->
-                    <div class="input-group" formArrayName="Ys">
-                        <div *ngFor="let Y of hab['controls'].Ys['controls']; let iy =index">
-                            <div formGroupName="{{iy}}">
-                                <input type="text" formControlName="Y1" placeholder="Yo soy el input Y1">
-                                <input type="text" formControlName="Y2" placeholder="Yo soy el input Y2">
-                            </div>
-                        </div>
-
-                        <button type="button" (click)="addY(i)">Agregar Y</button>
-                    </div>
-                    <!-- FIN PRUEBA -->
 
                     <div class="input-group">
                         <button type="button" class="btn btn-danger btn-sm" (click)="deleteImage(i)">Eliminar

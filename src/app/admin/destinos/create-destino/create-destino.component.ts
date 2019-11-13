@@ -21,7 +21,7 @@ export class CreateDestinoComponent implements OnInit {
       description: [''],
       latitud: [''],
       longitud: [''],
-      direccion: [''],
+      direction: [''],
       fullDay: [''],
       state: [''],
       category: [''],
@@ -39,25 +39,10 @@ export class CreateDestinoComponent implements OnInit {
 
   addImage() {
     const img = this.fb.group({
-      path: [],
-      Ys: this.fb.array([
-        this.initY()
-      ])
+      path: []
     });
 
     this.galleryForm.push(img);
-  }
-
-  initY(){
-    return this.fb.group({
-      Y1: [''],
-      Y2: [''],
-    });
-  }
-
-  addY(index){
-    const control = (<FormArray>this.createHotelForm.controls['imgGallery']).at(index).get('Ys') as FormArray;
-    control.push(this.initY());
   }
 
   deleteImage(i: number) {
@@ -74,7 +59,7 @@ export class CreateDestinoComponent implements OnInit {
       location: {
         latitud: this.createDestinoForm.value.latitud,
         longitud: this.createDestinoForm.value.longitud,
-        direction: this.createDestinoForm.value.direccion
+        direction: this.createDestinoForm.value.direction
       },
       stateId: this.createDestinoForm.value.state,
       imgBanner: this.createDestinoForm.value.imgBanner,
