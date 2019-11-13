@@ -16,7 +16,20 @@ export class DestinoComponent implements OnInit {
 
   ngOnInit() {
     this.dservice.getDestinos.subscribe(destino => {
-    this.destinos = destino;
+      destino.forEach( item => {
+        const data = item.payload.doc.data();
+        const destino: Destino = {
+          $key: item.payload.doc.id,
+          name: data.name,
+          description: data.description,
+          categoryId: data.categoryId,
+          location: data.location,
+          stateId: data.stateId,
+          imgBanner: data.imgBanner,
+        }
+
+        this.destinos.push(destino);
+      })
   });
   }
 

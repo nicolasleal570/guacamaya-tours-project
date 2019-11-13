@@ -4,12 +4,12 @@ import { Location } from './location';
 
 export interface Destino {
 
-    $key: string;
+    $key?: string;
     name: string;
     description: string;
-    category: Category;
+    categoryId: string;
     location: Location;
-    state: State;
+    stateId: string;
     city?: string;
     imgBanner: string;
 

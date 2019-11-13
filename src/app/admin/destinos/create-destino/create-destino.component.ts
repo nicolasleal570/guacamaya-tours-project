@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { Destino } from 'src/app/models/destino';
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 
 @Component({
   selector: 'app-create-destino',
@@ -8,12 +10,13 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 })
 export class CreateDestinoComponent implements OnInit {
 
-  createHotelForm: FormGroup;
+  createDestinoForm: FormGroup;
+  loading: boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService) { }
 
   ngOnInit() {
-    this.createHotelForm = this.fb.group({
+    this.createDestinoForm = this.fb.group({
       name: [''],
       description: [''],
       latitud: [''],
@@ -21,13 +24,17 @@ export class CreateDestinoComponent implements OnInit {
       direccion: [''],
       fullDay: [''],
       state: [''],
+      category: [''],
       imgBanner: [''],
       imgGallery: this.fb.array([]),
     });
+
+    this.loading = false;
+
   }
 
   get galleryForm(): FormArray {
-    return this.createHotelForm.get('imgGallery') as FormArray;
+    return this.createDestinoForm.get('imgGallery') as FormArray;
   }
 
   addImage() {
@@ -58,7 +65,28 @@ export class CreateDestinoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.createHotelForm.value);
+    
+    const destino: Destino = {
+
+      name: this.createDestinoForm.value.name,
+      description: this.createDestinoForm.value.description,
+      categoryId: this.createDestinoForm.value.category,
+      location: {
+        latitud: this.createDestinoForm.value.latitud,
+        longitud: this.createDestinoForm.value.longitud,
+        direction: this.createDestinoForm.value.direccion
+      },
+      stateId: this.createDestinoForm.value.state,
+      imgBanner: this.createDestinoForm.value.imgBanner,
+
+    };
+
+    this.loading = true;
+
+    this.destinoService.createDestino(destino).then( item => {
+      this.loading = false;
+    });
+
   }
 
 
