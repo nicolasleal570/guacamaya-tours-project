@@ -38,11 +38,7 @@ export class HotelService {
   }
 
   getHotelFromId(id: string){
-    return this.hotelCollection.doc<Hotel>(id).get().toPromise().then((doc) => {
-      if ( doc.exists ) {
-        return doc.data() as Hotel;
-      }
-    });
+    return this.hotelCollection.doc<Hotel>(id).snapshotChanges();
   }
 
 }

@@ -54,6 +54,7 @@ export class CreateHotelComponent implements OnInit {
   addRoom() {
     const hab = this.fb.group({
       habName: [],
+      imgPresentation: [],
       pricePerNight: [''],
       maxPersons: [],
     });

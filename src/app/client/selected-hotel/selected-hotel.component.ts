@@ -19,16 +19,19 @@ export class SelectedHotelComponent implements OnInit {
       this.hotelId = params.get('hotelId');
     });
   }
-  
+
   ngOnInit() {
     this.loading = true;
-    console.log(this.loading);
 
-    this.hotelService.getHotelFromId(this.hotelId).then(doc => {
-      this.hotel = doc;
-    }).finally(() => {
+    this.hotelService.getHotelFromId(this.hotelId).subscribe(res => {
+
+      this.hotel = {
+        $key: res.payload.id,
+        ...res.payload.data()
+      }
+
       this.loading = false;
-      console.log(this.loading);
+
     });
   }
 

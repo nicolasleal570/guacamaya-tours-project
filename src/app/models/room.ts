@@ -1,10 +1,10 @@
 export interface Room {
 
     $key?: string;
-    name: string;
-    gallery: string[];
+    habName: string;
+    imgPresentation: string;
     maxPersons: number;
     adventajes: string[];
-    pricePerson: number;
+    pricePerNight: string;
 
 }
