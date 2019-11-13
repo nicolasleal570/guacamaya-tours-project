@@ -20,121 +20,13 @@
             </div>
 
 
-
-            <section class="hab" formArrayName="habs">
-                <div *ngFor="let hab of habsForm.controls; let i=index" [formGroupName]="i">
-
-                    <p class="hab-title">Habitacion {{ i + 1 }}</p>
-
-                    <div class="input-group">
-                        <label for="">Nombre de la Habitación</label>
-                        <input type="text" formControlName="habName">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="">Precio por noche</label>
-                        <input type="number" formControlName="pricePerNight">
-                        <small>El precio que se ponga aquí será por persona.</small>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="">Número máximo de personas</label>
-                        <input type="text" formControlName="maxPersons">
-                    </div>
-
-                    <div class="input-group">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteRoom(i)">Eliminar
-                            Habitación</button>
-                    </div>
-
-                </div>
-
-                <div class="input-group">
-                    <button type="button" class="btn btn-info btn-sm" (click)="addRoom()">Agregar Habitación</button>
-                </div>
-            </section>
-
-            <h3 class="form-section-title with-border">
-                Imágenes para la Galería
-            </h3>
-
-            <section class="imgGallery" formArrayName="imgGallery">
-                <div *ngFor="let hab of galleryForm.controls; let i=index" [formGroupName]="i">
-
-                    <p class="img-title">Image {{ i + 1 }}</p>
-
-                    <div class="input-group">
-                        <label for="">Seleccione su imagen</label>
-                        <input type="text" formControlName="path" placeholder="Ingresa la URL de tu imagen">
-                    </div>
-                    <div class="input-group">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteImage(i)">Eliminar
-                            Imagen</button>
-                    </div>
-
-                </div>
-
-                <div class="input-group">
-                    <button type="button" class="btn btn-info btn-sm" (click)="addImage()">Agregar Imagenes</button>
-                </div>
-            </section>
-
-            <h3 class="form-section-title with-border">
-                ¿Qué servicios ofrece el hotel?
-            </h3>
-
-            <section class="services" formArrayName="services">
-                <div *ngFor="let service of serviceForm.controls; let i=index" [formGroupName]="i">
-
-                    <p class="img-title">Servicio {{ i + 1 }}</p>
-
-                    <div class="input-group">
-                        <input type="text" formControlName="path" placeholder="Ingresa un servicio que ofrece el hotel">
-                    </div>
-                    <div class="input-group">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteService(i)">Eliminar
-                            Servicio</button>
-                    </div>
-
-                </div>
-
-                <div class="input-group">
-                    <button type="button" class="btn btn-info btn-sm" (click)="addService()">Agregar Servicio</button>
-                </div>
-            </section>
-
-            <h3 class="form-section-title with-border">
-                ¿Qué actividades ofrece el hotel?
-            </h3>
-
-            <section class="services" formArrayName="activities">
-                <div *ngFor="let service of activityForm.controls; let i=index" [formGroupName]="i">
-
-                    <p class="img-title">Actividad {{ i + 1 }}</p>
-
-                    <div class="input-group">
-                        <input type="text" formControlName="path"
-                            placeholder="Ingresa una actividad que ofrezca el hotel">
-                    </div>
-                    <div class="input-group">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteActivity(i)">Eliminar
-                            Actividad</button>
-                    </div>
-
-                </div>
-
-                <div class="input-group">
-                    <button type="button" class="btn btn-info btn-sm" (click)="addActivity()">Agregar Actividad</button>
-                </div>
-            </section>
-
             <button type="submit" class="btn btn-primary" [disabled]="loading">
                 <ng-container *ngIf="loading; then cargando; else noCargando"></ng-container>
                 <ng-template #cargando>
                     <app-loader></app-loader>
                 </ng-template>
                 <ng-template #noCargando>
-                    Crear Hotel
+                    Crear Estado
                 </ng-template>
             </button>
         </form>
