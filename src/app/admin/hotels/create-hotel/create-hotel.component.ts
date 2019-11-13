@@ -100,7 +100,7 @@ export class CreateHotelComponent implements OnInit {
     this.activityForm.removeAt(i);
   }
 
-  onSubmit(){
+  onSubmit() {
 
     const hotel: Hotel = {
       name: this.createHotelForm.value.name,

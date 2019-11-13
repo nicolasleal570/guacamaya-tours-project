@@ -1,6 +1,6 @@
 export interface State {
 
-    $key: string;
+    $key?: string;
     name: string;
     description?: string;
     image: string;
