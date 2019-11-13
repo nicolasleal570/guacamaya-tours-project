@@ -9,7 +9,7 @@ import {Observable } from 'rxjs';
 })
 export class AdminStatesService {
 
-  private stateCollection: AngularFirestoreCollection <State>;
+  private stateCollection: AngularFirestoreCollection<State>;
 
   constructor(private afs: AngularFirestore) {
     this.stateCollection = this.afs.collection<State>('states');

@@ -12,7 +12,7 @@ import { AdminStatesService } from 'src/app/services/admin-states.service';
 })
 export class AllStatesComponent implements OnInit {
 
-  state: State[] = [];
+  states: State[] = [];
   loading: boolean = false;
 
 
@@ -21,24 +21,23 @@ export class AllStatesComponent implements OnInit {
   ngOnInit() {
     this.getStatesFromService();
   }
-  getStatesFromService() {
-  }
 
   deleteState($key: string) {
     this.sService.deletedState($key).then(() => {
 
       console.log('Object eliminado');
+
     }).finally(() => {
 
 
     });
   }
 
-  getStateFromService() {
+  getStatesFromService() {
     this.loading = true;
-    this.state = [];
+    this.states = [];
     this.sService.getStates().subscribe((actionArray) => {
-      this.state = actionArray.map(item => {
+      this.states = actionArray.map(item => {
         const state: State = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
