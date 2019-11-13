@@ -98,6 +98,10 @@ select, input {
     margin-bottom: 20px;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
 .btn {
     display: inline-block;
     text-align: center;
@@ -158,6 +162,16 @@ select, input {
     &.btn-danger {
         background: $dangerColor;
         color: #fff;
+    }
+
+    &.btn-disabled-dark{
+        background: $darkColor;
+        color: lighten($color: $darkColor, $amount: 25%);
+    }
+
+    &.btn-disabled{
+        background: $secondaryColor;
+        color: lighten($color: $darkColor, $amount: 25%);
     }
 }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { Hotel } from 'src/app/models/hotel';
 import { Room } from 'src/app/models/room';
 import { HotelService } from 'src/app/services/hotel.service';
+import { State } from 'src/app/models/state';
 
 @Component({
   selector: 'app-create-itinerario',
@@ -12,7 +13,6 @@ import { HotelService } from 'src/app/services/hotel.service';
 export class CreateItinerarioComponent implements OnInit {
 
   formItinerario: FormGroup;
-
   hotels: Hotel[] = [
     {
       $key: '1234TFCV',
@@ -50,6 +50,7 @@ export class CreateItinerarioComponent implements OnInit {
     }
   ];
   selectedHotel: Hotel;
+  selectedDestino: string = null;
   numOfPersons: number;
 
   constructor(private fb: FormBuilder, private hotelService: HotelService) {
@@ -80,6 +81,10 @@ export class CreateItinerarioComponent implements OnInit {
     });
   }
 
+  get destinoStateGetter(){
+    return this.formItinerario.get('destinoState');
+  }
+
   // GETTER PARA LAS HABS DEL FORM
   get habsArray(): FormArray {
     return this.formItinerario.get('habs') as FormArray;
@@ -87,6 +92,10 @@ export class CreateItinerarioComponent implements OnInit {
 
   get hotel() {
     return this.formItinerario.get('hotel');
+  }
+
+  onChangeDestinoSelect(e) {
+    this.selectedDestino = e.target.value || 0;
   }
 
   // SE EJECUTA CUANDO EL SELECT DE HABITACIONES CAMBIA
