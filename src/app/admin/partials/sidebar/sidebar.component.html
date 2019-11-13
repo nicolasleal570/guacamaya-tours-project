@@ -32,6 +32,13 @@
             ]">
         </app-treeview>
 
+        <app-treeview title="Estados"  icon="fa-route"
+            [options]="[
+                {opt: 'Todos los Estados', url:'estados'},
+                {opt: 'Crea un nuevo estado', url:'estados/crear'}
+            ]">
+        </app-treeview>
+
         <app-treeview title="Ordenes" icon="fa-concierge-bell"
             [options]="[{opt: 'Todas las Ordenes', url:''}]"></app-treeview>
     </ul>

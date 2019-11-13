@@ -6,6 +6,8 @@ import { AllHotelsComponent } from './hotels/all-hotels/all-hotels.component';
 import { CreateHotelComponent } from './hotels/create-hotel/create-hotel.component';
 import { AllDestinosComponent } from './destinos/all-destinos/all-destinos.component';
 import { CreateDestinoComponent } from './destinos/create-destino/create-destino.component';
+import { AllStatesComponent } from './estados/all-states/all-states.component';
+import { CreateStatesComponent } from './estados/create-states/create-states.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,9 @@ const routes: Routes = [
     { path: '', component: DashboardComponent },
     { path: 'destinos', component: AllDestinosComponent },
     { path: 'destinos/crear', component: CreateDestinoComponent },
+    { path: '', component: DashboardComponent },
+    { path: 'estados', component: AllStatesComponent },
+    { path: 'estados/crear', component: CreateStatesComponent },
   ]},
 ];
 
