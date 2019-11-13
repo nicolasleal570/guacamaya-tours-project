@@ -11,7 +11,7 @@ import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 export class CreateDestinoComponent implements OnInit {
 
   createDestinoForm: FormGroup;
-  loading: boolean;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder, private destinoService: AdminDestinoService) { }
 
@@ -24,6 +24,7 @@ export class CreateDestinoComponent implements OnInit {
       direccion: [''],
       fullDay: [''],
       state: [''],
+      category: [''],
       imgBanner: [''],
       imgGallery: this.fb.array([]),
     });
@@ -54,21 +55,22 @@ export class CreateDestinoComponent implements OnInit {
 
       name: this.createDestinoForm.value.name,
       description: this.createDestinoForm.value.description,
-      categoryId: this.createDestinoForm.value.categoryId,
-      location: this.createDestinoForm.value.location,
-      stateId: this.createDestinoForm.value.stateId,
+      categoryId: this.createDestinoForm.value.category,
+      location: {
+        latitud: this.createDestinoForm.value.latitud,
+        longitud: this.createDestinoForm.value.longitud,
+        direction: this.createDestinoForm.value.direccion
+      },
+      stateId: this.createDestinoForm.value.state,
       imgBanner: this.createDestinoForm.value.imgBanner,
 
     };
 
-    console.log(destino);
     this.loading = true;
 
     this.destinoService.createDestino(destino).then( item => {
-      console.log('DESTINO CREADO', item.id);
       this.loading = false;
-      console.log(this.loading);
-    })
+    });
 
   }
 

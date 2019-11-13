@@ -4,7 +4,7 @@
     </div>
     <div class="box-body">
 
-        <form [formGroup]="createHotelForm" class="form-control" (ngSubmit)="onSubmit()">
+        <form [formGroup]="createDestinoForm" class="form-control" (ngSubmit)="onSubmit()">
 
             <div class="input-group">
                 <label for="destinoName">Nombre del Destino</label>
@@ -43,6 +43,14 @@
             </div>
 
             <div class="input-group">
+                <label for="destino">Qué tipo de destino es?</label>
+                <select id="destino" formControlName="category">
+                    <option value="">Seleccione el tipo de destino</option>
+                    <option value="12rfvbhu">Trópico</option>
+                </select>
+            </div>
+
+            <div class="input-group">
                 <label for="destinoBanner">Imagen Representativa (Banner)</label>
                 <input type="text" id="destinoBanner" placeholder="Ingresa una URL de Imagen para el Banner"
                     formControlName="imgBanner">
@@ -73,7 +81,15 @@
             </section>
 
 
-            <button type="submit" class="btn btn-primary">Enviar Datos</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+                <ng-container *ngIf="loading; then cargando; else noCargando"></ng-container>
+                <ng-template #cargando>
+                    <app-loader></app-loader>
+                </ng-template>
+                <ng-template #noCargando>
+                    Crear Destino
+                </ng-template>
+            </button>
         </form>
 
     </div>

@@ -38,16 +38,10 @@ export class AllDestinosComponent implements OnInit {
     this.destinos = [];
     this.dService.getDestinos().subscribe((destinos) => {
       destinos.forEach(item => {
-        const data = item.payload.doc.data();
         const destino: Destino = {
           $key: item.payload.doc.id,
-          name: data.name,
-          description: data.description,
-          categoryId: data.categoryId,
-          location: data.location,
-          stateId: data.stateId,
-          imgBanner: data.imgBanner,
-        }
+          ...item.payload.doc.data()
+        };
 
         this.destinos.push(destino);
 
