@@ -41,7 +41,7 @@ export class AllHotelsComponent implements OnInit {
         const hotel: Hotel = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
-        }
+        };
 
         return hotel;
       });

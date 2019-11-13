@@ -15,10 +15,12 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoaderComponent } from './partials/loader/loader.component';
+import { AllStatesComponent } from './estados/all-states/all-states.component';
+import { CreateStatesComponent } from './estados/create-states/create-states.component';
 
 
 @NgModule({
-  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent],
+  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent, AllStatesComponent, CreateStatesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
