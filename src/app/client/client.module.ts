@@ -24,6 +24,8 @@ import { HotelesComponent } from './hoteles/hoteles.component';
 import { SelectedHotelComponent } from './selected-hotel/selected-hotel.component';
 import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
+import { SearchByStatePipe } from '../pipes/search-by-state.pipe';
+import { SearchByCategoryPipe } from '../pipes/search-by-category.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CreateItinerarioComponent } from './create-itinerario/create-itinerario
     ContactComponent,
     SelectedHotelComponent,
     ShowItinerarioComponent,
-    CreateItinerarioComponent
+    CreateItinerarioComponent,
+    SearchByStatePipe,
+    SearchByCategoryPipe
   ],
   imports: [
     CommonModule,

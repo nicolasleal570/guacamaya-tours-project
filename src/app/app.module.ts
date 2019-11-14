@@ -9,15 +9,11 @@ import { AdminModule } from './admin/admin.module';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
-import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule} from '@angular/forms';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchPipe,
-
   ],
   imports: [
     BrowserModule,

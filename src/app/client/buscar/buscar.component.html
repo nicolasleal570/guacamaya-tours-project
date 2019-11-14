@@ -1,54 +1,50 @@
 <header class="header">
-    <div class="general-buscar header-callToAction">
+    <div class="general-buscar header-callToAction wrap">
         <app-titulo title="Ubica tu destino" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
         asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"></app-titulo>
-        <div class="blocks">
-            <div class="section-buscar">
-                <p class="text">
-                    Categoría del Destino:
-                </p>
-                <select class="selector" id="">
-                    <option value="">Seleccion la categoría de tu destino</option>
-                    <option value="">Nieve</option>
-                    <option value="">Desierto</option>
-                    <option value="">Selva</option>
-                    <option value="">Trópico</option>
-                </select>
-            </div>
-            <div>
-                <button class="button-buscar">Buscar</button>
-            </div>
-        </div>
-        <div class="blocks">
-            <div class="section-buscar">
-                <p class="text">
-                    Estado del Destino:
-                </p>
-                <select class="selector" id="" [(ngModel)]="seleccionado">
-                    <option value="">Seleccione el de estado donde se escuentra su destino</option>
-                    <option value="{{state.$key}}" *ngFor = "let state of states"> 
-                        {{ state.name }} 
-                    </option>
-                </select>
-            </div>
-
-            <div>
-                <button class="button-buscar">Buscar</button>
-            </div>
-
+        <div class="cols-2">
+            <section>
+                <div class="blocks">
+                    <p class="text">
+                        Categoría del Destino:
+                    </p>
+                    <select class="selector" id="" [(ngModel)]="selectedCategory">
+                        <option value="">Seleccion la categoría de tu destino</option>
+                        <option value="o5lF6eqNapqVUQSPbWGM">Nieve</option>
+                        <option value="">Desierto</option>
+                        <option value="">Selva</option>
+                        <option value="">Trópico</option>
+                    </select>
+                </div>
+                <div class="blocks">
+                    <p class="text">
+                        Estado del Destino:
+                    </p>
+                    <select class="selector" id="" [(ngModel)]="selectedState">
+                        <option value="">Seleccione el de estado donde se encuentra su destino</option>
+                        <option value="{{state.$key}}" *ngFor="let state of states">
+                            {{ state.name }}
+                        </option>
+                    </select>
+                </div>
+            </section>
+            <section>
+                <h2>Resultados</h2>
+                <div class="resultados">
+                    <ng-container *ngFor="let destino of destinos | searchByState: selectedState: selectedCategory">
+                        <div class="destino-card">
+                            <div class="brand"  [ngStyle]="{ 'background-image': 'url('+ destino.imgBanner +')' }"></div>
+                            <div class="body">
+                                <h3>{{destino.name}}</h3>
+                                <p>{{destino.description}}</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </section>
         </div>
 
     </div>
     <div class="header-background" style="background-image: url('assets/img/header-bg.gif')"></div>
 
 </header>
-
-<ul class="texto" id="">
-    <li value="" *ngFor="let destino of destinos">
-        {{ destino.name }}
-    </li>
-</ul>
-
-
-
-

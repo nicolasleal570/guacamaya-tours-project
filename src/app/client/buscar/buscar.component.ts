@@ -15,7 +15,8 @@ export class BuscarComponent implements OnInit {
 
   states: State[] = [];
   destinos: Destino[] = [];
-  seleccionado: string = '';
+  selectedState: string = '';
+  selectedCategory: string = '';
 
   constructor(private stateService: AdminStatesService, private dservice: DestinoService) { }
   
@@ -23,7 +24,6 @@ export class BuscarComponent implements OnInit {
 
     this.getStatesFromService();
     this.getDestinosFromService();
-    this.seleccionado = 'Seleccione el de estado donde se escuentra su destino';
 
   }
 
@@ -31,6 +31,7 @@ export class BuscarComponent implements OnInit {
     this.stateService.getStates().subscribe((states) => {
       states.forEach((item) => {
         const state: State = {
+          $key: item.payload.doc.id,
           ...item.payload.doc.data()
         };
         
@@ -43,6 +44,7 @@ export class BuscarComponent implements OnInit {
     this.dservice.getDestinos.subscribe((destino) => {
       destino.forEach( item => {
         const destino: Destino = {
+          $key: item.payload.doc.id,
           ...item.payload.doc.data()
         }
 
@@ -51,7 +53,7 @@ export class BuscarComponent implements OnInit {
       })
   });
   }
-  
+
 
 
 }
