@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { State } from 'src/app/models/state';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +17,7 @@ export class AllStatesComponent implements OnInit {
   loading: boolean = false;
 
 
-  constructor(private sService: AdminStatesService) { }
+  constructor(private sService: AdminStatesService, private router: Router) { }
 
   ngOnInit() {
     this.getStatesFromService();
@@ -51,6 +52,10 @@ export class AllStatesComponent implements OnInit {
 
     });
 
+  }
+
+  editButtonClick(id: string){
+    this.router.navigate(['/estados', id, 'editar']);
   }
 
 }

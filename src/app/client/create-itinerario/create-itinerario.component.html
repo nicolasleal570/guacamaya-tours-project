@@ -144,7 +144,7 @@
 
                         <select formControlName="habType" (change)="onChangeHabType($event, i)">
                             <option value="">Selecciona el Tipo de tu Habitación</option>
-                            <option *ngFor="let room of selectedHotel.rooms" value="{{room.$key}}">
+                            <option *ngFor="let room of selectedHotel.rooms" value="{{room.habName}}">
                                 {{room.name}}
                             </option>
                         </select>

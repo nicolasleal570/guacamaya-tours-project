@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-states',
@@ -11,17 +12,46 @@ import { State } from 'src/app/models/state';
 export class CreateStatesComponent implements OnInit {
 
   createStateForm: FormGroup;
-  loading: boolean;
+  loading: boolean = false;
+  editState: State = null;
 
-  constructor(private fb: FormBuilder, private stateservice: AdminStatesService) { }
+  constructor(private fb: FormBuilder, private stateservice: AdminStatesService, 
+    private route: ActivatedRoute, private router: Router
+  ) { }
 
   ngOnInit() {
-    this.createStateForm = this.fb.group ({
+    this.createStateForm = this.fb.group({
       name: [''],
       imgBanner: [''],
     });
 
     this.loading = false;
+
+    this.route.paramMap.subscribe(params => {
+      const estadoId = params.get('idEstado');
+      if (estadoId) {
+        this.getEstado(estadoId);
+      }
+    });
+  }
+
+  getEstado(id: string) {
+    this.stateservice.getStateById(id).subscribe(estado => {
+      const state: State = {
+        $key: estado.payload.id,
+        name: estado.payload.get('name'),
+        image: estado.payload.get('image'),
+      };
+      this.editEstado(state);
+    }, err => console.log(err));
+  }
+
+  editEstado(estado: State) {
+    this.editState = estado;
+    this.createStateForm.patchValue({
+      name: estado.name,
+      imgBanner: estado.image,
+    });
   }
 
   onSubmit() {
@@ -30,16 +60,26 @@ export class CreateStatesComponent implements OnInit {
       name: this.createStateForm.value.name,
       image: this.createStateForm.value.imgBanner,
     };
-
-    console.log(state);
+    
     this.loading = true;
 
-    this.stateservice.createState(state).then(item => {
-      console.log('Hecho!', item.id);
-      this.loading = false;
-      console.log(this.loading);
-    });
+    if (this.editState) { // Se está editando
 
+      this.stateservice.updateState(state, this.editState.$key).then(() => {
+        console.log('Editado!', this.editState.$key);
+        this.router.navigate(['/estados']);
+      });
+
+    } else {
+
+      this.stateservice.createState(state).then(item => {
+        console.log('Creado!', item.id);
+        this.router.navigate(['/estados']);
+      });
+
+    }
+    
+    this.loading = false;
 
   }
 
