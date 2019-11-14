@@ -18,7 +18,7 @@ import { DestinoComponent } from './destino/destino.component';
 import { NavbarTreeviewComponent } from './partials/navbar-treeview/navbar-treeview.component';
 import { SelectedDestinoComponent } from './selected-destino/selected-destino.component';
 import { DestinoCardComponent } from './partials/destino-card/destino-card.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ContactComponent } from './partials/contact/contact.component';
 import { HotelesComponent } from './hoteles/hoteles.component';
 import { SelectedHotelComponent } from './selected-hotel/selected-hotel.component';
@@ -44,6 +44,7 @@ import { CreateItinerarioComponent } from './create-itinerario/create-itinerario
     CommonModule,
     ClientRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
 
