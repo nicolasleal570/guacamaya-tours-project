@@ -32,19 +32,19 @@ export class CreateItinerarioComponent implements OnInit {
       rooms: [
         {
           $key: '0987UJHGFD',
-          name: 'Doble',
-          gallery: [],
+          habName: 'Doble',
+          imgPresentation: 'url',
           maxPersons: 2,
           adventajes: [],
-          pricePerson: 2
+          pricePerNight: '2',
         },
         {
           $key: '1XVB958HCBN',
-          name: 'Familiar',
-          gallery: [],
+          habName: 'Familiar',
+          imgPresentation: 'url',
           maxPersons: 4,
           adventajes: [],
-          pricePerson: 7
+          pricePerNight: '7',
         }
       ]
     }

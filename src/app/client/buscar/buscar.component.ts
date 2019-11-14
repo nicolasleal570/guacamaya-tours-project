@@ -3,7 +3,7 @@ import { State } from 'src/app/models/state';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { Destino } from 'src/app/models/destino';
 import { DestinoService } from 'src/app/services/destino.service';
-import { FormsModule, FormControl} from '@angular/forms'; 
+import { FormsModule, FormControl, FormBuilder} from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -23,7 +23,6 @@ export class BuscarComponent implements OnInit {
 
     this.getStatesFromService();
     this.getDestinosFromService();
-    this.seleccionado = 'Seleccione el de estado donde se escuentra su destino';
 
   }
 
@@ -31,6 +30,7 @@ export class BuscarComponent implements OnInit {
     this.stateService.getStates().subscribe((states) => {
       states.forEach((item) => {
         const state: State = {
+          $key: item.payload.doc.id,
           ...item.payload.doc.data()
         };
         
@@ -43,6 +43,7 @@ export class BuscarComponent implements OnInit {
     this.dservice.getDestinos.subscribe((destino) => {
       destino.forEach( item => {
         const destino: Destino = {
+          $key: item.payload.doc.id,
           ...item.payload.doc.data()
         }
 
@@ -51,6 +52,17 @@ export class BuscarComponent implements OnInit {
       })
   });
   }
+
+  getDestinosSelec(val: string) {
+
+
+      this.seleccionado = val;
+
+      console.log(val);
+
+    };
+  
+  
   
 
 

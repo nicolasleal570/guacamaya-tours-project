@@ -24,7 +24,7 @@
                 <p class="text">
                     Estado del Destino:
                 </p>
-                <select class="selector" id="" [(ngModel)]="seleccionado">
+                <select class="selector" id="" [(ngModel)]="seleccionado" (change)="getDestinosSelec($event)">
                     <option value="">Seleccione el de estado donde se escuentra su destino</option>
                     <option value="{{state.$key}}" *ngFor = "let state of states"> 
                         {{ state.name }} 
@@ -33,7 +33,7 @@
             </div>
 
             <div>
-                <button class="button-buscar">Buscar</button>
+                <button class="button-buscar" >Buscar</button>
             </div>
 
         </div>
@@ -44,7 +44,7 @@
 </header>
 
 <ul class="texto" id="">
-    <li value="" *ngFor="let destino of destinos">
+    <li value="" *ngFor="let destino of destinos | search:seleccionado" ()>
         {{ destino.name }}
     </li>
 </ul>
