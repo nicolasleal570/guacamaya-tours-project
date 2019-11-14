@@ -15,7 +15,8 @@ export class BuscarComponent implements OnInit {
 
   states: State[] = [];
   destinos: Destino[] = [];
-  seleccionado: string = '';
+  selectedState: string = '';
+  selectedCategory: string = '';
 
   constructor(private stateService: AdminStatesService, private dservice: DestinoService) { }
   
@@ -53,17 +54,6 @@ export class BuscarComponent implements OnInit {
   });
   }
 
-  getDestinosSelec(val: string) {
-
-
-      this.seleccionado = val;
-
-      console.log(val);
-
-    };
-  
-  
-  
 
 
 }
