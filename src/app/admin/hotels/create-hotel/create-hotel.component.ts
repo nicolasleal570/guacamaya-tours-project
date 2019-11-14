@@ -53,10 +53,10 @@ export class CreateHotelComponent implements OnInit {
 
   addRoom() {
     const hab = this.fb.group({
-      habName: [],
-      imgPresentation: [],
+      habName: [''],
+      imgPresentation: [''],
       pricePerNight: [''],
-      maxPersons: [],
+      maxPersons: Number[''],
     });
 
     this.habsForm.push(hab);
@@ -103,6 +103,8 @@ export class CreateHotelComponent implements OnInit {
 
   onSubmit() {
 
+    console.log(this.createHotelForm.value.habs);
+
     const hotel: Hotel = {
       name: this.createHotelForm.value.name,
       stars: this.createHotelForm.value.stars,
@@ -121,13 +123,13 @@ export class CreateHotelComponent implements OnInit {
     };
 
     console.log(hotel);
-    this.loading = true;
-
-    this.hotelservice.createHotel(hotel).then(item => {
-      console.log('Hecho!', item.id);
-      this.loading = false;
-      console.log(this.loading);
-    });
+    // this.loading = true;
+// 
+    // // this.hotelservice.createHotel(hotel).then(item => {
+      // console.log('Hecho!', item.id);
+      // this.loading = false;
+      // console.log(this.loading);
+    // });
   }
 
 

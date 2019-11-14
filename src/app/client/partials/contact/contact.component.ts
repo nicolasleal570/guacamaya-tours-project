@@ -19,11 +19,8 @@ export class ContactComponent implements OnInit {
   contact: Contact;
 
 
-  constructor(private fb: FormBuilder, private _route: ActivatedRoute, 
-    private service: FirestoreService, 
-    private contactServ: ContactService
-    ) {
-   }
+  constructor(private fb: FormBuilder,  private contactServ: ContactService) {
+  }
 
   ngOnInit() {
     this.contactForm = this.fb.group({
@@ -33,9 +30,9 @@ export class ContactComponent implements OnInit {
       contactMessage: [''],
     });
   }
-  
 
-  contactar(){
+
+  contactar() {
 
     this.contact = {
       contactName: this.contactForm.value.contactName,
@@ -43,13 +40,11 @@ export class ContactComponent implements OnInit {
       contactAsunto: this.contactForm.value.contactAsunto,
       contactMessage: this.contactForm.value.contactMessage,
     }
-    console.log(this.contact);
-    
-  
+
     this.contactServ.createContact(this.contact).then(item => {
       console.log(item);
     });
-    
+
   }
 
 

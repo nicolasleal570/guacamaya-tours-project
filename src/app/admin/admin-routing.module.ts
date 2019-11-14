@@ -21,6 +21,7 @@ const routes: Routes = [
     { path: '', component: DashboardComponent },
     { path: 'estados', component: AllStatesComponent },
     { path: 'estados/crear', component: CreateStatesComponent },
+    { path: 'estados/:idEstado/editar', component: CreateStatesComponent },
   ]},
 ];
 

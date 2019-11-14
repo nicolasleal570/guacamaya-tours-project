@@ -32,19 +32,19 @@ export class CreateItinerarioComponent implements OnInit {
       rooms: [
         {
           $key: '0987UJHGFD',
-          name: 'Doble',
-          gallery: [],
+          habName: 'Doble',
+          imgPresentation: '',
           maxPersons: 2,
           adventajes: [],
-          pricePerson: 2
+          pricePerNight: '2',
         },
         {
           $key: '1XVB958HCBN',
-          name: 'Familiar',
-          gallery: [],
+          habName: 'Familiar',
           maxPersons: 4,
           adventajes: [],
-          pricePerson: 7
+          pricePerNight: '7',
+          imgPresentation: ''
         }
       ]
     }
@@ -131,6 +131,8 @@ export class CreateItinerarioComponent implements OnInit {
     const roomSelected = this.selectedHotel.rooms.find((room: Room) => {
       return room.$key === e.target.value;
     });
+
+    console.log(roomSelected);
 
     for (let i = 0; i < roomSelected.maxPersons; i++) {
       this.addPersons(indexPerson);
