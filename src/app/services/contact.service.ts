@@ -10,7 +10,7 @@ export class ContactService {
   private contactCollection: AngularFirestoreCollection<Contact>
 
   constructor(private afs: AngularFirestore) {
-    this.contactCollection = this.afs.collection('submissions');
+    this.contactCollection = this.afs.collection('contact');
   }
 
   createContact(data: Contact){

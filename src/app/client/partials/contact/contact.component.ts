@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
 
 
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -18,9 +19,11 @@ export class ContactComponent implements OnInit {
   contactForm: FormGroup;
   contact: Contact;
 
+  endpoint = 'https://your-project.cloudfunctions.net/httpEmail';
 
   constructor(private fb: FormBuilder,  private contactServ: ContactService) {
   }
+
 
   ngOnInit() {
     this.contactForm = this.fb.group({
@@ -44,6 +47,7 @@ export class ContactComponent implements OnInit {
     this.contactServ.createContact(this.contact).then(item => {
       console.log(item);
     });
+
 
   }
 
