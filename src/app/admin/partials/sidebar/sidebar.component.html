@@ -32,10 +32,17 @@
             ]">
         </app-treeview>
 
-        <app-treeview title="Estados"  icon="fa-route"
+        <app-treeview title="Estados"  icon="fa-flag"
             [options]="[
                 {opt: 'Todos los Estados', url:'/admin/estados'},
                 {opt: 'Crea un nuevo estado', url:'/admin/estados/crear'}
+            ]">
+        </app-treeview>
+
+        <app-treeview title="Categoría"  icon="fa-tag"
+            [options]="[
+                {opt: 'Todas las categorías', url:'/admin/categorias'},
+                {opt: 'Crea una nueva categoría', url:'/admin/categorias/crear'}
             ]">
         </app-treeview>
 

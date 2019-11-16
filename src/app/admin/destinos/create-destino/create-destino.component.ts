@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-destino',
@@ -13,7 +14,7 @@ export class CreateDestinoComponent implements OnInit {
   createDestinoForm: FormGroup;
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService) { }
+  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService, private router: Router) { }
 
   ngOnInit() {
     this.createDestinoForm = this.fb.group({
@@ -70,6 +71,12 @@ export class CreateDestinoComponent implements OnInit {
 
     this.destinoService.createDestino(destino).then( item => {
       this.loading = false;
+    }).catch(err => {
+      console.log(err);
+      this.loading=false;
+      
+    }).finally(() => {
+      this.router.navigate(['/admin/destinos']);
     });
 
   }

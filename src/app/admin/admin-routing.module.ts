@@ -8,6 +8,8 @@ import { AllDestinosComponent } from './destinos/all-destinos/all-destinos.compo
 import { CreateDestinoComponent } from './destinos/create-destino/create-destino.component';
 import { AllStatesComponent } from './estados/all-states/all-states.component';
 import { CreateStatesComponent } from './estados/create-states/create-states.component';
+import { CreateCategoryComponent } from './categories/create-category/create-category.component';
+import { AllCategoriesComponent } from './categories/all-categories/all-categories.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
     { path: 'estados', component: AllStatesComponent },
     { path: 'estados/crear', component: CreateStatesComponent },
     { path: 'estados/:idEstado/editar', component: CreateStatesComponent },
+    { path: 'categorias', component: AllCategoriesComponent },
+    { path: 'categorias/crear', component: CreateCategoryComponent },
   ]},
 ];
 

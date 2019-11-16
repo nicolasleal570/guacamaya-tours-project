@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { Hotel } from 'src/app/models/hotel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-hotel',
@@ -14,7 +15,7 @@ export class CreateHotelComponent implements OnInit {
   createHotelForm: FormGroup;
   loading: boolean;
 
-  constructor(private fb: FormBuilder, private hotelservice: AdminHotelService) { }
+  constructor(private fb: FormBuilder, private hotelservice: AdminHotelService, private router: Router) { }
 
   ngOnInit() {
     this.createHotelForm = this.fb.group({
@@ -123,13 +124,24 @@ export class CreateHotelComponent implements OnInit {
     };
 
     console.log(hotel);
-    // this.loading = true;
-// 
-    // // this.hotelservice.createHotel(hotel).then(item => {
-      // console.log('Hecho!', item.id);
-      // this.loading = false;
-      // console.log(this.loading);
-    // });
+    this.loading = true;
+
+    this.hotelservice.createHotel(hotel).then(item => {
+
+      console.log('Hecho!', item.id);
+      this.loading = false;
+      console.log(this.loading);
+
+    }).catch(err => {
+
+      console.log(err);
+      this.loading=false;
+      
+    }).finally(() => {
+
+      this.router.navigate(['/admin/hoteles']);
+      
+    });
   }
 
 

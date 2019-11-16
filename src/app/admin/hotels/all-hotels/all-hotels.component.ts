@@ -12,6 +12,7 @@ export class AllHotelsComponent implements OnInit {
 
   hotels: Hotel[] = [];
   loading: boolean = false;
+  deleting: boolean = false;
 
   constructor(private hService: AdminHotelService) {
   }
@@ -21,15 +22,16 @@ export class AllHotelsComponent implements OnInit {
   }
 
   deleteHotel($key: string) {
+    this.deleting = true;
     this.hService.deleteHotel($key).then(() => {
 
-      console.log('Object eliminado');
-      // this.hotels = [];
+      console.log('HOTEL ELIMINADO');
 
+    }).catch((err) => {
+      this.deleting = false;
+      console.log(err);
     }).finally(() => {
-
-      // this.getHotelsFromService();
-
+      this.deleting = false;
     });
   }
 
