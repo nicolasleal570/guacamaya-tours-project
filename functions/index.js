@@ -21,7 +21,7 @@ exports.sendEmail = functions.https.onRequest((req, res) => {
     req.url();
 });
 
-exports.firestoreEmail = functions.database.ref('contact/{contactId}').onCreate( event => {
+exports.firestoreEmail = functions.firestore.document('contact/{contactId}').onCreate( event => {
 
         const contactId = event.params.contactId;
 
