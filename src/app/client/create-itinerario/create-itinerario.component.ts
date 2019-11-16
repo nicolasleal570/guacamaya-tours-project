@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { Hotel } from 'src/app/models/hotel';
 import { Room } from 'src/app/models/room';
-import { HotelService } from 'src/app/services/hotel.service';
-import { State } from 'src/app/models/state';
+import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
+import { Destino } from 'src/app/models/destino';
+import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 
 @Component({
   selector: 'app-create-itinerario',
@@ -15,7 +17,7 @@ export class CreateItinerarioComponent implements OnInit {
   formItinerario: FormGroup;
   hotels: Hotel[] = [
     {
-      $key: '1234TFCV',
+      $key: 'tWR0yoivOHv81IWrfoLO',
       name: 'Hotel Hard Rock',
       imgPresentation: '',
       location: {
@@ -29,31 +31,17 @@ export class CreateItinerarioComponent implements OnInit {
       stars: 4,
       gallery: [],
       fullDay: false,
-      rooms: [
-        {
-          $key: '0987UJHGFD',
-          habName: 'Doble',
-          imgPresentation: '',
-          maxPersons: 2,
-          adventajes: [],
-          pricePerNight: '2',
-        },
-        {
-          $key: '1XVB958HCBN',
-          habName: 'Familiar',
-          maxPersons: 4,
-          adventajes: [],
-          pricePerNight: '7',
-          imgPresentation: ''
-        }
-      ]
     }
   ];
   selectedHotel: Hotel;
-  selectedDestino: string = null;
+  rooms: Room[] = [];
+  destinos: Destino[] = [];
+  selectedRoom: Room;
+  selectedDestino: Destino;
   numOfPersons: number;
 
-  constructor(private fb: FormBuilder, private hotelService: HotelService) {
+  constructor(private fb: FormBuilder, private destinoSV: AdminDestinoService,
+    private hotelService: AdminHotelService, private roomSV: AdminRoomsService) {
   }
 
   ngOnInit() {
@@ -69,19 +57,19 @@ export class CreateItinerarioComponent implements OnInit {
     });
 
 
-    this.hotelService.getHotels.subscribe((hotels) => {
-      hotels.forEach(item => {
-        const hotel: Hotel = {
+    this.destinoSV.getDestinos().subscribe(array => {
+      this.destinos = array.map(item => {
+        const destino: Destino = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
-        };
+        }
 
-        this.hotels.push(hotel);
+        return destino;
       });
     });
   }
 
-  get destinoStateGetter(){
+  get destinoStateGetter() {
     return this.formItinerario.get('destinoState');
   }
 
@@ -95,11 +83,29 @@ export class CreateItinerarioComponent implements OnInit {
   }
 
   onChangeDestinoSelect(e) {
-    this.selectedDestino = e.target.value || 0;
+    const destinoKey = e.target.value || 0;
+
+    this.selectedDestino = this.destinos.find(item => {
+      return item.$key === destinoKey;
+    });
+
+    this.hotelService.getHotels().subscribe(array => {
+      this.hotels = array.map(item => {
+        const hotel: Hotel = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        if (hotel.stateId === this.selectedDestino.stateId) {
+          return hotel;
+        }
+      });
+    });
+
   }
 
   // SE EJECUTA CUANDO EL SELECT DE HABITACIONES CAMBIA
-  onChangeHabs(e) {
+  onChangeNumberHabs(e) {
     const numberOfHabs = e.target.value || 0;
 
     if (this.habsArray.length < numberOfHabs) {
@@ -126,25 +132,50 @@ export class CreateItinerarioComponent implements OnInit {
     }));
   }
 
-  // SE EJECUTA CUANDO SE CAMBIA EL TIPO DE HABITACION
-  onChangeHabType(e, indexPerson) {
-    const roomSelected = this.selectedHotel.rooms.find((room: Room) => {
-      return room.$key === e.target.value;
-    });
-
-    console.log(roomSelected);
-
-    for (let i = 0; i < roomSelected.maxPersons; i++) {
-      this.addPersons(indexPerson);
-    }
-
+  resetPersonsForm(index: number){
+    const control = (<FormArray>this.formItinerario.controls['habs']).at(index).get('persons') as FormArray;
+    control.clear();
   }
 
   // SE EJECUTA CUANDO SE SELECCIONA UN HOTEL
-  onHotelClick(id) {
+  onHotelSelected(id) {
     this.selectedHotel = this.hotels.find((hotel: Hotel) => {
       return id === hotel.$key;
     });
+
+    this.roomSV.getRooms().subscribe(array => {
+      this.rooms = array.map(item => {
+        const room: Room = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        if (room.hotelId === this.selectedHotel.$key) {
+          return room;
+        }
+      });
+    });
+
+    
+  }
+
+  // SE EJECUTA CUANDO SE CAMBIA EL TIPO DE HABITACION
+  onChangeHabType(e, indexPerson) {
+    const roomKey = e.target.value || 0;
+
+    this.selectedRoom = this.rooms.find((item: Room) => {
+      return roomKey === item.$key;
+    });
+    
+    console.log(this.selectedRoom);
+    this.resetPersonsForm(indexPerson);
+    if (this.selectedRoom) {
+      // Agrega tantos inputs como personas haya
+      for (let i = 0; i < this.selectedRoom.maxPersons; i++) {
+        this.addPersons(indexPerson);
+      }
+    }
+
   }
 
   // SE EJECUTA CUANDO SE ENVIA EL FORM

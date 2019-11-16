@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/models/hotel';
-import { HotelService } from 'src/app/services/hotel.service';
+import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 
 
 @Component({
@@ -12,10 +12,10 @@ export class HotelesComponent implements OnInit {
 
   hotels: Hotel[] = [];
 
-  constructor(private hotelService: HotelService) { }
+  constructor(private hotelService: AdminHotelService) { }
 
   ngOnInit() {
-    this.hotelService.getHotels.subscribe(actionArray => {
+    this.hotelService.getHotels().subscribe(actionArray => {
       this.hotels = actionArray.map(item => {
         return {
           $key: item.payload.doc.id,

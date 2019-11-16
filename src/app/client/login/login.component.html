@@ -1,0 +1,33 @@
+<div class="login-wrap">
+
+    <form [formGroup]="loginForm" class="form-wrapper" (ngSubmit)="onSubmit()">
+
+        <h1>Iniciar Sesión</h1>
+
+        <div class="input-group">
+            <input type="text" class="" placeholder="Ingresa tu E-mail" formControlName="email">
+            <small>La información suministrada es completamente confidencial</small>
+        </div>
+
+        <div class="input-group">
+            <input type="password" class="" placeholder="Ingresa tu Contraseña" formControlName="password">
+        </div>
+
+        <div class="input-group">
+            <button type="reset" class="btn btn-primary-outline">Limpiar Formulario</button>
+
+            <button type="submit" class="btn btn-primary">Entrar</button>
+
+        </div>
+
+    </form>
+
+    <div class="poster">
+        
+
+        <div class="poster-footer">
+            <a routerLink="/" class="btn btn-md btn-primary">Volver <i class="fas fa-sign-out-alt fa-lg"></i></a>
+        </div>
+    </div>
+
+</div>

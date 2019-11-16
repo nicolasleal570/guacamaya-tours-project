@@ -1,0 +1,119 @@
+<div class="admin-box admin-box-sm">
+    <div class="box-header with-border">
+        <h3 class="box-title">Datos Básicos de la Habitación</h3>
+    </div>
+    <div class="box-body">
+
+        <form [formGroup]="createRoomForm" class="form-control" (ngSubmit)="onSubmit()">
+
+            <div class="input-group">
+                <label for="roomName">Nombre de la Habitación</label>
+                <input formControlName="name" type="text" id="roomName">
+                <small>Este va a ser el nombre que se le mostrará al público.</small>
+            </div>
+
+            <div class="input-group">
+                <label for="roomDesc">Descripción de la Habitación</label>
+                <textarea id="roomDesc" formControlName="description"></textarea>
+            </div>
+
+
+            <div class="input-group">
+                <label for="roomBanner">Imagen Representativa (Banner)</label>
+                <input type="text" id="roomBanner" formControlName="imgPresentation">
+            </div>
+
+            <div class="input-group">
+                <label for="roomMaxPersons">Capacidad máxima de personas</label>
+                <input type="number" id="roomMaxPersons" formControlName="maxPersons">
+            </div>
+
+            <div class="input-group">
+                <label for="roomPrice">Precio por Noche ($)</label>
+                <input type="number" id="roomPrice" formControlName="pricePerNight">
+            </div>
+
+            <div class="input-group">
+                <label for="roomBanner">Selecciona un Hotel</label>
+
+                <ng-container *ngIf="hotelsLoading; then hotelLoader; else noHotelLoader"></ng-container>
+
+                <ng-template #hotelLoader>
+                    <div class="loader-center">
+                        <app-loader></app-loader>
+                    </div>
+                </ng-template>
+
+                <ng-template #noHotelLoader>
+                    <select id="hotelState" formControlName="hotelId">
+                        <option value="">Selecciona el Hotel a la que pertenece esta Habitación</option>
+                        <option *ngFor="let hotel of hotels; let i=index" value="{{hotel.$key}}">{{hotel.name}}</option>
+                    </select>
+                </ng-template>
+            </div>
+
+            <h3 class="form-section-title with-border">
+                Imagenes para la Galería
+            </h3>
+            <section class="img" formArrayName="gallery">
+                <div *ngFor="let img of getGalleryForm.controls; let i=index" [formGroupName]="i">
+
+                    <p class="img-title">Imagen {{ i + 1 }}</p>
+
+                    <div class="input-group">
+                        <label for="">URL de la Imagen</label>
+                        <input type="text" formControlName="path">
+                    </div>
+
+                    <div class="input-group">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteImage(i)">Eliminar
+                            Imagen</button>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <button type="button" class="btn btn-info btn-sm" (click)="addImage()">Agregar Imagen</button>
+                </div>
+            </section>
+
+            <h3 class="form-section-title with-border">
+                Comodidades que ofrece la Habitación
+            </h3>
+            <section class="img" formArrayName="adventajes">
+                <div *ngFor="let adv of getAdventajeForm.controls; let i=index" [formGroupName]="i">
+
+                    <p class="img-title">Comodidad {{ i + 1 }}</p>
+
+                    <div class="input-group">
+                        <label for="">Descripción del Servicio</label>
+                        <input type="text" formControlName="path">
+                    </div>
+
+                    <div class="input-group">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteAdventaje(i)">Eliminar
+                            Ventaja</button>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <button type="button" class="btn btn-info btn-sm" (click)="addAdventaje()">Agregar Ventaja</button>
+                </div>
+            </section>
+
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+                <ng-container *ngIf="loading; then cargando; else noCargando"></ng-container>
+                <ng-template #cargando>
+                    <app-loader></app-loader>
+                </ng-template>
+                <ng-template #noCargando>
+                    Crear Estado
+                </ng-template>
+            </button>
+        </form>
+
+
+
+    </div>
+</div>

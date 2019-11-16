@@ -64,6 +64,10 @@ select, input {
     font-family: inherit;
     color: #fff;
     background-color: $darkColor;
+
+    &:focus {
+        border: 1px solid $primaryColor;
+    }
 }
 
 .wrap {
@@ -132,6 +136,14 @@ button:disabled {
 
     &.btn-sm {
         font-size: 12px;
+        padding-top: 8px;
+        padding-right: 10px;
+        padding-bottom: 8px;
+        padding-left: 10px;
+    }
+
+    &.btn-md {
+        font-size: 14px;
         padding-top: 8px;
         padding-right: 10px;
         padding-bottom: 8px;
@@ -356,6 +368,7 @@ button:disabled {
                     outline: none;
                     padding: 6px 12px;
                     font-size: 14px;
+                    font-family: inherit;
                     line-height: 1.42857143;
                     margin: 5px 0;
                     color: #555;

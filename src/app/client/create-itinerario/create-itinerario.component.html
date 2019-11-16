@@ -24,7 +24,7 @@
                 <div class="input-group vertical">
                     <select formControlName="destinoName" (change)="onChangeDestinoSelect($event)">
                         <option value="">Seleccione el destino que deseas</option>
-                        <option value="sdr456uj">Pelua</option>
+                        <option *ngFor="let destino of destinos" value="{{destino.$key}}">{{destino.name}}</option>
                     </select>
                 </div>
                 <div class="input-group vertical">
@@ -94,7 +94,7 @@
 
                             <div class="custom-radio-btn">
                                 <input type="radio" id="hotel-{{in}}" formControlName="hotel" value="{{hotel.$key}}">
-                                <label for="hotel-{{in}}" class="radio-control" (click)="onHotelClick(hotel.$key)">
+                                <label for="hotel-{{in}}" class="radio-control" (click)="onHotelSelected(hotel.$key)">
                                     Seleccionar Hotel
                                 </label>
                             </div>
@@ -123,7 +123,7 @@
                         <input type="text" placeholder="Ingresar Fecha de Salida" formControlName="checkout">
                     </div>
                     <div class="input-group vertical">
-                        <select formControlName="numberOfHabs" (change)="onChangeHabs($event)">
+                        <select formControlName="numberOfHabs" (change)="onChangeNumberHabs($event)">
                             <option value="">Selecciona el Número de Habitaciones</option>
                             <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" value="{{i}}">{{i}}</option>
                         </select>
@@ -144,7 +144,7 @@
 
                         <select formControlName="habType" (change)="onChangeHabType($event, i)">
                             <option value="">Selecciona el Tipo de tu Habitación</option>
-                            <option *ngFor="let room of selectedHotel.rooms" value="{{room.habName}}">
+                            <option *ngFor="let room of rooms" value="{{room.$key}}">
                                 {{room.name}}
                             </option>
                         </select>

@@ -25,6 +25,13 @@
             ]">
         </app-treeview>
 
+        <app-treeview title="Habitaciones" icon="fa-bed"
+            [options]="[
+                {opt: 'Todos las Habitaciones', url: '/admin/habitaciones'},
+                {opt: 'Crear una nueva habitación', url: '/admin/habitaciones/crear'}
+            ]">
+        </app-treeview>
+
         <app-treeview title="Destinos"  icon="fa-route"
             [options]="[
                 {opt: 'Todos los Destinos', url:'/admin/destinos'},

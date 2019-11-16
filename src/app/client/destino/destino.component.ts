@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Destino } from 'src/app/models/destino';
-import { DestinoService } from 'src/app/services/destino.service';
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,10 +12,10 @@ export class DestinoComponent implements OnInit {
 
   destinos: Destino[];
 
-  constructor(private dservice: DestinoService) { }
+  constructor(private dservice: AdminDestinoService) { }
 
   ngOnInit() {
-    this.dservice.getDestinos.subscribe(destino => {
+    this.dservice.getDestinos().subscribe(destino => {
       destino.forEach( item => {
         const data = item.payload.doc.data();
         const destino: Destino = {
