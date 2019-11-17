@@ -1,10 +1,13 @@
 export interface Room {
 
     $key?: string;
-    habName: string;
+    name: string;
+    description: string;
     imgPresentation: string;
     maxPersons: number;
     adventajes: string[];
+    gallery: string[];
     pricePerNight: string;
+    hotelId: string;
 
 }

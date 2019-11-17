@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
-import { HotelService } from 'src/app/services/hotel.service';
 import { Hotel } from 'src/app/models/hotel';
+import { Router } from '@angular/router';
+import { AdminStatesService } from 'src/app/services/admin-states.service';
+import { State } from 'src/app/models/state';
 
 @Component({
   selector: 'app-create-hotel',
@@ -12,9 +14,12 @@ import { Hotel } from 'src/app/models/hotel';
 export class CreateHotelComponent implements OnInit {
 
   createHotelForm: FormGroup;
-  loading: boolean;
+  loading: boolean = false;
+  statesLoading: boolean = false;
+  states: State[] = [];
 
-  constructor(private fb: FormBuilder, private hotelservice: AdminHotelService) { }
+  constructor(private fb: FormBuilder, private hotelservice: AdminHotelService, private router: Router,
+    private statesService: AdminStatesService) { }
 
   ngOnInit() {
     this.createHotelForm = this.fb.group({
@@ -26,17 +31,31 @@ export class CreateHotelComponent implements OnInit {
       fullDay: [''],
       stateId: [''],
       imgBanner: [''],
-      habs: this.fb.array([]),
       imgGallery: this.fb.array([]),
       services: this.fb.array([]),
       activities: this.fb.array([]),
     });
 
     this.loading = false;
+
+    this.getAllStates();
   }
 
-  get habsForm(): FormArray {
-    return this.createHotelForm.get('habs') as FormArray;
+  getAllStates() {
+    this.statesLoading = true;
+    this.statesService.getStates().subscribe(array => {
+      this.states = array.map(item => {
+        const state: State = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        return state;
+      });
+      
+      this.statesLoading = false;
+
+    });
   }
 
   get galleryForm(): FormArray {
@@ -49,21 +68,6 @@ export class CreateHotelComponent implements OnInit {
 
   get activityForm(): FormArray {
     return this.createHotelForm.get('activities') as FormArray;
-  }
-
-  addRoom() {
-    const hab = this.fb.group({
-      habName: [''],
-      imgPresentation: [''],
-      pricePerNight: [''],
-      maxPersons: Number[''],
-    });
-
-    this.habsForm.push(hab);
-  }
-
-  deleteRoom(i: number) {
-    this.habsForm.removeAt(i);
   }
 
   addImage() {
@@ -119,17 +123,27 @@ export class CreateHotelComponent implements OnInit {
       fullDay: this.createHotelForm.value.fullDay ? true : false,
       services: this.createHotelForm.value.services,
       activities: this.createHotelForm.value.activities,
-      rooms: this.createHotelForm.value.habs
     };
 
     console.log(hotel);
-    // this.loading = true;
-// 
-    // // this.hotelservice.createHotel(hotel).then(item => {
-      // console.log('Hecho!', item.id);
-      // this.loading = false;
-      // console.log(this.loading);
-    // });
+    this.loading = true;
+
+    this.hotelservice.createHotel(hotel).then(item => {
+
+      console.log('Hecho!', item.id);
+      this.loading = false;
+      console.log(this.loading);
+
+    }).catch(err => {
+
+      console.log(err);
+      this.loading = false;
+
+    }).finally(() => {
+
+      this.router.navigate(['/admin/hoteles']);
+
+    });
   }
 
 

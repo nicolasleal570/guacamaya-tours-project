@@ -38,7 +38,7 @@
                 <label for="destino">Estado donde está el Destino</label>
                 <select id="destino" formControlName="state">
                     <option value="">Seleccione el estado donde está el destino ubicado</option>
-                    <option value="sw2345">Margarita</option>
+                    <option *ngFor="let state of states" value="{{state.$key}}">{{state.name}}</option>
                 </select>
             </div>
 

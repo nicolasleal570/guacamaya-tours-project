@@ -15,6 +15,5 @@ export interface Hotel {
     fullDay: boolean;
     services: string[];
     activities: string[];
-    rooms: Room[];
 
 }

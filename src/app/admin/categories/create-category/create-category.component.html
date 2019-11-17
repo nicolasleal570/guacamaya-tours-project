@@ -4,10 +4,10 @@
     </div>
     <div class="box-body">
 
-        <form [formGroup]="createStateForm" class="form-control" (ngSubmit)="onSubmit()">
+        <form [formGroup]="createCategoryForm" class="form-control" (ngSubmit)="onSubmit()">
 
             <div class="input-group">
-                <label for="stateName">Nombre del Estado</label>
+                <label for="stateName">Nombre de la categoría</label>
                 <input formControlName="name" type="text" id="stateName">
                 <small>Este va a ser el nombre que se le mostrará al público.</small>
             </div>
@@ -26,7 +26,7 @@
                     <app-loader></app-loader>
                 </ng-template>
                 <ng-template #noCargando>
-                    Crear Estado
+                    Crear Categoría
                 </ng-template>
             </button>
         </form>

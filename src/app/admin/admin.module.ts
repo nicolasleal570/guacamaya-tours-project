@@ -17,10 +17,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoaderComponent } from './partials/loader/loader.component';
 import { AllStatesComponent } from './estados/all-states/all-states.component';
 import { CreateStatesComponent } from './estados/create-states/create-states.component';
+import { CreateCategoryComponent } from './categories/create-category/create-category.component';
+import { AllCategoriesComponent } from './categories/all-categories/all-categories.component';
+import { CreateRoomComponent } from './rooms/create-room/create-room.component';
+import { AllRoomsComponent } from './rooms/all-rooms/all-rooms.component';
 
 
 @NgModule({
-  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent, AllStatesComponent, CreateStatesComponent],
+  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent, AllStatesComponent, CreateStatesComponent, CreateCategoryComponent, AllCategoriesComponent, CreateRoomComponent, AllRoomsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

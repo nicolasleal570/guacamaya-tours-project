@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DestinoService } from 'src/app/services/destino.service';
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 import { Destino } from 'src/app/models/destino';
 
 @Component({
@@ -12,9 +12,14 @@ export class SelectedDestinoComponent implements OnInit {
 
   destino: Destino;
 
-  constructor(private route: ActivatedRoute, private dService: DestinoService) {
+  constructor(private route: ActivatedRoute, private dService: AdminDestinoService) {
     this.route.paramMap.subscribe(params => {
-      this.destino = this.dService.getDestinoFromId(params.get('destinoId'));
+      this.dService.getDestinoById(params.get('destinoId')).subscribe(array => {
+        this.destino = {
+          $key: array.payload.id,
+          ...array.payload.data()
+        } as Destino;
+      });
     });
   }
 

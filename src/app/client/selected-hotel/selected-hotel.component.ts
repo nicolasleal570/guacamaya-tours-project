@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HotelService } from 'src/app/services/hotel.service';
+import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Hotel } from 'src/app/models/hotel';
 
 @Component({
@@ -14,7 +14,7 @@ export class SelectedHotelComponent implements OnInit {
   hotelId: string = '';
   loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private hotelService: HotelService) {
+  constructor(private route: ActivatedRoute, private hotelService: AdminHotelService) {
     this.route.paramMap.subscribe(params => {
       this.hotelId = params.get('hotelId');
     });
@@ -23,13 +23,12 @@ export class SelectedHotelComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
 
-    this.hotelService.getHotelFromId(this.hotelId).subscribe(res => {
+    this.hotelService.getHotelById(this.hotelId).subscribe(array => {
 
       this.hotel = {
-        $key: res.payload.id,
-        ...res.payload.data()
-      }
-
+        $key: array.payload.id,
+        ...array.payload.data()
+      } as Hotel;
       this.loading = false;
 
     });

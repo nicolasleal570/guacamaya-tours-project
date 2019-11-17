@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { State } from 'src/app/models/state';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { Destino } from 'src/app/models/destino';
-import { DestinoService } from 'src/app/services/destino.service';
-import { FormsModule, FormControl, FormBuilder} from '@angular/forms'; 
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
+import { FormsModule, FormControl} from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -18,7 +18,7 @@ export class BuscarComponent implements OnInit {
   selectedState: string = '';
   selectedCategory: string = '';
 
-  constructor(private stateService: AdminStatesService, private dservice: DestinoService) { }
+  constructor(private stateService: AdminStatesService, private dservice: AdminDestinoService) { }
   
   ngOnInit() {
 
@@ -41,7 +41,7 @@ export class BuscarComponent implements OnInit {
   }
 
   getDestinosFromService() {
-    this.dservice.getDestinos.subscribe((destino) => {
+    this.dservice.getDestinos().subscribe((destino) => {
       destino.forEach( item => {
         const destino: Destino = {
           $key: item.payload.doc.id,

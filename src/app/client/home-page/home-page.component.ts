@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelService } from 'src/app/services/hotel.service';
+import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Hotel } from 'src/app/models/hotel';
 import { Observable } from 'rxjs';
 
@@ -12,12 +12,21 @@ export class HomePageComponent implements OnInit {
 
   hotels: Hotel[];
 
-  constructor(private hotelService: HotelService) {
+  constructor(private hotelService: AdminHotelService) {
   }
 
   ngOnInit() {
-    this.hotelService.getFamousHotels.subscribe(hotel => {
-      this.hotels = hotel;
+    this.hotelService.getHotels().subscribe(array => {
+      this.hotels = array.map(item => {
+        const hotel: Hotel = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        if (hotel.stars > 4) {
+          return hotel;
+        }
+      });
     });
   }
 

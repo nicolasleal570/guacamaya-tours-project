@@ -13,9 +13,10 @@ export class CreateStatesComponent implements OnInit {
 
   createStateForm: FormGroup;
   loading: boolean = false;
+  deleting: boolean = false;
   editState: State = null;
 
-  constructor(private fb: FormBuilder, private stateservice: AdminStatesService, 
+  constructor(private fb: FormBuilder, private stateservice: AdminStatesService,
     private route: ActivatedRoute, private router: Router
   ) { }
 
@@ -60,26 +61,36 @@ export class CreateStatesComponent implements OnInit {
       name: this.createStateForm.value.name,
       image: this.createStateForm.value.imgBanner,
     };
-    
+
     this.loading = true;
 
     if (this.editState) { // Se está editando
 
       this.stateservice.updateState(state, this.editState.$key).then(() => {
         console.log('Editado!', this.editState.$key);
-        this.router.navigate(['/estados']);
+      }).catch(err => {
+        console.log(err);
+        this.loading = false;
+
+      }).finally(() => {
+        this.router.navigate(['/admin/estados']);
       });
 
     } else {
 
       this.stateservice.createState(state).then(item => {
         console.log('Creado!', item.id);
-        this.router.navigate(['/estados']);
+      }).catch(err => {
+        console.log(err);
+        this.loading = false;
+
+      }).finally(() => {
+        this.router.navigate(['/admin/estados']);
+        this.loading = false;
       });
 
     }
-    
-    this.loading = false;
+
 
   }
 

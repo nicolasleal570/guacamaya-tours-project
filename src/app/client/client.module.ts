@@ -26,6 +26,7 @@ import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.compo
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 import { SearchByStatePipe } from '../pipes/search-by-state.pipe';
 import { SearchByCategoryPipe } from '../pipes/search-by-category.pipe';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SearchByCategoryPipe } from '../pipes/search-by-category.pipe';
     ShowItinerarioComponent,
     CreateItinerarioComponent,
     SearchByStatePipe,
-    SearchByCategoryPipe
+    SearchByCategoryPipe,
+    LoginComponent
   ],
   imports: [
     CommonModule,

@@ -9,20 +9,24 @@ import { SelectedDestinoComponent } from './selected-destino/selected-destino.co
 import { SelectedHotelComponent } from './selected-hotel/selected-hotel.component';
 import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
+import { LoginComponent } from './login/login.component';
 
 
 
 const routes: Routes = [
-  { path: '', component: ClientLayoutComponent, children: [
-    { path: '', component: HomePageComponent },
-    { path: 'buscar', component: BuscarComponent },
-    { path: 'destinos', component: DestinoComponent },
-    { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
-    { path: 'hoteles', component: HotelesComponent },
-    { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
-    { path: 'itinerario/crear', component: CreateItinerarioComponent },
-    { path: 'itinerario/ver', component: ShowItinerarioComponent },
-  ] }
+  {
+    path: '', component: ClientLayoutComponent, children: [
+      { path: '', component: HomePageComponent },
+      { path: 'buscar', component: BuscarComponent },
+      { path: 'destinos', component: DestinoComponent },
+      { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
+      { path: 'hoteles', component: HotelesComponent },
+      { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
+      { path: 'itinerario/crear', component: CreateItinerarioComponent },
+      { path: 'itinerario/ver', component: ShowItinerarioComponent },
+    ]
+  },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

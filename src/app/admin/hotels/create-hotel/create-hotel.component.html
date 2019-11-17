@@ -34,10 +34,19 @@
 
             <div class="input-group">
                 <label for="hotelState">Estado donde está el Hotel</label>
-                <select id="hotelState" formControlName="stateId">
-                    <option value="">Seleccione el estado donde está el hotel ubicado</option>
-                    <option value="margarita">Margarita</option>
-                </select>
+                <ng-container *ngIf="statesLoading; then stateLoader; else noStateLoader"></ng-container>
+
+                <ng-template #stateLoader>
+                    <div class="loader-center">
+                        <app-loader></app-loader>
+                    </div>
+                </ng-template>
+                <ng-template #noStateLoader>
+                    <select id="hotelState" formControlName="stateId">
+                        <option value="">Seleccione el estado donde está el hotel ubicado</option>
+                        <option *ngFor="let state of states; let i=index" value="{{state.$key}}">{{state.name}}</option>
+                    </select>
+                </ng-template>
             </div>
 
             <div class="input-group">
@@ -55,48 +64,6 @@
                 </div>
                 <small>Seleccione solo si el hotel cuenta con el servicio full day</small>
             </div>
-
-            <h3 class="form-section-title with-border">
-                Datos sobre Habitaciones
-            </h3>
-
-            <section class="hab" formArrayName="habs">
-                <div *ngFor="let hab of habsForm.controls; let i=index" [formGroupName]="i">
-
-                    <p class="hab-title">Habitacion {{ i + 1 }}</p>
-
-                    <div class="input-group">
-                        <label for="">Nombre de la Habitación</label>
-                        <input type="text" formControlName="habName">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="hotelRoomBanner">Imagen Representativa (Banner)</label>
-                        <input type="text" id="hotelRoomBanner" formControlName="imgPresentation">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="">Precio por noche</label>
-                        <input type="number" formControlName="pricePerNight">
-                        <small>El precio que se ponga aquí será por persona.</small>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="">Número máximo de personas</label>
-                        <input type="number" formControlName="maxPersons">
-                    </div>
-
-                    <div class="input-group">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteRoom(i)">Eliminar
-                            Habitación</button>
-                    </div>
-
-                </div>
-
-                <div class="input-group">
-                    <button type="button" class="btn btn-info btn-sm" (click)="addRoom()">Agregar Habitación</button>
-                </div>
-            </section>
 
             <h3 class="form-section-title with-border">
                 Imágenes para la Galería

@@ -15,6 +15,7 @@ export class AllStatesComponent implements OnInit {
 
   states: State[] = [];
   loading: boolean = false;
+  deleting: boolean = false;
 
 
   constructor(private sService: AdminStatesService, private router: Router) { }
@@ -24,12 +25,19 @@ export class AllStatesComponent implements OnInit {
   }
 
   deleteState($key: string) {
+    this.deleting = true;
     this.sService.deletedState($key).then(() => {
 
       console.log('Object eliminado');
 
+    }).catch(err => {
+
+      console.log(err);
+      this.deleting = false;
+
     }).finally(() => {
 
+      this.deleting = false;
 
     });
   }

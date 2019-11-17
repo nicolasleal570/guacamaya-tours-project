@@ -1,0 +1,43 @@
+<div class="admin-box">
+        <div class="box-header with-border">
+            <h2 class="box-title">Todas las Habitaciones del Sistema</h2>
+        </div>
+        <div class="box-body">
+            <ng-container *ngIf="rooms.length > 0; then roomsExists; else notRooms"></ng-container>
+    
+            <ng-template #roomsExists>
+                <table class="table table-border" *ngIf="!loading">
+                    <thead>
+                        <th>Nro</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let room of rooms; let i=index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ room.name }}</td>
+                            <td>{{ room.description }}</td>
+                            <td class="action-buttons">
+                                <a [routerLink]="['/habitaciones', room.$key]" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+
+                                <a href="" class="btn btn-warning btn-sm mx-5"><i class="fas fa-pencil-alt"></i></a>
+
+                                <button (click)="deleteHotel(room.$key)" 
+                                class="btn btn-danger btn-sm"
+                                *ngIf="!deleting"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+    
+            <ng-template #notRooms>
+                <div class="loader-center">
+                    <app-loader></app-loader>
+                </div>
+            </ng-template>
+        </div>
+    </div>
