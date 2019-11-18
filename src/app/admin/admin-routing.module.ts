@@ -12,10 +12,11 @@ import { CreateCategoryComponent } from './categories/create-category/create-cat
 import { AllCategoriesComponent } from './categories/all-categories/all-categories.component';
 import { AllRoomsComponent } from './rooms/all-rooms/all-rooms.component';
 import { CreateRoomComponent } from './rooms/create-room/create-room.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: AdminLayoutComponent, children: [
+  { path: '', component: AdminLayoutComponent, canActivate: [AuthGuard], children: [
     { path: '', component: DashboardComponent },
     { path: 'hoteles', component: AllHotelsComponent },
     { path: 'hoteles/crear', component: CreateHotelComponent },
