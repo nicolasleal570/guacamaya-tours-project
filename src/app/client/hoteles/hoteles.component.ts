@@ -11,17 +11,28 @@ import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 export class HotelesComponent implements OnInit {
 
   hotels: Hotel[] = [];
+  loading: boolean = false;
 
   constructor(private hotelService: AdminHotelService) { }
 
   ngOnInit() {
-    this.hotelService.getHotels().subscribe(actionArray => {
+    this.getHotelsFromService();
+  }
+
+  getHotelsFromService() {
+    this.loading = true;
+    this.hotels = [];
+    this.hotelService.getHotels().subscribe((actionArray) => {
       this.hotels = actionArray.map(item => {
-        return {
+        const hotel: Hotel = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
-        } as Hotel;
+        };
+
+        return hotel;
       });
+
+      this.loading = false;
     });
   }
 

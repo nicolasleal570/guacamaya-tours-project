@@ -9,10 +9,19 @@
 
 <!-- FICHAS -->
 <div class="section wrap">
-    <ng-container *ngFor="let hotel of hotels">
-        <a [routerLink]="['/hoteles', hotel.$key]" class="card">
-            <app-hotel-card [hotel]="hotel"> </app-hotel-card>
-        </a>
-    </ng-container>
+
+    <ng-container *ngIf="loading; then loader; else noLoader"></ng-container>
+
+    <ng-template #loader>
+        <app-big-loader></app-big-loader>
+    </ng-template>
+
+    <ng-template #noLoader>
+        <ng-container *ngFor="let hotel of hotels">
+            <a [routerLink]="['/hoteles', hotel.$key]" class="card">
+                <app-hotel-card [hotel]="hotel"> </app-hotel-card>
+            </a>
+        </ng-container>
+    </ng-template>
 </div>
 <!-- FIN DE FICHAS -->

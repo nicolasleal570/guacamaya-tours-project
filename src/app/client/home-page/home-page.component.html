@@ -6,15 +6,24 @@
             asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
 
     <div class="section-body">
-        <div class="table-section-vertical">
-            <app-display title="NIEVE" subtitle="Merida" img="assets/img/merida.jpg"> </app-display>
-            <app-display title="Desierto" subtitle="Medanos de Coro" img="assets/img/medanos.png"> </app-display>
-            <app-display title="SELVA" subtitle="Amazonas" img="assets/img/selva.jpg"> </app-display>
-            <app-display title="TRÓPICO" subtitle="Los Roques" img="assets/img/los-roques.jpg"> </app-display>
-        </div>
+        <ng-container *ngIf="categoriesLoading; then catLoading; else noCatLoading"></ng-container>
+
+        <ng-template #catLoading>
+            <app-big-loader></app-big-loader>
+        </ng-template>
+
+        <ng-template #noCatLoading>
+            <div class="table-section-vertical">
+                <app-display title="NIEVE" subtitle="Merida" img="assets/img/merida.jpg"> </app-display>
+                <app-display title="Desierto" subtitle="Medanos de Coro" img="assets/img/medanos.png"> </app-display>
+                <app-display title="SELVA" subtitle="Amazonas" img="assets/img/selva.jpg"> </app-display>
+                <app-display title="TRÓPICO" subtitle="Los Roques" img="assets/img/los-roques.jpg"> </app-display>
+            </div>
+        </ng-template>
     </div>
     <div class="section-footer">
-        <a routerLink="/destinos" class="card-btn-action">Ver Todos los Destinos <i class="fas fa-chevron-right"></i></a>
+        <a routerLink="/destinos" class="card-btn-action">Ver Todos los Destinos <i
+                class="fas fa-chevron-right"></i></a>
     </div>
 </section>
 <!-- FIN EXPLORA EL MUNDO -->
@@ -22,14 +31,22 @@
 <!-- SECCIONES DE HOTELES -->
 <section class="section wrap">
 
-        <app-titulo title="Hoteles y Posadas" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
+    <app-titulo title="Hoteles y Posadas" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
         asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
 
     <!-- HOTELES -->
     <div class="section-body">
-        <ng-container *ngFor="let hotel of hotels">
-            <app-hotel-card [hotel]="hotel"></app-hotel-card>
-        </ng-container>
+        <ng-container *ngIf="hotelsLoading; then loader; else noLoader"></ng-container>
+
+        <ng-template #loader>
+            <app-big-loader></app-big-loader>
+        </ng-template>
+
+        <ng-template #noLoader>
+            <ng-container *ngFor="let hotel of hotels">
+                <app-hotel-card [hotel]="hotel"></app-hotel-card>
+            </ng-container>
+        </ng-template>
     </div>
     <div class="section-footer">
         <a routerLink="/hoteles" class="card-btn-action">Ver más Hoteles <i class="fas fa-chevron-right"></i></a>

@@ -1,7 +1,7 @@
 <ng-container *ngIf="loading; then loader; else noLoader"></ng-container>
 
 <ng-template #loader>
-    <h1>Loading...</h1>
+    <app-big-loader [absoluteClass]="true"></app-big-loader>
 </ng-template>
 
 <ng-template #noLoader>

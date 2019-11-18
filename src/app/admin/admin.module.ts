@@ -21,6 +21,7 @@ import { CreateCategoryComponent } from './categories/create-category/create-cat
 import { AllCategoriesComponent } from './categories/all-categories/all-categories.component';
 import { CreateRoomComponent } from './rooms/create-room/create-room.component';
 import { AllRoomsComponent } from './rooms/all-rooms/all-rooms.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AllRoomsComponent } from './rooms/all-rooms/all-rooms.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ]
 })
 export class AdminModule { }

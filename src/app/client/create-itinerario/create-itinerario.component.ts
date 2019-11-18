@@ -15,30 +15,17 @@ import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 export class CreateItinerarioComponent implements OnInit {
 
   formItinerario: FormGroup;
-  hotels: Hotel[] = [
-    {
-      $key: 'tWR0yoivOHv81IWrfoLO',
-      name: 'Hotel Hard Rock',
-      imgPresentation: '',
-      location: {
-        latitud: '',
-        longitud: '',
-        direction: '',
-      },
-      services: [],
-      activities: [],
-      stateId: '123456IKGFD',
-      stars: 4,
-      gallery: [],
-      fullDay: false,
-    }
-  ];
+  hotels: Hotel[] = [];
   selectedHotel: Hotel;
   rooms: Room[] = [];
   destinos: Destino[] = [];
   selectedRoom: Room;
   selectedDestino: Destino;
   numOfPersons: number;
+
+  destinosLoading: boolean = false;
+  hotelsLoading: boolean = false;
+  habsLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private destinoSV: AdminDestinoService,
     private hotelService: AdminHotelService, private roomSV: AdminRoomsService) {
@@ -57,16 +44,63 @@ export class CreateItinerarioComponent implements OnInit {
     });
 
 
-    this.destinoSV.getDestinos().subscribe(array => {
-      this.destinos = array.map(item => {
+    this.getDestinosFromService();
+  }
+
+  getDestinosFromService() {
+    this.destinosLoading = true;
+    this.destinos = [];
+    this.destinoSV.getDestinos().subscribe((actionArray) => {
+      this.destinos = actionArray.map(item => {
         const destino: Destino = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
-        }
+        };
 
         return destino;
+
       });
+
+      this.destinosLoading = false;
+
     });
+  }
+
+  getHotelsFromService() {
+    this.hotelsLoading = true;
+    this.hotels = [];
+    this.hotelService.getHotels().subscribe((actionArray) => {
+      this.hotels = actionArray.map(item => {
+        const hotel: Hotel = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        };
+
+        return hotel;
+      });
+
+      this.hotelsLoading = false;
+    });
+  }
+
+  getHabsInSelectedHotel() {
+    if (this.selectedHotel) {
+      this.habsLoading = true;
+      this.roomSV.getRooms().subscribe(array => {
+        this.rooms = array.map(item => {
+          const room: Room = {
+            $key: item.payload.doc.id,
+            ...item.payload.doc.data()
+          }
+
+          if (room.hotelId === this.selectedHotel.$key) {
+            return room;
+          }
+        });
+
+        this.habsLoading = false;
+      });
+    }
   }
 
   get destinoStateGetter() {
@@ -89,18 +123,7 @@ export class CreateItinerarioComponent implements OnInit {
       return item.$key === destinoKey;
     });
 
-    this.hotelService.getHotels().subscribe(array => {
-      this.hotels = array.map(item => {
-        const hotel: Hotel = {
-          $key: item.payload.doc.id,
-          ...item.payload.doc.data()
-        }
-
-        if (hotel.stateId === this.selectedDestino.stateId) {
-          return hotel;
-        }
-      });
-    });
+    this.getHotelsFromService();
 
   }
 
@@ -132,7 +155,7 @@ export class CreateItinerarioComponent implements OnInit {
     }));
   }
 
-  resetPersonsForm(index: number){
+  resetPersonsForm(index: number) {
     const control = (<FormArray>this.formItinerario.controls['habs']).at(index).get('persons') as FormArray;
     control.clear();
   }
@@ -143,20 +166,9 @@ export class CreateItinerarioComponent implements OnInit {
       return id === hotel.$key;
     });
 
-    this.roomSV.getRooms().subscribe(array => {
-      this.rooms = array.map(item => {
-        const room: Room = {
-          $key: item.payload.doc.id,
-          ...item.payload.doc.data()
-        }
+    this.getHabsInSelectedHotel();
 
-        if (room.hotelId === this.selectedHotel.$key) {
-          return room;
-        }
-      });
-    });
 
-    
   }
 
   // SE EJECUTA CUANDO SE CAMBIA EL TIPO DE HABITACION
@@ -166,7 +178,7 @@ export class CreateItinerarioComponent implements OnInit {
     this.selectedRoom = this.rooms.find((item: Room) => {
       return roomKey === item.$key;
     });
-    
+
     console.log(this.selectedRoom);
     this.resetPersonsForm(indexPerson);
     if (this.selectedRoom) {

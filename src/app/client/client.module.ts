@@ -27,6 +27,8 @@ import { CreateItinerarioComponent } from './create-itinerario/create-itinerario
 import { SearchByStatePipe } from '../pipes/search-by-state.pipe';
 import { SearchByCategoryPipe } from '../pipes/search-by-category.pipe';
 import { LoginComponent } from './login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { BigLoaderComponent } from './partials/big-loader/big-loader.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { LoginComponent } from './login/login.component';
     CreateItinerarioComponent,
     SearchByStatePipe,
     SearchByCategoryPipe,
-    LoginComponent
+    LoginComponent,
+    BigLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +55,8 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
 
   ]
 })

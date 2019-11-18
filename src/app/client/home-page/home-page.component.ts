@@ -11,11 +11,18 @@ import { Observable } from 'rxjs';
 export class HomePageComponent implements OnInit {
 
   hotels: Hotel[];
+  hotelsLoading: boolean = false;
+  categoriesLoading: boolean = false;
 
   constructor(private hotelService: AdminHotelService) {
   }
 
   ngOnInit() {
+    this.getFamousHotels();
+  }
+
+  getFamousHotels() {
+    this.hotelsLoading = true;
     this.hotelService.getHotels().subscribe(array => {
       this.hotels = array.map(item => {
         const hotel: Hotel = {
@@ -23,7 +30,9 @@ export class HomePageComponent implements OnInit {
           ...item.payload.doc.data()
         }
 
+
         if (hotel.stars > 4) {
+          this.hotelsLoading = false;
           return hotel;
         }
       });

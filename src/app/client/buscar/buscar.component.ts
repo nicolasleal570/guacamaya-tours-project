@@ -3,7 +3,7 @@ import { State } from 'src/app/models/state';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
-import { FormsModule, FormControl} from '@angular/forms'; 
+import { FormsModule, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -17,9 +17,11 @@ export class BuscarComponent implements OnInit {
   destinos: Destino[] = [];
   selectedState: string = '';
   selectedCategory: string = '';
+  loading: boolean = false;
 
-  constructor(private stateService: AdminStatesService, private dservice: AdminDestinoService) { }
-  
+
+  constructor(private stateService: AdminStatesService, private dService: AdminDestinoService) { }
+
   ngOnInit() {
 
     this.getStatesFromService();
@@ -34,24 +36,29 @@ export class BuscarComponent implements OnInit {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
         };
-        
+
         this.states.push(state);
       })
     })
   }
 
   getDestinosFromService() {
-    this.dservice.getDestinos().subscribe((destino) => {
-      destino.forEach( item => {
+    this.loading = true;
+    this.destinos = [];
+    this.dService.getDestinos().subscribe((actionArray) => {
+      this.destinos = actionArray.map(item => {
         const destino: Destino = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
-        }
+        };
 
-        this.destinos.push(destino);
+        return destino;
 
-      })
-  });
+      });
+
+      this.loading = false;
+
+    });
   }
 
 

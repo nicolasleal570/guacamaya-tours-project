@@ -10,27 +10,32 @@ import { Observable } from 'rxjs';
 })
 export class DestinoComponent implements OnInit {
 
-  destinos: Destino[];
+  destinos: Destino[] = [];
+  loading: boolean = false;
 
-  constructor(private dservice: AdminDestinoService) { }
+  constructor(private dService: AdminDestinoService) { }
 
   ngOnInit() {
-    this.dservice.getDestinos().subscribe(destino => {
-      destino.forEach( item => {
-        const data = item.payload.doc.data();
+    this.getDestinosFromService();
+  }
+
+  getDestinosFromService() {
+    this.loading = true;
+    this.destinos = [];
+    this.dService.getDestinos().subscribe((actionArray) => {
+      this.destinos = actionArray.map(item => {
         const destino: Destino = {
           $key: item.payload.doc.id,
-          name: data.name,
-          description: data.description,
-          categoryId: data.categoryId,
-          location: data.location,
-          stateId: data.stateId,
-          imgBanner: data.imgBanner,
-        }
+          ...item.payload.doc.data()
+        };
 
-        this.destinos.push(destino);
-      })
-  });
+        return destino;
+
+      });
+
+      this.loading = false;
+
+    });
   }
 
 }

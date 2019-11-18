@@ -6,8 +6,8 @@
 </header>
 
 <div class="section wrap">
-    <app-titulo title="Crea tu itinerario" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
-    asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"></app-titulo>
+    <!-- <app-titulo title="Crea tu itinerario" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
+    asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"></app-titulo> -->
 
     <form [formGroup]="formItinerario" class="form-control" (submit)="onSubmit()">
 
@@ -22,10 +22,18 @@
                     <h2><i class="fas fa-route"></i> Destinos: </h2>
                 </div>
                 <div class="input-group vertical">
-                    <select formControlName="destinoName" (change)="onChangeDestinoSelect($event)">
-                        <option value="">Seleccione el destino que deseas</option>
-                        <option *ngFor="let destino of destinos" value="{{destino.$key}}">{{destino.name}}</option>
-                    </select>
+                    <ng-container *ngIf="destinosLoading; then destinosLoader; else noDestinosLoader"></ng-container>
+
+                    <ng-template #destinosLoader>
+                        <app-big-loader [smallClass]="true"></app-big-loader>
+                    </ng-template>
+
+                    <ng-template #noDestinosLoader>
+                        <select formControlName="destinoName" (change)="onChangeDestinoSelect($event)">
+                            <option value="">Seleccione el destino que deseas</option>
+                            <option *ngFor="let destino of destinos" value="{{destino.$key}}">{{destino.name}}</option>
+                        </select>
+                    </ng-template>
                 </div>
                 <div class="input-group vertical">
                     <h2><i class="fas fa-filter"></i> Filtros <small>(Opcionales)</small>:</h2>
@@ -53,56 +61,66 @@
                 <p>Puedes seleccionar el hotel de tu preferencia según el destino que hayas escogido anteriormente</p>
             </section>
             <div class="wrap-hotels">
-                <div *ngFor="let hotel of hotels; let in=index" class="table-section-horizontal">
-                    <div class="card-brand" [ngStyle]="{ 'background-image': 'url('+ hotel.imgPresentation +')' }">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-body-title">
-                            <a [routerLink]="">
-                                <h1>{{hotel.name}}</h1>
-                            </a>
-                            <ul class="ranking">
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                            </ul>
+                <ng-container *ngIf="hotelsLoading; then hotelsLoader; else noHotelsLoader"></ng-container>
+
+                <ng-template #hotelsLoader>
+                    <app-big-loader [smallClass]="true"></app-big-loader>
+                </ng-template>
+
+                <ng-template #noHotelsLoader>
+                    <div *ngFor="let hotel of hotels; let in=index" class="table-section-horizontal">
+                        <div class="card-brand" [ngStyle]="{ 'background-image': 'url('+ hotel.imgPresentation +')' }">
                         </div>
-                        <div class="card-body-content">
-                            <div class="box-lg">
-                                <h2>Servicios</h2>
-                                <ul>
-                                    <li *ngFor="let service of hotel.services">
-                                        <p>{{ service }}</p>
-                                    </li>
+                        <div class="card-body">
+                            <div class="card-body-title">
+                                <a [routerLink]="">
+                                    <h1>{{hotel.name}}</h1>
+                                </a>
+                                <ul class="ranking">
+                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="box-lg">
-                                <h2>Actividades</h2>
-                                <ul>
-                                    <li *ngFor="let activity of hotel.activities">
-                                        <p>{{ activity }}</p>
-                                    </li>
-                                </ul>
+                            <div class="card-body-content">
+                                <div class="box-lg">
+                                    <h2>Servicios</h2>
+                                    <ul>
+                                        <li *ngFor="let service of hotel.services">
+                                            <p>{{ service.path }}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="box-lg">
+                                    <h2>Actividades</h2>
+                                    <ul>
+                                        <li *ngFor="let activity of hotel.activities">
+                                            <p>{{ activity.path }}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="box-sm">
+                                    <a href="#" class="btn btn-primary">Ver Más</a>
+                                </div>
                             </div>
-                            <div class="box-sm">
-                                <a href="#" class="btn btn-primary">Ver Más</a>
+                            <div class="card-body-footer">
+
+                                <div class="custom-radio-btn">
+                                    <input type="radio" id="hotel-{{in}}" formControlName="hotel"
+                                        value="{{hotel.$key}}">
+                                    <label for="hotel-{{in}}" class="radio-control"
+                                        (click)="onHotelSelected(hotel.$key)">
+                                        Seleccionar Hotel
+                                    </label>
+                                </div>
+
+
                             </div>
-                        </div>
-                        <div class="card-body-footer">
-
-                            <div class="custom-radio-btn">
-                                <input type="radio" id="hotel-{{in}}" formControlName="hotel" value="{{hotel.$key}}">
-                                <label for="hotel-{{in}}" class="radio-control" (click)="onHotelSelected(hotel.$key)">
-                                    Seleccionar Hotel
-                                </label>
-                            </div>
-
-
                         </div>
                     </div>
-                </div>
+                </ng-template>
             </div>
         </ng-container>
         <!-- FIN SELECCIONAR HOTEL -->
@@ -142,12 +160,20 @@
                     </div>
                     <div class="input-group vertical">
 
-                        <select formControlName="habType" (change)="onChangeHabType($event, i)">
-                            <option value="">Selecciona el Tipo de tu Habitación</option>
-                            <option *ngFor="let room of rooms" value="{{room.$key}}">
-                                {{room.name}}
-                            </option>
-                        </select>
+                        <ng-container *ngIf="habsLoading; then habLoader; else noHabLoader"></ng-container>
+
+                        <ng-template #habLoader>
+                            <app-big-loader [smallClass]="true"></app-big-loader>
+                        </ng-template>
+
+                        <ng-template #noHabLoader>
+                            <select formControlName="habType" (change)="onChangeHabType($event, i)">
+                                <option value="">Selecciona el Tipo de tu Habitación</option>
+                                <option *ngFor="let room of rooms" value="{{room.$key}}">
+                                    {{room.name}}
+                                </option>
+                            </select>
+                        </ng-template>
 
                     </div>
                     <div class="input-group vertical">
