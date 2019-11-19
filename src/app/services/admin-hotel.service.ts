@@ -3,6 +3,7 @@ import { FirestoreService } from './firestore.service';
 import { Hotel } from '../models/hotel';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Room } from '../models/room';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { Observable } from 'rxjs';
 export class AdminHotelService {
 
   private hotelCollection: AngularFirestoreCollection<Hotel>;
+  private habsCollection: AngularFirestoreCollection<Room>;
 
   constructor(private afs: AngularFirestore) {
     this.hotelCollection = this.afs.collection<Hotel>('hotels');
@@ -32,7 +34,15 @@ export class AdminHotelService {
   }
 
   deleteHotel(docId: string) {
-    return this.hotelCollection.doc(docId).delete();
+    return this.hotelCollection.doc(docId).delete().then(success => {
+
+      // BORRA TODAS LAS HABITACIONES LIGADAS AL HOTEL
+      this.habsCollection.ref.where("hotelId", "==", docId).get().then(array => {
+        array.forEach(item => {
+          item.ref.delete();
+        });
+      });
+    });
   }
 
 }
