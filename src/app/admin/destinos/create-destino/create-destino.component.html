@@ -46,7 +46,7 @@
                 <label for="destino">Qué tipo de destino es?</label>
                 <select id="destino" formControlName="category">
                     <option value="">Seleccione el tipo de destino</option>
-                    <option value="12rfvbhu">Trópico</option>
+                    <option *ngFor="let category of categories" value="{{category.$key}}">{{category.name}}</option>
                 </select>
             </div>
 
