@@ -1,0 +1,29 @@
+<header class="header header-secondary">
+    <div class="header-callToAction secondary-CallToAction">
+        <h1 class="subtitle">Estados<span>de Venezuela</span></h1>
+        <!-- <div class="btn-callToAction subHeader">
+            <a href="#" class="btn btn-primary">Crear Itinerario</a>
+        </div> -->
+    </div>
+    <div class="header-background" style="background-image: url('assets/img/principal.jpg')"></div>
+</header>
+
+<div class="section wrap">
+    <!-- <app-titulo title="Estados Disponibles" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
+    asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"></app-titulo> -->
+
+    <ng-container *ngIf="loading; then loader; else noLoader"></ng-container>
+
+    <ng-template #loader>
+        <app-big-loader></app-big-loader>
+    </ng-template>
+
+    <ng-template #noLoader>
+        <ng-container *ngFor="let estado of estados">
+            <app-estado-card [estado]=estado></app-estado-card>
+        </ng-container>
+    </ng-template>
+
+
+
+</div>

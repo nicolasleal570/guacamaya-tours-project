@@ -1,21 +1,21 @@
 <div class="table-section-horizontal card">
-    <div class="card-brand" [ngStyle]="{ 'background-image': 'url('+ destino.imgBanner +')' }">
+    <div class="card-brand" [ngStyle]="{ 'background-image': 'url('+ estado.imgBanner +')' }">
     </div>
     <div class="card-body">
         <div class="card-body-title">
-            <a [routerLink]="['/destinos', destino.$key]"><h1>{{destino.name}}</h1></a>
+            <a [routerLink]="['/state', state.$key]"><h1>{{state.name}}</h1></a>
         </div>
         <div class="card-body-content">
             <div class="box-lg">
                 <!-- <h2>Descripcion</h2> -->
-                <p>{{destino.description}}</p>
+                <p>{{state.description}}</p>
             </div>
             
         </div>
         
         <div class="card-body-footer">
             <div class="box-sm">
-                <a  [routerLink]="['/destinos', destino.$key]" target="_blank" class="btn btn-primary" class="btn btn-primary btnMover">Ver Más</a>
+                <a  [routerLink]="['/states', state.$key]" target="_blank" class="btn btn-primary" class="btn btn-primary btnMover">Ver Destinos del Estado</a>
             </div>
         </div>   
          
