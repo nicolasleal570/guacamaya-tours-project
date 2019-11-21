@@ -1,0 +1,119 @@
+@import 'variables';
+
+.header {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .cart {
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        width: 100%;
+
+        .header-callToAction {
+        color: white;
+        // position: absolute;
+        background-color: $secondaryColor;
+        opacity: 0.75;
+        width: 70%;
+        // z-index: 9;
+        top: 40%;
+        left: 50%;
+        // transform: translate(-50%, -50%);
+        margin: auto;
+        margin-bottom: 3%;
+
+        
+
+        .reservation-card {
+            padding: 3%;
+
+            .reservation-card-text {
+
+                padding-left: 1%;
+
+                h1 {
+                    display: block;
+                    padding: 20px;
+                }
+
+                h3 {
+                    padding: 0.5%;
+                }
+            }
+
+            .btn-delete {
+                display: flex;
+                background-color: red;
+                width: 4%;
+                height: 3%;
+                border-radius: 10%;
+                justify-content: center;
+                align-content: center; 
+
+                h3 {
+                    padding: 20%;
+                }
+            }
+        }
+
+            .subtotal {
+                
+                padding: 1%;
+                width: 100%;
+                background-color: $darkColor;
+
+                h2 {
+                    padding-right: 5%;
+                    text-align: right;
+                }
+
+            }
+
+        }
+
+        .total {
+            background-color: white;
+            width: 70%;
+            // float: right;
+            margin: auto;
+
+            h1 {
+                padding: 20px;
+                color: $darkColor;
+            }
+
+        }
+
+    }
+
+    .header-background {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-attachment: fixed;
+        background-size: cover;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: $cardGradient;
+        }
+    }
+}
