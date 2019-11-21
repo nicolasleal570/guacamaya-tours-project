@@ -7,7 +7,7 @@
     </a>
     <ul (mouseover)="showDropdown()" (mouseout)="hideDropdown()">
         <li *ngFor="let opt of options">
-            <a routerLink="{{ opt.url }}" (click)="hideDropdown()">{{opt.title}}</a>
+            <a href="{{ opt.url }}" (click)="hideDropdown()">{{opt.title}}</a>
         </li>
     </ul>
 </li>
