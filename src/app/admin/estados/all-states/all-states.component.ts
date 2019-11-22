@@ -62,7 +62,7 @@ export class AllStatesComponent implements OnInit {
 
   }
 
-  editButtonClick(id: string){
+  editButtonClick(id: string) {
     this.router.navigate(['/estados', id, 'editar']);
   }
 

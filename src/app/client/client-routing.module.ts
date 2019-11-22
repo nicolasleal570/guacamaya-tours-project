@@ -25,7 +25,8 @@ const routes: Routes = [
       { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
-      { path: 'estados', component: EstadosComponent}
+      { path: 'estados', component: EstadosComponent},
+      { path: 'estados/:id', component: EstadosComponent}
     ]
   },
   { path: 'login', component: LoginComponent },

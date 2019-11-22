@@ -9,12 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class EstadosComponent implements OnInit {
 
-  estados: State[] = [{
-    $key: 'qeb5mme6',
-    name: 'hola',
-    description: 'WRWYMW4YMYW',
-    image: 'ssfbaeth'
-  }];
+  estados: State[] = [];
   loading: boolean = false;
 
   constructor(private sService: AdminStatesService) { }
