@@ -61,7 +61,8 @@
             </h3>
 
             <section class="imgGallery" formArrayName="imgGallery">
-                <div *ngFor="let hab of createDestinoForm['controls'].imgGallery['controls']; let i=index" [formGroupName]="i">
+                <div *ngFor="let hab of createDestinoForm['controls'].imgGallery['controls']; let i=index"
+                    [formGroupName]="i">
 
                     <p class="img-title">Image {{ i + 1 }}</p>
 

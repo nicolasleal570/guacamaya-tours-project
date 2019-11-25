@@ -21,7 +21,7 @@ export class CreateDestinoComponent implements OnInit {
   categories: Category[];
   editarDestino: Destino = null;
 
-  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService, private stateSV: AdminStatesService, private router: Router, private categoryS: AdminCategoryService , private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService, private stateSV: AdminStatesService, private router: Router, private categoryS: AdminCategoryService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.createDestinoForm = this.fb.group({
@@ -43,7 +43,7 @@ export class CreateDestinoComponent implements OnInit {
     this.getAllCategories();
 
     this.route.paramMap.subscribe(params => {
-      const destinoId = params.get('idDestino');
+      const destinoId = params.get('idDestinos');
       if (destinoId) {
         this.getDestino(destinoId);
       }
@@ -56,15 +56,16 @@ export class CreateDestinoComponent implements OnInit {
       const destination: Destino = {
         $key: destino.payload.id,
         name: destino.payload.get('name'),
-        description: destino.payload.get('descrption'),
+        description: destino.payload.get('description'),
         categoryId: destino.payload.get('categoryId'),
         location: {
-          latitud: destino.payload.get('latitud'),
-          longitud: destino.payload.get('longitud'),
-          direction: destino.payload.get('direction')
+          latitud: destino.payload.get('location.latitud'),
+          longitud: destino.payload.get('location.longitud'),
+          direction: destino.payload.get('location.direction')
         },
         stateId: destino.payload.get('stateId'),
         imgBanner: destino.payload.get('imgBanner'),
+        imgGallery: destino.payload.get('imgGallery'),
       };
       this.editDestino(destination);
     }, err => console.log(err));
@@ -72,21 +73,37 @@ export class CreateDestinoComponent implements OnInit {
 
   editDestino(destino: Destino) {
     this.editarDestino = destino;
+    console.log(destino);
+
+    // SE LLENAN LOS CAMPOS NORMALES
     this.createDestinoForm.patchValue({
       name: destino.name,
       description: destino.description,
-      categoryId: destino.categoryId,
-      location: {
-        latitud: destino.location.latitud,
-        longitud: destino.location.longitud,
-        direction: destino.location.direction
-      },
-      stateId: destino.stateId,
+      category: destino.categoryId,
+      latitud: destino.location.latitud,
+      longitud: destino.location.longitud,
+      direction: destino.location.direction,
+      state: destino.stateId,
       imgBanner: destino.imgBanner,
     });
+
+    // SE LLENAN LOS CAMPOS QUE SON UN FORM ARRAY
+    this.createDestinoForm.setControl('imgGallery', this.setExistingImgGalleryPhotos(destino.imgGallery));
   }
 
-  getAllStates(){
+  setExistingImgGalleryPhotos(imgGallery: any[]): FormArray{
+    const formArray = this.fb.array([]);
+
+    imgGallery.forEach(elem => {
+      formArray.push(this.fb.group({
+        path: elem.path
+      }));
+    });
+
+    return formArray;
+  }
+
+  getAllStates() {
     this.stateSV.getStates().subscribe(array => {
       this.states = array.map(item => {
         const estado: State = {
@@ -99,7 +116,7 @@ export class CreateDestinoComponent implements OnInit {
     });
   }
 
-  getAllCategories(){
+  getAllCategories() {
     this.categoryS.getCategorys().subscribe(array => {
       this.categories = array.map(item => {
         const category: Category = {
@@ -130,9 +147,8 @@ export class CreateDestinoComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    const destino: Destino = {
 
+    const destino: Destino = {
       name: this.createDestinoForm.value.name,
       description: this.createDestinoForm.value.description,
       categoryId: this.createDestinoForm.value.category,
@@ -141,14 +157,14 @@ export class CreateDestinoComponent implements OnInit {
         longitud: this.createDestinoForm.value.longitud,
         direction: this.createDestinoForm.value.direction
       },
-      stateId: this.createDestinoForm.value.stateId,
+      stateId: this.createDestinoForm.value.state,
       imgBanner: this.createDestinoForm.value.imgBanner,
-
+      imgGallery: this.createDestinoForm.value.imgGallery,
     };
 
     this.loading = true;
 
-    if (this.editDestino) { // Se está editando
+    if (this.editarDestino) { // Se está editando
 
       this.destinoService.updateDestino(destino, this.editarDestino.$key).then(() => {
         console.log('Editado!', this.editarDestino.$key);
@@ -158,6 +174,7 @@ export class CreateDestinoComponent implements OnInit {
 
       }).finally(() => {
         this.router.navigate(['/admin/destinos']);
+        this.loading = false;
       });
 
     } else {
