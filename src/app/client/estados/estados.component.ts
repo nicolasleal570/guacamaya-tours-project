@@ -20,7 +20,7 @@ export class EstadosComponent implements OnInit {
 
   getStatesFromService() {
     this.loading = true;
-    this.sService.getStates().subscribe((actionArray) =>{
+    this.sService.getStates().subscribe((actionArray) => {
       this.estados = actionArray.map(item => {
         const estado: State = {
           $key: item.payload.doc.id,
