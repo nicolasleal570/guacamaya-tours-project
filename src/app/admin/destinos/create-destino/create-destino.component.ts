@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
-import { Router } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
 import { Category } from 'src/app/models/category';
 import { AdminCategoryService } from 'src/app/services/admin-category.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-destino',
@@ -19,8 +19,9 @@ export class CreateDestinoComponent implements OnInit {
   loading: boolean = false;
   states: State[];
   categories: Category[];
+  editarDestino: Destino = null;
 
-  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService, private stateSV: AdminStatesService, private router: Router, private categoryS: AdminCategoryService) { }
+  constructor(private fb: FormBuilder, private destinoService: AdminDestinoService, private stateSV: AdminStatesService, private router: Router, private categoryS: AdminCategoryService , private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.createDestinoForm = this.fb.group({
@@ -41,6 +42,48 @@ export class CreateDestinoComponent implements OnInit {
     this.getAllStates();
     this.getAllCategories();
 
+    this.route.paramMap.subscribe(params => {
+      const destinoId = params.get('idDestino');
+      if (destinoId) {
+        this.getDestino(destinoId);
+      }
+    });
+
+  }
+
+  getDestino(id: string) {
+    this.destinoService.getDestinoById(id).subscribe(destino => {
+      const destination: Destino = {
+        $key: destino.payload.id,
+        name: destino.payload.get('name'),
+        description: destino.payload.get('descrption'),
+        categoryId: destino.payload.get('categoryId'),
+        location: {
+          latitud: destino.payload.get('latitud'),
+          longitud: destino.payload.get('longitud'),
+          direction: destino.payload.get('direction')
+        },
+        stateId: destino.payload.get('stateId'),
+        imgBanner: destino.payload.get('imgBanner'),
+      };
+      this.editDestino(destination);
+    }, err => console.log(err));
+  }
+
+  editDestino(destino: Destino) {
+    this.editarDestino = destino;
+    this.createDestinoForm.patchValue({
+      name: destino.name,
+      description: destino.description,
+      categoryId: destino.categoryId,
+      location: {
+        latitud: destino.location.latitud,
+        longitud: destino.location.longitud,
+        direction: destino.location.direction
+      },
+      stateId: destino.stateId,
+      imgBanner: destino.imgBanner,
+    });
   }
 
   getAllStates(){
@@ -98,22 +141,39 @@ export class CreateDestinoComponent implements OnInit {
         longitud: this.createDestinoForm.value.longitud,
         direction: this.createDestinoForm.value.direction
       },
-      stateId: this.createDestinoForm.value.state,
+      stateId: this.createDestinoForm.value.stateId,
       imgBanner: this.createDestinoForm.value.imgBanner,
 
     };
 
     this.loading = true;
 
-    this.destinoService.createDestino(destino).then( item => {
-      this.loading = false;
-    }).catch(err => {
-      console.log(err);
-      this.loading=false;
-      
-    }).finally(() => {
-      this.router.navigate(['/admin/destinos']);
-    });
+    if (this.editDestino) { // Se está editando
+
+      this.destinoService.updateDestino(destino, this.editarDestino.$key).then(() => {
+        console.log('Editado!', this.editarDestino.$key);
+      }).catch(err => {
+        console.log(err);
+        this.loading = false;
+
+      }).finally(() => {
+        this.router.navigate(['/admin/destinos']);
+      });
+
+    } else {
+
+      this.destinoService.createDestino(destino).then(item => {
+        console.log('Creado!', item.id);
+      }).catch(err => {
+        console.log(err);
+        this.loading = false;
+
+      }).finally(() => {
+        this.router.navigate(['/admin/destinos']);
+        this.loading = false;
+      });
+
+    }
 
   }
 

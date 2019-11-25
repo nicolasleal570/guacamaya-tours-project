@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService} from 'src/app/services/admin-destino.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-destinos',
@@ -13,7 +14,7 @@ export class AllDestinosComponent implements OnInit {
   loading: boolean = false;
   deleting: boolean = false;
 
-  constructor(private dService : AdminDestinoService) {
+  constructor(private dService : AdminDestinoService , private router: Router) {
   }
 
   ngOnInit() {
@@ -51,6 +52,10 @@ export class AllDestinosComponent implements OnInit {
       this.loading = false;
 
     });
+  }
+
+  editButtonClick(id: string){
+    this.router.navigate(['/destinos', id, 'editar']);
   }
 
 }

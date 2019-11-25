@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { AdminCategoryService } from 'src/app/services/admin-category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-categories',
@@ -13,7 +14,7 @@ export class AllCategoriesComponent implements OnInit {
   loading: boolean = false;
   deleting: boolean = false;
 
-  constructor(private catService: AdminCategoryService) { }
+  constructor(private catService: AdminCategoryService , private router: Router) { }
 
   ngOnInit() {
     this.catService.getCategorys().subscribe(arr => {
@@ -43,6 +44,10 @@ export class AllCategoriesComponent implements OnInit {
       this.deleting = false;
 
     });
+  }
+
+  editButtonClick(id: string){
+    this.router.navigate(['/estados', id, 'editar']);
   }
 
 }

@@ -25,11 +25,13 @@ const routes: Routes = [
     { path: '', component: DashboardComponent },
     { path: 'destinos', component: AllDestinosComponent },
     { path: 'destinos/crear', component: CreateDestinoComponent },
+    { path: 'destinos/:idDestinos/editar', component: CreateDestinoComponent },
     { path: '', component: DashboardComponent },
     { path: 'estados', component: AllStatesComponent },
     { path: 'estados/crear', component: CreateStatesComponent },
     { path: 'estados/:idEstado/editar', component: CreateStatesComponent },
     { path: 'categorias', component: AllCategoriesComponent },
+    { path: 'categorias/:idCategoria/editar', component: CreateCategoryComponent },
     { path: 'categorias/crear', component: CreateCategoryComponent },
   ]},
 ];
