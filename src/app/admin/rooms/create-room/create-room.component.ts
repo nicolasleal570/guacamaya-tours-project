@@ -35,6 +35,7 @@ export class CreateRoomComponent implements OnInit {
       hotelId: [''],
       gallery: this.fb.array([]),
       adventajes: this.fb.array([]),
+      available: this.fb.array([]),
     });
   }
 

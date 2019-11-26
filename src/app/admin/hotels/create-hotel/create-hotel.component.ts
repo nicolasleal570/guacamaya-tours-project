@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
 import { ActivatedRoute} from '@angular/router';
-import { HeaderComponent } from 'src/app/client/partials/header/header.component';
+import { Destino } from 'src/app/models/destino';
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 
 @Component({
   selector: 'app-create-hotel',
@@ -18,16 +19,19 @@ export class CreateHotelComponent implements OnInit {
   createHotelForm: FormGroup;
   loading: boolean = false;
   statesLoading: boolean = false;
+  destinosLoading: boolean = false;
   states: State[] = [];
   editarHotel: Hotel = null;
+  destinos: Destino[] = [];
 
   constructor(private fb: FormBuilder, private hotelservice: AdminHotelService, private router: Router,
-    private statesService: AdminStatesService, private route: ActivatedRoute) { }
+    private statesService: AdminStatesService, private destinoservice: AdminDestinoService) { }
 
   ngOnInit() {
     this.createHotelForm = this.fb.group({
       name: [''],
       stars: [''],
+      destinoId: [''],
       latitud: [''],
       longitud: [''],
       direction: [''],
@@ -42,22 +46,23 @@ export class CreateHotelComponent implements OnInit {
     this.loading = false;
 
     this.getAllStates();
-
-    this.route.paramMap.subscribe(params => {
-      const hotelsId = params.get('idHotels');
-      if (hotelsId) {
-        this.getHotels(hotelsId);
-      }
-    });
+    this.getAllDestinos();
   }
 
-  getHotels(id: string) {
-    this.hotelservice.getHotelById(id).subscribe(hoteles => {
-      const hotel: Hotel = {
-        $key: hoteles.payload.id,
-        ...hoteles.payload.data(),
-      }
-      this.editarHotel = hotel;
+  getAllDestinos() {
+    this.destinosLoading = true;
+    this.destinoservice.getDestinos().subscribe(array => {
+      this.destinos = array.map(item => {
+        const destino: Destino = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        return destino;
+      });
+
+      this.destinosLoading = false;
+
     });
   }
 

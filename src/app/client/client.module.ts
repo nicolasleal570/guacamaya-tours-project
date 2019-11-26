@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BigLoaderComponent } from './partials/big-loader/big-loader.component';
 import { CartComponent } from './cart/cart.component';
+import { FooterComponent } from './partials/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CartComponent } from './cart/cart.component';
     SearchByCategoryPipe,
     LoginComponent,
     BigLoaderComponent,
-    CartComponent
+    CartComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
