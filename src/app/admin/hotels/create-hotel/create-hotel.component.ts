@@ -5,6 +5,8 @@ import { Hotel } from 'src/app/models/hotel';
 import { Router } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
+import { Destino } from 'src/app/models/destino';
+import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 
 @Component({
   selector: 'app-create-hotel',
@@ -16,15 +18,18 @@ export class CreateHotelComponent implements OnInit {
   createHotelForm: FormGroup;
   loading: boolean = false;
   statesLoading: boolean = false;
+  destinosLoading: boolean = false;
   states: State[] = [];
+  destinos: Destino[] = [];
 
   constructor(private fb: FormBuilder, private hotelservice: AdminHotelService, private router: Router,
-    private statesService: AdminStatesService) { }
+    private statesService: AdminStatesService, private destinoservice: AdminDestinoService) { }
 
   ngOnInit() {
     this.createHotelForm = this.fb.group({
       name: [''],
       stars: [''],
+      destinoId: [''],
       latitud: [''],
       longitud: [''],
       direction: [''],
@@ -39,6 +44,24 @@ export class CreateHotelComponent implements OnInit {
     this.loading = false;
 
     this.getAllStates();
+    this.getAllDestinos();
+  }
+
+  getAllDestinos() {
+    this.destinosLoading = true;
+    this.destinoservice.getDestinos().subscribe(array => {
+      this.destinos = array.map(item => {
+        const destino: Destino = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        return destino;
+      });
+
+      this.destinosLoading = false;
+
+    });
   }
 
   getAllStates() {
@@ -112,6 +135,7 @@ export class CreateHotelComponent implements OnInit {
     const hotel: Hotel = {
       name: this.createHotelForm.value.name,
       stars: this.createHotelForm.value.stars,
+      destinoId: this.createHotelForm.value.destinoId,
       location: {
         latitud: this.createHotelForm.value.latitud,
         longitud: this.createHotelForm.value.longitud,

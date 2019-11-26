@@ -9,5 +9,6 @@ export interface Room {
     gallery: string[];
     pricePerNight: string;
     hotelId: string;
+    available: number;
 
 }

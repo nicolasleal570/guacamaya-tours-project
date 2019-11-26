@@ -9,7 +9,7 @@ export interface Hotel {
     stars: number;
     location: Location;
     stateId: string;
-    city?: string;
+    destinoId: string;
     imgPresentation: string;
     gallery: string[];
     fullDay: boolean;

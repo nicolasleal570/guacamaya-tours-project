@@ -13,6 +13,22 @@
             </div>
 
             <div class="input-group">
+                <label for="hotelDestino">Destino donde está el Hotel</label>
+                <!-- <ng-container *ngIf="destinosLoading; then destinoLoader; else noDestinoLoader"></ng-container>
+                <ng-template #destinoLoader>
+                    <div class="loader-center">
+                        <app-loader></app-loader>
+                    </div>
+                </ng-template>
+                <ng-template #noDestinoLoader> -->
+                    <select id="hotelDestino" formControlName="destinoId">
+                        <option value="">Seleccione el destino donde está ubicado el hotel</option>
+                        <option *ngFor="let destino of destinos; let i=index" value="{{destino.$key}}">{{destino.name}}</option>
+                    </select>
+                <!-- </ng-template> -->
+            </div>
+
+            <div class="input-group">
                 <label for="hotelStars">Número de Estrellas</label>
                 <input formControlName="stars" type="text" id="hotelStars">
             </div>
