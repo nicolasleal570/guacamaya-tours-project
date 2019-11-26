@@ -5,6 +5,8 @@ import { Hotel } from 'src/app/models/hotel';
 import { Router } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
+import { ActivatedRoute} from '@angular/router';
+import { HeaderComponent } from 'src/app/client/partials/header/header.component';
 
 @Component({
   selector: 'app-create-hotel',
@@ -17,9 +19,10 @@ export class CreateHotelComponent implements OnInit {
   loading: boolean = false;
   statesLoading: boolean = false;
   states: State[] = [];
+  editarHotel: Hotel = null;
 
   constructor(private fb: FormBuilder, private hotelservice: AdminHotelService, private router: Router,
-    private statesService: AdminStatesService) { }
+    private statesService: AdminStatesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.createHotelForm = this.fb.group({
@@ -39,6 +42,23 @@ export class CreateHotelComponent implements OnInit {
     this.loading = false;
 
     this.getAllStates();
+
+    this.route.paramMap.subscribe(params => {
+      const hotelsId = params.get('idHotels');
+      if (hotelsId) {
+        this.getHotels(hotelsId);
+      }
+    });
+  }
+
+  getHotels(id: string) {
+    this.hotelservice.getHotelById(id).subscribe(hoteles => {
+      const hotel: Hotel = {
+        $key: hoteles.payload.id,
+        ...hoteles.payload.data(),
+      }
+      this.editarHotel = hotel;
+    });
   }
 
   getAllStates() {

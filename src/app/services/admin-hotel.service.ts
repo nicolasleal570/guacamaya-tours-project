@@ -18,7 +18,7 @@ export class AdminHotelService {
   }
 
   getHotelById(docId: string) {
-    return this.hotelCollection.doc(docId).snapshotChanges()  ;
+    return this.hotelCollection.doc<Hotel>(docId).snapshotChanges()  ;
   }
 
   getHotels() {
@@ -30,11 +30,11 @@ export class AdminHotelService {
   }
 
   updateHotel(data: any, docId: string) {
-    return this.hotelCollection.doc(docId).update(data);
+    return this.hotelCollection.doc<Hotel>(docId).update(data);
   }
 
   deleteHotel(docId: string) {
-    return this.hotelCollection.doc(docId).delete().then(success => {
+    return this.hotelCollection.doc<Hotel>(docId).delete().then(success => {
 
       // BORRA TODAS LAS HABITACIONES LIGADAS AL HOTEL
       this.habsCollection.ref.where("hotelId", "==", docId).get().then(array => {
