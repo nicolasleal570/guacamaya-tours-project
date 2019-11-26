@@ -1,0 +1,44 @@
+@import 'variables';
+
+.footer {
+    margin-top: 100px;
+    height: 150px;
+    width: 100%;
+    background-color: $primaryColor;
+
+    .contact-icons {
+        justify-content: center;
+        padding-left: 30%;
+        padding-right: 30%;
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            height: 100%;
+
+            li {
+                list-style: none;
+                width: 80px;
+                height: 100%;
+                padding: 20px;
+
+                i {
+                    line-height: 80px;
+                    float: right;
+                    margin: 0 auto;
+                    font-size: 2rem;
+                    color: $darkColor;
+                }
+
+            }
+        }
+    }
+
+    h3 {
+        background-color: $primaryColor;
+        color: $darkColor;
+        text-align: center;
+        padding-bottom: 30px;
+    }
+}
