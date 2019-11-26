@@ -6,6 +6,7 @@ import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 import { Destino } from 'src/app/models/destino';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
+import { Itinerario } from 'src/app/models/itinerario';
 
 @Component({
   selector: 'app-create-itinerario',
@@ -21,7 +22,7 @@ export class CreateItinerarioComponent implements OnInit {
   destinos: Destino[] = [];
   selectedRoom: Room;
   selectedDestino: Destino;
-  numOfPersons: number;
+  numberOfHabs: number = 0;
 
   destinosLoading: boolean = false;
   hotelsLoading: boolean = false;
@@ -33,12 +34,12 @@ export class CreateItinerarioComponent implements OnInit {
 
   ngOnInit() {
     this.formItinerario = this.fb.group({
-      destinoState: [''],
-      destinoCategory: [''],
-      destinoName: [''],
-      checkin: [''],
-      checkout: [''],
-      hotel: [''],
+      destinoStateId: [''],
+      destinoCategoryId: [''],
+      destinoId: [''],
+      checkIn: [''],
+      checkOut: [''],
+      hotelId: [''],
       numberOfHabs: [''],
       habs: new FormArray([]),
     });
@@ -86,18 +87,25 @@ export class CreateItinerarioComponent implements OnInit {
   getHabsInSelectedHotel() {
     if (this.selectedHotel) {
       this.habsLoading = true;
-      this.roomSV.getRooms().subscribe(array => {
-        this.rooms = array.map(item => {
-          const room: Room = {
-            $key: item.payload.doc.id,
-            ...item.payload.doc.data()
+      this.roomSV.getRoomFromHotel(this.selectedHotel.$key).then(array => {
+        array.forEach(item => {
+          console.log(item);
+          const hab: Room = {
+            $key: item.id,
+            name: item.get('name'),
+            description: item.get('description'),
+            imgPresentation: item.get('imgPresentation'),
+            maxPersons: item.get('maxPersons'),
+            adventajes: item.get('adventajes'),
+            gallery: item.get('gallery'),
+            pricePerNight: item.get('pricePerNight'),
+            hotelId: item.get('hotelId'),
+            available: item.get('available')
           }
 
-          if (room.hotelId === this.selectedHotel.$key) {
-            return room;
-          }
+          this.rooms.push(hab);
         });
-
+      }).finally(() => {
         this.habsLoading = false;
       });
     }
@@ -128,21 +136,25 @@ export class CreateItinerarioComponent implements OnInit {
   }
 
   // SE EJECUTA CUANDO EL SELECT DE HABITACIONES CAMBIA
-  onChangeNumberHabs(e) {
-    const numberOfHabs = e.target.value || 0;
+  onChangeNumberHabs(e = null) {
+    if (e) {
+      this.numberOfHabs = e.target.value;
+    }
 
-    if (this.habsArray.length < numberOfHabs) {
-      for (let i = this.habsArray.length; i < numberOfHabs; i++) {
+    if (this.habsArray.length < this.numberOfHabs) {
+      for (let i = this.habsArray.length; i < this.numberOfHabs; i++) {
         this.habsArray.push(this.fb.group({
           habType: [''],
           persons: this.fb.array([])
         }));
       }
     } else {
-      for (let i = this.habsArray.length; i >= numberOfHabs; i--) {
+      for (let i = this.habsArray.length; i >= this.numberOfHabs; i--) {
         this.habsArray.removeAt(i);
       }
     }
+
+    this.getHabsInSelectedHotel();
 
   }
 
@@ -166,8 +178,13 @@ export class CreateItinerarioComponent implements OnInit {
       return id === hotel.$key;
     });
 
-    this.getHabsInSelectedHotel();
+    this.rooms = [];
+    this.onChangeNumberHabs();
+    this.formItinerario.patchValue({
+      'numberOfHabs': ''
+    });
 
+    this.getHabsInSelectedHotel();
 
   }
 
@@ -192,7 +209,33 @@ export class CreateItinerarioComponent implements OnInit {
 
   // SE EJECUTA CUANDO SE ENVIA EL FORM
   onSubmit() {
-    console.log(this.formItinerario.value);
+    let array = [];
+
+    const itinerario: Itinerario = this.formItinerario.value as Itinerario;
+
+    if (localStorage.getItem('cart') !== null) {
+      array = JSON.parse(localStorage.getItem('cart'));
+    }
+    array.push(itinerario);
+
+    localStorage.setItem('cart', JSON.stringify(array));
+    this.resetForm();
+  }
+
+  resetForm(){
+    this.selectedDestino = null;
+    this.selectedHotel = null;
+    this.selectedRoom = null;
+    this.hotels = [];
+    this.rooms = [];
+    this.numberOfHabs = 0;
+
+    this.formItinerario.patchValue({
+      destinoStateId: '',
+      destinoCategoryId: '',
+      destinoId: '',
+    });
+
   }
 
 }

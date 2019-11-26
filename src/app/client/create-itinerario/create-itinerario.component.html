@@ -29,7 +29,7 @@
                     </ng-template>
 
                     <ng-template #noDestinosLoader>
-                        <select formControlName="destinoName" (change)="onChangeDestinoSelect($event)">
+                        <select formControlName="destinoId" (change)="onChangeDestinoSelect($event)">
                             <option value="">Seleccione el destino que deseas</option>
                             <option *ngFor="let destino of destinos" value="{{destino.$key}}">{{destino.name}}</option>
                         </select>
@@ -39,13 +39,13 @@
                     <h2><i class="fas fa-filter"></i> Filtros <small>(Opcionales)</small>:</h2>
                 </div>
                 <div class="input-group vertical">
-                    <select formControlName="destinoState">
+                    <select formControlName="destinoStateId">
                         <option value="">Seleccione el estado donde está el destino</option>
                         <option value="9865CGWYG">Vargas</option>
                     </select>
                 </div>
                 <div class="input-group vertical">
-                    <select formControlName="destinoCategory">
+                    <select formControlName="destinoCategoryId">
                         <option value="">Seleccione la categoría de tu destino</option>
                         <option value="098ikvds">Tropico</option>
                     </select>
@@ -108,7 +108,7 @@
                             <div class="card-body-footer">
 
                                 <div class="custom-radio-btn">
-                                    <input type="radio" id="hotel-{{in}}" formControlName="hotel"
+                                    <input type="radio" id="hotel-{{in}}" formControlName="hotelId"
                                         value="{{hotel.$key}}">
                                     <label for="hotel-{{in}}" class="radio-control"
                                         (click)="onHotelSelected(hotel.$key)">
@@ -135,10 +135,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="input-group vertical">
-                        <input type="text" placeholder="Ingresar Fecha de Entrada" formControlName="checkin">
+                        <input type="text" placeholder="Ingresar Fecha de Entrada" formControlName="checkIn">
                     </div>
                     <div class="input-group vertical">
-                        <input type="text" placeholder="Ingresar Fecha de Salida" formControlName="checkout">
+                        <input type="text" placeholder="Ingresar Fecha de Salida" formControlName="checkOut">
                     </div>
                     <div class="input-group vertical">
                         <select formControlName="numberOfHabs" (change)="onChangeNumberHabs($event)">

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { State } from '../models/state';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Room } from '../models/room';
+import { Hotel } from '../models/hotel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class AdminRoomsService {
 
   getRoomById(docId: string) {
     return this.stateCollection.doc(docId).snapshotChanges()  ;
+  }
+
+  getRoomFromHotel(hotelId: string){
+    return this.afs.collection<Hotel>('hotels').ref.where('hotelId', '==', hotelId).get();
   }
 
   getRooms() {
