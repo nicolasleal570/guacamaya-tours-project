@@ -5,7 +5,6 @@ import { Hotel } from 'src/app/models/hotel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
-import { ActivatedRoute} from '@angular/router';
 import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 
@@ -219,6 +218,7 @@ export class CreateHotelComponent implements OnInit {
       fullDay: this.createHotelForm.value.fullDay ? true : false,
       services: this.createHotelForm.value.services,
       activities: this.createHotelForm.value.activities,
+      destinoId: this.createHotelForm.value.destinoId
     };
 
     console.log(hotel);

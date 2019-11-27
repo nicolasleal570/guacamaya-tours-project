@@ -21,6 +21,10 @@ export class AdminHotelService {
     return this.hotelCollection.doc<Hotel>(docId).snapshotChanges()  ;
   }
 
+  getFamousHotels(){
+    return this.hotelCollection.ref.where('stars', '>', 3).get();
+  }
+
   getHotels() {
     return this.hotelCollection.snapshotChanges();
   }

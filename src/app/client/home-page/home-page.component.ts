@@ -19,21 +19,25 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.getFamousHotels();
+    
   }
 
   getFamousHotels() {
     this.hotelsLoading = true;
-    this.hotelService.getHotels().subscribe(array => {
-      this.hotels = array.map(item => {
+    this.hotelService.getFamousHotels().then((array) => {
+      array.forEach((item) => {
         const hotel: Hotel = {
-          $key: item.payload.doc.id,
-          ...item.payload.doc.data()
-        }
-
-
-        if (hotel.stars > 4) {
-          this.hotelsLoading = false;
-          return hotel;
+          $key: item.id,
+          name: item.get('name'),
+          stars: item.get('stars'),
+          location: item.get('location'),
+          stateId: item.get('SstateId'),
+          destinoId: item.get('destinoId'),
+          imgPresentation: item.get('imgPresentation'),
+          gallery: item.get('gallery'),
+          fullDay: item.get('fullDay'),
+          services: item.get('services'),
+          activities: item.get('activities')
         }
       });
     });

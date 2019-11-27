@@ -14,6 +14,8 @@ export class SelectedDestinoComponent implements OnInit {
 
   destino: Destino;
   hoteles: Hotel[];
+  cultura: string[];
+  descripcion: string[];
 
   constructor(private route: ActivatedRoute, private dService: AdminDestinoService, private hserv: AdminHotelService ) {
     this.route.paramMap.subscribe(params => {

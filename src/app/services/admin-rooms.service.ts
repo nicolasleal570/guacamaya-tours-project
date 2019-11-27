@@ -19,10 +19,6 @@ export class AdminRoomsService {
     return this.stateCollection.doc<Room>(docId).snapshotChanges()  ;
   }
 
-  getRoomFromHotel(hotelId: string){
-    return this.afs.collection<Hotel>('hotels').ref.where('hotelId', '==', hotelId).get();
-  }
-
   getRooms() {
     return this.stateCollection.snapshotChanges();
   }

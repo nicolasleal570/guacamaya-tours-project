@@ -5,7 +5,6 @@ import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { Room } from 'src/app/models/room';
-import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 
 @Component({
   selector: 'app-create-room',
