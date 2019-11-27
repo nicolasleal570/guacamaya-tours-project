@@ -3,15 +3,16 @@
 .header {
     display: block;
     width: 100%;
-    height: 100vh;
+    height: 150vh;
     position: relative;
     
 
     .saludo {
+        padding-top: 10%;
         width: 70%;
-        justify-content: center;
+        //justify-content: center;
         align-content: center;
-        align-items: center;
+        //align-items: center;
         margin: auto;
         display: block;
 
@@ -23,13 +24,14 @@
     }
 
     .cart {
-
+        //padding-top: 55%;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 100;
         width: 100%;
+        //height: auto;
 
         .header-callToAction {
         color: white;
@@ -37,7 +39,7 @@
         background: transparentize($color: $secondaryColor, $amount: 0.25);
         width: 70%;
         // z-index: 9;
-        top: 40%;
+        top: 30%;
         left: 50%;
         // transform: translate(-50%, -50%);
         margin: auto;
@@ -112,7 +114,7 @@
 
     .header-background {
         display: block;
-        position: absolute;
+        //position: absolute;
         width: 100%;
         height: 100%;
         margin: 0;
@@ -126,7 +128,7 @@
         &::before {
             content: '';
             display: block;
-            position: absolute;
+            position: relative;
             width: 100%;
             height: 100%;
             top: 0;

@@ -7,7 +7,7 @@ export interface Room {
     maxPersons: number;
     adventajes: string[];
     gallery: string[];
-    pricePerNight: string;
+    pricePerNight: number;
     hotelId: string;
     available: number;
 

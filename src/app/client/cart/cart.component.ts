@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Itinerario } from 'src/app/models/itinerario';
+
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  reservaciones: Itinerario[];
+  total: number = 0;
+
+  constructor() { 
+
+    this.total = 0;
+
+    if (localStorage.getItem('cart') !== null) {
+      this.reservaciones = JSON.parse(localStorage.getItem('cart'));
+    }
+
+    this.reservaciones.forEach((item, index)=>{
+      this.total = this.total + item.totalPrice;
+    })
+
+  }
 
   ngOnInit() {
+
+    
+    
+
   }
 
 }

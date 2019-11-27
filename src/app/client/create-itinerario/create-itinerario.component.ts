@@ -8,6 +8,7 @@ import { Destino } from 'src/app/models/destino';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Itinerario } from 'src/app/models/itinerario';
 
+
 @Component({
   selector: 'app-create-itinerario',
   templateUrl: './create-itinerario.component.html',
@@ -23,7 +24,7 @@ export class CreateItinerarioComponent implements OnInit {
   selectedRoom: Room;
   selectedDestino: Destino;
   numberOfHabs: number = 0;
-
+  numberOfDays: number = 0;
   destinosLoading: boolean = false;
   hotelsLoading: boolean = false;
   habsLoading: boolean = false;
@@ -41,6 +42,7 @@ export class CreateItinerarioComponent implements OnInit {
       checkOut: [''],
       hotelId: [''],
       numberOfHabs: [''],
+      numberOfDays: [''],
       habs: new FormArray([]),
     });
 
@@ -182,7 +184,8 @@ export class CreateItinerarioComponent implements OnInit {
     this.rooms = [];
     this.onChangeNumberHabs();
     this.formItinerario.patchValue({
-      'numberOfHabs': ''
+      'numberOfHabs': '',
+      'numberOfDays': '',
     });
 
     this.getHabsInSelectedHotel();
@@ -206,6 +209,8 @@ export class CreateItinerarioComponent implements OnInit {
       }
     }
 
+    
+
   }
 
   // SE EJECUTA CUANDO SE ENVIA EL FORM
@@ -213,6 +218,10 @@ export class CreateItinerarioComponent implements OnInit {
     let array = [];
 
     const itinerario: Itinerario = this.formItinerario.value as Itinerario;
+
+    itinerario.totalPrice = itinerario.numberOfDays*this.selectedRoom.pricePerNight*itinerario.numberOfHabs;
+    itinerario.destino = this.selectedDestino;
+    itinerario.hotel = this.selectedHotel;
 
     if (localStorage.getItem('cart') !== null) {
       array = JSON.parse(localStorage.getItem('cart'));
@@ -230,6 +239,7 @@ export class CreateItinerarioComponent implements OnInit {
     this.hotels = [];
     this.rooms = [];
     this.numberOfHabs = 0;
+    this.numberOfDays = 0;
 
     this.formItinerario.patchValue({
       destinoStateId: '',
