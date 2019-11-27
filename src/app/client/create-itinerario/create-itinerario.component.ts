@@ -87,9 +87,9 @@ export class CreateItinerarioComponent implements OnInit {
   getHabsInSelectedHotel() {
     if (this.selectedHotel) {
       this.habsLoading = true;
+      this.rooms = [];
       this.roomSV.getRoomFromHotel(this.selectedHotel.$key).then(array => {
         array.forEach(item => {
-          console.log(item);
           const hab: Room = {
             $key: item.id,
             name: item.get('name'),
@@ -137,6 +137,7 @@ export class CreateItinerarioComponent implements OnInit {
 
   // SE EJECUTA CUANDO EL SELECT DE HABITACIONES CAMBIA
   onChangeNumberHabs(e = null) {
+    this.numberOfHabs = 0;
     if (e) {
       this.numberOfHabs = e.target.value;
     }
