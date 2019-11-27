@@ -5,6 +5,7 @@ import { Hotel } from 'src/app/models/hotel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
+import { ActivatedRoute} from '@angular/router';
 import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 
@@ -20,6 +21,7 @@ export class CreateHotelComponent implements OnInit {
   statesLoading: boolean = false;
   destinosLoading: boolean = false;
   states: State[] = [];
+  editarHotel: Hotel = null;
   destinos: Destino[] = [];
 
   editHotel: Hotel = null;
@@ -206,7 +208,6 @@ export class CreateHotelComponent implements OnInit {
     const hotel: Hotel = {
       name: this.createHotelForm.value.name,
       stars: this.createHotelForm.value.stars,
-      destinoId: this.createHotelForm.value.destinoId,
       location: {
         latitud: this.createHotelForm.value.latitud,
         longitud: this.createHotelForm.value.longitud,

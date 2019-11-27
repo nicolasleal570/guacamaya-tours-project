@@ -1,13 +1,16 @@
-import { Person } from './person';
+import { SelectedRoom } from './SelectedRoom';
 
 export interface Itinerario {
 
-    $key: string;
-    hotelId: string;
+    $key?: string;
+    destinoStateId: string;
+    destinoCategoryId: string;
+    destinoId: string;
     checkIn: string;
     checkOut: string;
-    roomType: string;
-    totalPrice: number;
-    personGroup: Person[];
+    hotelId: string;
+    numberOfHabs: number;
+    habs: SelectedRoom[];
+    totalPrice?: number;
 
 }

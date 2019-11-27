@@ -48,44 +48,12 @@
     asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
 
     <div class="section-body">
-        <div class="gallery-text">
+        <div class="gallery-text" *ngFor="let cultura of culturas" *ngFor="let descripcion of descripciones">
             <div class="container-gallery">
-                <img src="./img/principal.jpg" alt="Foto 1">
+                <img src="cultura" alt="Foto 1">
                 <div class="info">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, modi quos! Repellat soluta
-                        corporis expedita at cumque explicabo velit fugiat doloremque reiciendis repellendus? Atque,
-                        vero.
-                    </p>
-                </div>
-            </div>
-            <div class="container-gallery">
-                <img src="./img/principal.jpg" alt="Foto 1">
-                <div class="info">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, modi quos! Repellat soluta
-                        corporis expedita at cumque explicabo velit fugiat doloremque reiciendis repellendus? Atque,
-                        vero.
-                    </p>
-                </div>
-            </div>
-            <div class="container-gallery">
-                <img src="./img/principal.jpg" alt="Foto 1">
-                <div class="info">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, modi quos! Repellat soluta
-                        corporis expedita at cumque explicabo velit fugiat doloremque reiciendis repellendus? Atque,
-                        vero.
-                    </p>
-                </div>
-            </div>
-            <div class="container-gallery">
-                <img src="./img/principal.jpg" alt="Foto 1">
-                <div class="info">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, modi quos! Repellat soluta
-                        corporis expedita at cumque explicabo velit fugiat doloremque reiciendis repellendus? Atque,
-                        vero.
+                        {{descripcion}}
                     </p>
                 </div>
             </div>

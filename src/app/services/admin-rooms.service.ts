@@ -27,6 +27,10 @@ export class AdminRoomsService {
     return this.stateCollection.snapshotChanges();
   }
 
+  getRoomFromHotel(hotelId: string){
+    return this.stateCollection.ref.where('hotelId', '==', hotelId).get();
+  }
+
   createRoom(data: Room) {
     return this.stateCollection.add(data);
   }
