@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HomePageComponent implements OnInit {
 
-  hotels: Hotel[];
+  hotels: Hotel[] = [];
   hotelsLoading: boolean = false;
   categoriesLoading: boolean = false;
 
@@ -24,22 +24,16 @@ export class HomePageComponent implements OnInit {
 
   getFamousHotels() {
     this.hotelsLoading = true;
-    this.hotelService.getFamousHotels().then((array) => {
-      array.forEach((item) => {
+    this.hotelService.getHotels().subscribe(array => {
+      this.hotels = array.map(item => {
         const hotel: Hotel = {
-          $key: item.id,
-          name: item.get('name'),
-          stars: item.get('stars'),
-          location: item.get('location'),
-          stateId: item.get('SstateId'),
-          destinoId: item.get('destinoId'),
-          imgPresentation: item.get('imgPresentation'),
-          gallery: item.get('gallery'),
-          fullDay: item.get('fullDay'),
-          services: item.get('services'),
-          activities: item.get('activities')
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
         }
+
+        return hotel;
       });
+      this.hotelsLoading = false;
     });
   }
 
