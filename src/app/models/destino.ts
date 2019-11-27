@@ -12,6 +12,8 @@ export interface Destino {
     stateId: string;
     city?: string;
     imgBanner: string;
+    imgCultura?: string[];
+    descriptionCultura?: string[];
     imgGallery: any[];
 
 }

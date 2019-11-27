@@ -47,7 +47,7 @@ export class AllCategoriesComponent implements OnInit {
   }
 
   editButtonClick(id: string){
-    this.router.navigate(['/estados', id, 'editar']);
+    this.router.navigate(['/categorias', id, 'editar']);
   }
 
 }

@@ -16,7 +16,7 @@ export class AdminRoomsService {
   }
 
   getRoomById(docId: string) {
-    return this.stateCollection.doc(docId).snapshotChanges()  ;
+    return this.stateCollection.doc<Room>(docId).snapshotChanges()  ;
   }
 
   getRoomFromHotel(hotelId: string){

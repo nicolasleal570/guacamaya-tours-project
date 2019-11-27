@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Hotel } from 'src/app/models/hotel';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AdminStatesService } from 'src/app/services/admin-states.service';
 import { State } from 'src/app/models/state';
 import { Destino } from 'src/app/models/destino';
@@ -22,8 +22,11 @@ export class CreateHotelComponent implements OnInit {
   states: State[] = [];
   destinos: Destino[] = [];
 
+  editHotel: Hotel = null;
+
   constructor(private fb: FormBuilder, private hotelservice: AdminHotelService, private router: Router,
-    private statesService: AdminStatesService, private destinoservice: AdminDestinoService) { }
+    private statesService: AdminStatesService, private destinoservice: AdminDestinoService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.createHotelForm = this.fb.group({
@@ -45,6 +48,76 @@ export class CreateHotelComponent implements OnInit {
 
     this.getAllStates();
     this.getAllDestinos();
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('hotelId');
+      this.selectHotelToEdit(id);
+    });
+  }
+
+  selectHotelToEdit(hotelId: string){
+    this.hotelservice.getHotelById(hotelId).subscribe(array=>{
+      const hotel: Hotel = {
+        $key: array.payload.id,
+        ...array.payload.data()
+      }
+
+      this.editHotel = hotel;
+      this.editSelectedHotel(hotel);
+    });
+  }
+
+  editSelectedHotel(hotel: Hotel){
+    this.createHotelForm.patchValue({
+      name: hotel.name,
+      stars: hotel.stars,
+      destinoId: hotel.destinoId,
+      latitud: hotel.location.latitud,
+      longitud: hotel.location.longitud,
+      direction: hotel.location.direction,
+      fullDay: hotel.fullDay,
+      stateId: hotel.stateId,
+      imgBanner: hotel.imgPresentation,
+    });
+    this.createHotelForm.setControl('imgGallery', this.existingGalleryImages(hotel.gallery));
+    this.createHotelForm.setControl('services', this.existingGalleryImages(hotel.services));
+    this.createHotelForm.setControl('activities', this.existingGalleryImages(hotel.activities));
+  }
+
+  existingGalleryImages(images: any[]): FormArray{
+    const formArray = this.fb.array([]);
+
+    images.forEach(item => {
+      formArray.push(this.fb.group({
+        path: item.path
+      }));
+    });
+
+    return formArray;
+  }
+
+  existingServices(services: any[]): FormArray{
+    const formArray = this.fb.array([]);
+
+    services.forEach(item => {
+      formArray.push(this.fb.group({
+        path: item.path
+      }));
+    });
+
+    return formArray;
+  }
+
+  existingActivities(activities: any[]): FormArray{
+    const formArray = this.fb.array([]);
+
+    activities.forEach(item => {
+      formArray.push(this.fb.group({
+        path: item.path
+      }));
+    });
+
+    return formArray;
   }
 
   getAllDestinos() {
@@ -130,8 +203,6 @@ export class CreateHotelComponent implements OnInit {
 
   onSubmit() {
 
-    console.log(this.createHotelForm.value.habs);
-
     const hotel: Hotel = {
       name: this.createHotelForm.value.name,
       stars: this.createHotelForm.value.stars,
@@ -152,22 +223,41 @@ export class CreateHotelComponent implements OnInit {
     console.log(hotel);
     this.loading = true;
 
-    this.hotelservice.createHotel(hotel).then(item => {
+    if (this.editHotel) {
+      this.hotelservice.updateHotel(hotel, this.editHotel.$key).then( ()=> {
+  
+        console.log('Editado!', hotel.$key);
+        this.loading = false;
+  
+      }).catch(err => {
+  
+        console.log(err);
+        this.loading = false;
+  
+      }).finally(() => {
+  
+        this.router.navigate(['/admin/hoteles']);
+  
+      });
+    } else {
+      this.hotelservice.createHotel(hotel).then(item => {
+  
+        console.log('Hecho!', item.id);
+        this.loading = false;
+        console.log(this.loading);
+  
+      }).catch(err => {
+  
+        console.log(err);
+        this.loading = false;
+  
+      }).finally(() => {
+  
+        this.router.navigate(['/admin/hoteles']);
+  
+      });
+    }
 
-      console.log('Hecho!', item.id);
-      this.loading = false;
-      console.log(this.loading);
-
-    }).catch(err => {
-
-      console.log(err);
-      this.loading = false;
-
-    }).finally(() => {
-
-      this.router.navigate(['/admin/hoteles']);
-
-    });
   }
 
 

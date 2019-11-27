@@ -14,7 +14,7 @@ export class AdminCategoryService {
   }
 
   getCategoryById(docId: string) {
-    return this.stateCollection.doc(docId).snapshotChanges();
+    return this.stateCollection.doc<Category>(docId).snapshotChanges();
   }
 
   getCategorys() {

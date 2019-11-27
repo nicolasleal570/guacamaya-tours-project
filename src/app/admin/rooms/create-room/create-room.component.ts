@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Hotel } from 'src/app/models/hotel';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { Room } from 'src/app/models/room';
+import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 
 @Component({
   selector: 'app-create-room',
@@ -17,12 +18,71 @@ export class CreateRoomComponent implements OnInit {
   hotels: Hotel[] = [];
   loading: boolean = false;
   hotelsLoading: boolean = false;
+  editarHabitacion: Room = null;
 
-  constructor(private fb: FormBuilder, private hotelService: AdminHotelService, private router: Router, private habService: AdminRoomsService) { }
+  constructor(private fb: FormBuilder, private hotelService: AdminHotelService, private router: Router, private habService: AdminRoomsService, private rout: ActivatedRoute) { }
 
   ngOnInit() {
     this.createRoomFormGroup();
     this.getAllHotels();
+
+    this.loading = false;
+    this.rout.paramMap.subscribe(params => {
+      const id = params.get('idHabitaciones');
+      this.selecHabitacionEdit(id);
+    })
+  }
+
+  selecHabitacionEdit(idHabitacion: string) {
+    this.habService.getRoomById(idHabitacion).subscribe(item => {
+      const room: Room = {
+        $key: item.payload.id,
+        ...item.payload.data()
+      }
+      this.editarHabitacion = room;
+      console.log(room);
+      this.editHabitacion(room);
+    
+    })
+  }
+
+  editHabitacion(room: Room) {
+    this.createRoomForm.patchValue({
+      name: room.name,
+      description: room.description,
+      imgPresentation: room.imgPresentation,
+      maxPersons: room.maxPersons,
+      pricePerNight: room.pricePerNight,
+      hotelId: room.hotelId,
+      available: room.available
+    });
+
+    this.createRoomForm.setControl('adventajes', this.existingAdventajes(room.adventajes));
+    this.createRoomForm.setControl('gallery', this.existingGallery(room.gallery));
+  }
+
+  existingAdventajes(adventajes: any[]): FormArray {
+    const formArray = this.fb.array([]);
+
+    adventajes.forEach(item => {
+      formArray.push(this.fb.group({
+        path: item.path
+      }));
+    });
+
+    return formArray;
+  }
+
+  existingGallery(gallery: any[]): FormArray {
+    const formArray = this.fb.array([]);
+
+    gallery.forEach(item => {
+      formArray.push(this.fb.group({
+        path: item.path
+      }));
+    });
+
+    return formArray;
   }
 
   createRoomFormGroup(){
@@ -95,22 +155,35 @@ export class CreateRoomComponent implements OnInit {
       ...this.createRoomForm.value
     }
 
-    this.habService.createRoom(room).then(item => {
+    if(this.editHabitacion) {
+      this.habService.updateRoom(room, this.editarHabitacion.$key).then( () => {
+        console.log('editado', room.$key);
+        this.loading = false;
+      }).catch(err => {
+        console.log(err);
+        this.loading = false;
+      }).finally( () => {
+        this.router.navigate(['/admin/habitaciones']);
+      });
+    } else {
+      this.habService.createRoom(room).then(item => {
 
-      console.log('Hecho!', item.id);
-      this.loading = false;
-      console.log(this.loading);
+        console.log('Hecho!', item.id);
+        this.loading = false;
+        console.log(this.loading);
 
-    }).catch(err => {
+      }).catch(err => {
 
-      console.log(err);
-      this.loading = false;
+        console.log(err);
+        this.loading = false;
 
-    }).finally(() => {
+      }).finally(() => {
 
-      this.router.navigate(['/admin/habitaciones']);
+        this.router.navigate(['/admin/habitaciones']);
 
-    });
+      });  
+    }
+    
 
   }
 
