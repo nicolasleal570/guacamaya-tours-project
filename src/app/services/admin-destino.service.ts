@@ -19,6 +19,10 @@ export class AdminDestinoService {
     return this.destinoCollection.doc(docId).snapshotChanges();
   }
 
+  getDestinosByCategories(id: string){
+    return this.destinoCollection.ref.where('categoryId', '==', id).get();
+  }
+
   getDestinos() {
     return this.destinoCollection.snapshotChanges();
   }

@@ -159,27 +159,24 @@
         display: block;
         width: 100%;
 
+        .card{
+            font-family: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
+
         .gallery-text {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 200px;
-            column-gap: 0;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            column-gap: 16px;
             grid-auto-flow: dense;
 
             .container-gallery {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 200px;
-                column-gap: 0;
                 overflow: hidden;
-                grid-auto-flow: dense;
 
                 img {
-                    grid-column-start: 1;
-                    grid-column-end: 2;
-                    height: 100%;
                     width: 100%;
-                    z-index: 5;
+                    height: 100%;
                 }
 
                 .info {

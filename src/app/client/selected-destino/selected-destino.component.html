@@ -1,12 +1,10 @@
-<!-- <ng-container *ngIf="loading ; then thenTemplate; else elseTemplate">
+<ng-container *ngIf="loading ; then thenTemplate; else elseTemplate"></ng-container>
+
 <ng-template #thenTemplate>
-    <h1>Estoy cargando</h1>
+        <app-big-loader [absoluteClass]="true"></app-big-loader>
 </ng-template>
+
 <ng-template #elseTemplate>
-    <h1>Ya cargue</h1>
-</ng-template>
-</ng-container>
- -->
 
 <!-- HEADER -->
 <header class="header header-secondary">
@@ -26,18 +24,18 @@
     </div>
 
     <div class="section-body">
-        <!-- <app-hotel-card></app-hotel-card>         -->
+            <div *ngFor="let hotel of hoteles">
+                    <div *ngIf="hotel.destinoId == destino.$key">
+                        <a [routerLink]="['/hoteles', hotel.$key]" class="card">
+                            <app-hotel-card [hotel]="hotel"> </app-hotel-card>
+                        </a>
+                    </div>
+                </div>
     </div>
     <div class="section-footer">
         <a href="#" class="card-btn-action">Ver Todos los Hoteles en {{destino.name}} <i class="fa fa-chevron-right"></i></a>
     </div>
-    <div *ngFor="let hotel of hoteles">
-        <div *ngIf="hotel.destinoId == destino.$key">
-            <a [routerLink]="['/hoteles', hotel.$key]" class="card">
-                <app-hotel-card [hotel]="hotel"> </app-hotel-card>
-            </a>
-        </div>
-    </div>
+    
 </section>
 <!-- FIN HOTELES Y POSADAS -->
 
@@ -48,14 +46,9 @@
     asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
 
     <div class="section-body">
-        <div class="gallery-text" *ngFor="let descripcion of descripciones">
-            <div class="container-gallery">
-                <img src="cultura" alt="Foto 1">
-                <div class="info">
-                    <p>
-                        {{descripcion}}
-                    </p>
-                </div>
+        <div class="gallery-text" >
+            <div class="container-gallery" *ngFor="let cultura of destino.imgCultura">
+                <img [src]="cultura.path" alt="Foto 1">
             </div>
         </div>
     </div>
@@ -88,3 +81,5 @@
     </div>
 </section>
 <!-- FIN GALERIA DE FOTOS -->
+
+</ng-template>

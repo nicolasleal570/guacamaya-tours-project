@@ -82,6 +82,32 @@
                 </div>
             </section>
 
+            <h3 class="form-section-title with-border">
+                Imágenes sobre la Cultura y la Gastronomia
+            </h3>
+
+            <section class="imgGallery" formArrayName="imgCultura">
+                <div *ngFor="let hab of createDestinoForm['controls'].imgCultura['controls']; let i=index"
+                    [formGroupName]="i">
+
+                    <p class="img-title">Image {{ i + 1 }}</p>
+
+                    <div class="input-group">
+                        <input type="text" formControlName="path" placeholder="Ingresa la URL de tu imagen">
+                    </div>
+
+                    <div class="input-group">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteCultura(i)">Eliminar
+                            Imagen</button>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <button type="button" class="btn btn-info btn-sm" (click)="addCultura()">Agregar Imagenes</button>
+                </div>
+            </section>
+
 
             <button type="submit" class="btn btn-primary" [disabled]="loading">
                 <ng-container *ngIf="loading; then cargando; else noCargando"></ng-container>

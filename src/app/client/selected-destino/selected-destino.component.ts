@@ -14,22 +14,24 @@ export class SelectedDestinoComponent implements OnInit {
 
   destino: Destino;
   hoteles: Hotel[];
-  cultura: string[];
   descripcion: string[];
+  loading: boolean = false;
 
   constructor(private route: ActivatedRoute, private dService: AdminDestinoService, private hserv: AdminHotelService ) {
     this.route.paramMap.subscribe(params => {
+      this.loading = true;
       this.dService.getDestinoById(params.get('destinoId')).subscribe(array => {
         this.destino = {
           $key: array.payload.id,
           ...array.payload.data()
         } as Destino;
+        this.loading = false;
       });
     });
+
   }
 
   ngOnInit() {
-
     this.getAllHotels();
   }
 

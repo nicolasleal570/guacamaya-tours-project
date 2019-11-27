@@ -35,6 +35,7 @@ export class CreateDestinoComponent implements OnInit {
       category: [''],
       imgBanner: [''],
       imgGallery: this.fb.array([]),
+      imgCultura: this.fb.array([]),
     });
 
     this.loading = false;
@@ -66,6 +67,7 @@ export class CreateDestinoComponent implements OnInit {
         stateId: destino.payload.get('stateId'),
         imgBanner: destino.payload.get('imgBanner'),
         imgGallery: destino.payload.get('imgGallery'),
+        imgCultura: destino.payload.get('imgCultura')
       };
       this.editDestino(destination);
     }, err => console.log(err));
@@ -89,12 +91,25 @@ export class CreateDestinoComponent implements OnInit {
 
     // SE LLENAN LOS CAMPOS QUE SON UN FORM ARRAY
     this.createDestinoForm.setControl('imgGallery', this.setExistingImgGalleryPhotos(destino.imgGallery));
+    this.createDestinoForm.setControl('imgCultura', this.setExistingImgGalleryPhotos(destino.imgCultura));
   }
 
   setExistingImgGalleryPhotos(imgGallery: any[]): FormArray{
     const formArray = this.fb.array([]);
 
     imgGallery.forEach(elem => {
+      formArray.push(this.fb.group({
+        path: elem.path
+      }));
+    });
+
+    return formArray;
+  }
+
+  setExistingImgCulturaPhotos(imgCultura: any[]): FormArray{
+    const formArray = this.fb.array([]);
+
+    imgCultura.forEach(elem => {
       formArray.push(this.fb.group({
         path: elem.path
       }));
@@ -134,6 +149,10 @@ export class CreateDestinoComponent implements OnInit {
     return this.createDestinoForm.get('imgGallery') as FormArray;
   }
 
+  get culturaForm(): FormArray {
+    return this.createDestinoForm.get('imgCultura') as FormArray;
+  }
+
   addImage() {
     const img = this.fb.group({
       path: []
@@ -144,6 +163,18 @@ export class CreateDestinoComponent implements OnInit {
 
   deleteImage(i: number) {
     this.galleryForm.removeAt(i);
+  }
+
+  addCultura() {
+    const img = this.fb.group({
+      path: []
+    });
+
+    this.culturaForm.push(img);
+  }
+
+  deleteCultura(i: number) {
+    this.culturaForm.removeAt(i);
   }
 
   onSubmit() {
@@ -160,6 +191,7 @@ export class CreateDestinoComponent implements OnInit {
       stateId: this.createDestinoForm.value.state,
       imgBanner: this.createDestinoForm.value.imgBanner,
       imgGallery: this.createDestinoForm.value.imgGallery,
+      imgCultura: this.createDestinoForm.value.imgCultura,
     };
 
     this.loading = true;
