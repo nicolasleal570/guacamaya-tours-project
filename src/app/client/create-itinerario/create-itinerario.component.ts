@@ -70,18 +70,29 @@ export class CreateItinerarioComponent implements OnInit {
   getHotelsFromService() {
     this.hotelsLoading = true;
     this.hotels = [];
-    this.hotelService.getHotels().subscribe((actionArray) => {
-      this.hotels = actionArray.map(item => {
-        const hotel: Hotel = {
-          $key: item.payload.doc.id,
-          ...item.payload.doc.data()
-        };
+    this.rooms = [];
+    if (this.selectedDestino) {
+      this.hotelService.getHotelsInDestino(this.selectedDestino.$key).then(array => {
+        array.forEach(item => {
+          const hotel: Hotel = {
+            $key: item.id,
+            name: item.get('name'),
+            stars: item.get('stars'),
+            location: item.get('location'),
+            stateId: item.get('stateId'),
+            destinoId: item.get('destinoId'),
+            imgPresentation: item.get('imgPresentation'),
+            gallery: item.get('gallery'),
+            fullDay: item.get('fullDay'),
+            services: item.get('services'),
+            activities: item.get('activities'),
+          }
 
-        return hotel;
+          this.hotels.push(hotel);
+        });
+        this.hotelsLoading = false;
       });
-
-      this.hotelsLoading = false;
-    });
+    }
   }
 
   getHabsInSelectedHotel() {
@@ -126,6 +137,9 @@ export class CreateItinerarioComponent implements OnInit {
 
   onChangeDestinoSelect(e) {
     const destinoKey = e.target.value || 0;
+
+    this.selectedHotel = null;
+    this.numberOfHabs = 0;
 
     this.selectedDestino = this.destinos.find(item => {
       return item.$key === destinoKey;
@@ -223,7 +237,7 @@ export class CreateItinerarioComponent implements OnInit {
     this.resetForm();
   }
 
-  resetForm(){
+  resetForm() {
     this.selectedDestino = null;
     this.selectedHotel = null;
     this.selectedRoom = null;
