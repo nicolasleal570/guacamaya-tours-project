@@ -136,17 +136,57 @@
                 <div class="card-body">
                     <div class="input-group vertical">
                         <input type="text" placeholder="Numero de noches" formControlName="numberOfDays">
-                    </div>
-                    <div class="input-group vertical">
-                        <p>Fecha de entrada</p>
-                        <div>
-                            <select name="" id=""></select>
                         </div>
-                        <input type="text" placeholder="Ingresar Fecha de Entrada" formControlName="checkIn">
-                    </div>
-                    <div class="input-group vertical">
-                        <input type="text" placeholder="Ingresar Fecha de Salida" formControlName="checkOut">
-                    </div>
+                        <div class="input-group vertical">
+                            <p>Fecha de entrada</p>
+                            <div class="input-group vertical">
+                                <select formControlName="checkIn-days" placeholder="Dia">
+                                    <option value="">Dia</option>
+                                    <option value="{{i}}"*ngFor="let i of [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30,31]">
+                                        {{i}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-group vertical">
+                                <select formControlName="checkIn-month">
+                                    <option value="">Mes</option>
+                                    <option value="{{i}}" *ngFor="let i of [01,02,03,04,05,06,07,08,09,10,11,12]">
+                                        {{i}}</option>
+                                </select>
+                            </div>
+                            <div class="input-group vertical">
+                                <select formControlName="checkIn-year">
+                                    <option value="">Año</option>
+                                    <option value="{{i}}" *ngFor="let i of [2019,2020,2021,2021,2023,2025]">
+                                        {{i}}</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="input-group vertical">
+                                    <p>Fecha de salida</p>
+                                    <div class="input-group vertical">
+                                        <select formControlName="checkOut-days" placeholder="Dia">
+                                            <option value="">Dia</option>
+                                            <option value="{{i}}"*ngFor="let i of [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30,31]">
+                                                {{i}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group vertical">
+                                        <select formControlName="checkOut-month">
+                                            <option value="">Mes</option>
+                                            <option value="{{i}}" *ngFor="let i of [01,02,03,04,05,06,07,08,09,10,11,12]">
+                                                {{i}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group vertical">
+                                        <select formControlName="checkOut-year">
+                                            <option value="">Año</option>
+                                            <option value="{{i}}" *ngFor="let i of [2019,2020,2021,2021,2023,2025]">
+                                                {{i}}</option>
+                                        </select>
+                                    </div>
+                                    </div>
                     <div class="input-group vertical">
                         <select formControlName="numberOfHabs" (change)="onChangeNumberHabs($event)">
                             <option value="">Selecciona el Número de Habitaciones</option>

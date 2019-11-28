@@ -3,13 +3,20 @@
     </div>
     <div class="card-body">
         <div class="card-body-title">
-            <a [routerLink]="['/hoteles', hotel.$key]"><h1>{{hotel.name}}</h1></a>
-            <ul class="ranking">
-                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                <li><a href="#"><i class="fas fa-star"></i></a></li>
+            <a [routerLink]="['/hoteles', hotel.$key]">
+                <h1>{{hotel.name}}</h1>
+            </a>
+            <ul class="ranking" *ngFor="let estrella of estrellas">
+                <li>
+                    <div *ngIf="'estrella' == 1">
+                        <a href="#"><i class="fas fa-star"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <div *ngIf="'estrella' == 0">
+                        <a href="#"><i class="far fa-star"></i></a>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="card-body-content">
