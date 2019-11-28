@@ -13,6 +13,7 @@ import { AllCategoriesComponent } from './categories/all-categories/all-categori
 import { AllRoomsComponent } from './rooms/all-rooms/all-rooms.component';
 import { CreateRoomComponent } from './rooms/create-room/create-room.component';
 import { AuthGuard } from '../guard/auth.guard';
+import { OrdenesComponent } from 'src/app/admin/ordenes/ordenes.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     { path: 'categorias', component: AllCategoriesComponent },
     { path: 'categorias/:idCategoria/editar', component: CreateCategoryComponent },
     { path: 'categorias/crear', component: CreateCategoryComponent },
+    { path: 'ordenes', component: OrdenesComponent },
   ]},
 ];
 

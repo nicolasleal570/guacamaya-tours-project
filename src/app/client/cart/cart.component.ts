@@ -11,7 +11,7 @@ export class CartComponent implements OnInit {
 
   reservaciones: Itinerario[];
   total: number = 0;
-
+  
   constructor() { 
 
     this.total = 0;
@@ -28,9 +28,13 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
 
-    
-    
 
+  }
+
+  eliminarReserva(currentItem: string, index: number) {
+    delete this.reservaciones[currentItem];
+    localStorage.removeItem(currentItem);
+    location.reload();
   }
 
 }

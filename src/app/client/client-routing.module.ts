@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'buscar', component: BuscarComponent },
       { path: 'destinos', component: DestinoComponent },
       { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
-      { path: 'categoria/:categoryId', component: DestinoComponent },        
+      { path: 'categoria/:categoryId', component: DestinoComponent },    
       { path: 'hoteles', component: HotelesComponent },
       { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
       { path: 'itinerario/crear', component: CreateItinerarioComponent },

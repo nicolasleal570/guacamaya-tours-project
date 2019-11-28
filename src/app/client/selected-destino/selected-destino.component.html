@@ -60,14 +60,8 @@
 
     <div class="section-body">
         <div class="gallery">
-            <div class="gallery-img-control">
-                <img src="assets/img/los-roques.jpg" alt="">
-            </div>
-            <div class="gallery-img-control">
-                <img src="assets/img/los-roques.jpg" alt="">
-            </div>
-            <div class="gallery-img-control">
-                <img src="assets/img/los-roques.jpg" alt="">
+            <div class="gallery-img-control" *ngFor="let cultura of destino.imgGallery">
+                <img [src]="cultura.path" alt="Foto 1">    
             </div>
         </div>
     </div>
