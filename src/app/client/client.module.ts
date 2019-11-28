@@ -25,7 +25,6 @@ import { SelectedHotelComponent } from './selected-hotel/selected-hotel.componen
 import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.component';
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 import { SearchByStatePipe } from '../pipes/search-by-state.pipe';
-import { SearchByCategoryPipe } from '../pipes/search-by-category.pipe';
 import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BigLoaderComponent } from './partials/big-loader/big-loader.component';
@@ -48,7 +47,6 @@ import { AlternativeHeaderComponent } from './partials/alternative-header/altern
     ShowItinerarioComponent,
     CreateItinerarioComponent,
     SearchByStatePipe,
-    SearchByCategoryPipe,
     LoginComponent,
     BigLoaderComponent,
     CartComponent,

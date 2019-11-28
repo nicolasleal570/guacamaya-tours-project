@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  private sideBarHidden: boolean;
+  sideBarHidden: boolean;
 
   contentTitle: string;
   contentDescription: string;

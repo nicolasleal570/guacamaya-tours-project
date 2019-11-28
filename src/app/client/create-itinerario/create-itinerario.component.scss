@@ -227,11 +227,12 @@
                 }
 
                 /**
-            * PHONE
-            */
+                * PHONE
+                */
                 @media (max-width: 480px) {
                     grid-template-rows: 200px 1fr;
                     grid-template-columns: 1fr;
+                    padding: 0;
                 }
 
                 &.card {
@@ -263,6 +264,7 @@
                 * PHONE
                 */
                     @media (max-width: 480px) {
+                        width: 100%;
                         grid-column-start: auto;
                         grid-column-end: auto;
                     }
