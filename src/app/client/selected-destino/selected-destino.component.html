@@ -7,12 +7,7 @@
 <ng-template #elseTemplate>
 
 <!-- HEADER -->
-<header class="header header-secondary">
-    <div class="header-callToAction secondary-CallToAction">
-        <h1 class="subtitle">{{destino.name}}<span>{{destino.category}}</span></h1>
-    </div>
-    <div class="header-background" [ngStyle]="{ 'background-image': 'url('+ destino.imgBanner +')' }"></div>
-</header>
+<app-alternative-header title="{{destino.name}}" background="{{destino.imgPresentation}}"></app-alternative-header>
 <!-- FIN HEADER -->
 
 <!-- HOTELES Y POSADAS -->

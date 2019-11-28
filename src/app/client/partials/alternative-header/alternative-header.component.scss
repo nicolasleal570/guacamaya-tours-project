@@ -1,4 +1,5 @@
 @import 'variables';
+
 .header {
     display: block;
     width: 100%;
@@ -22,7 +23,8 @@
             * PHONE
             */
             @media (max-width: 480px) {
-                padding: 20px;
+                width: 100%;
+                padding: 0 20px;
             }
 
             h1 {
@@ -32,6 +34,7 @@
 
             .btn-callToAction {
                 margin-left: 0;
+
                 &.subHeader {
                     justify-content: flex-start;
                 }
@@ -42,7 +45,7 @@
         * PHONE
         */
         @media (max-width: 480px) {
-            width: 100%;
+            width: auto;
             margin: 0 auto;
             top: 55%;
         }
@@ -154,71 +157,4 @@
             background: $cardGradient;
         }
     }
-}
-
-.section {
-    display: block;
-    width: 100%;
-    height: auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
-
-    .section-footer {
-        display: block;
-        width: 100%;
-        height: 30px;
-        line-height: 30px;
-        // background: #ccc;
-        text-align: center;
-        font-size: 16px;
-        margin-top: 30px;
-
-        a {
-            text-decoration: none;
-            color: $primaryColor;
-
-            i {
-                display: inherit;
-                line-height: inherit;
-                margin-left: 10px;
-                font-size: 15px;
-            }
-        }
-    }
-}
-.table-section-horizontal {
-    display: grid;
-    grid-template-columns: 300px 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-    &.card {
-        // overflow: hidden;
-        position: relative;
-        margin-bottom: 30px;
-
-        /**
-        * PHONE
-        */
-        @media (max-width: 480px) {
-            height: auto;
-        }
-    }
-    .card-brand {
-        position: relative;
-        width: 300px;
-        height: 100%;
-        // background: #000;
-        grid-column-start: 1;
-        grid-column-end: 2;
-        overflow: hidden;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-
-
 }

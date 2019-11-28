@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-display',
@@ -7,12 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
 
+  @Input() category?: Category;
+
   constructor() { }
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() img: string;
+  @Input() title?: string;
+  @Input() subtitle?: string;
+  @Input() img?: string;
 
   ngOnInit() {
+    
   }
 
 }

@@ -80,8 +80,10 @@ select, input {
     * PHONE
     */
     @media (max-width: 480px) {
-        padding-right: 40px;
-        padding-left: 40px;
+        width: 100%;
+        margin: 0;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 }
 

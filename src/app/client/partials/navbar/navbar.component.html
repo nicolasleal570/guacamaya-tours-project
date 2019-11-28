@@ -44,20 +44,37 @@
 <!-- PHONE NAVBAR -->
 <nav class="navbar-sm">
     <ul>
-        <li><a href="#" class="logo"><img src="assets/img/guacamaya-tours-logo.svg" alt="Logo"></a></li>
-        <li><a href="#"><i class="fas fa-bars"></i></a></li>
+        <li>
+            <a routerLink="" class="logo"><img src="assets/img/guacamaya-tours-logo.svg" alt="Logo"></a>
+        </li>
+        <li>
+            <button (click)="toggleSmNavBar()" class="btn-menu"><i class="fas fa-bars"></i></button>
+        </li>
     </ul>
-    <div class="navbar-items">
+    <div class="navbar-items" [class.active]="showSmNavbar">
         <ul>
             <li>
-                <a href="#">Inicio</a>
+                <a routerLink="">Inicio</a>
+                <a href="#profile">Acerca de Nosotros</a>
+                <a href="#contacto">Contacto</a>
             </li>
 
-            <li><a href="#">Explorar</a></li>
+            <li>
+                <a routerLink="/destinos">Destinos Disponibles</a>
+                <a routerLink="/hoteles">Hoteles Disponibles</a>
+                <a routerLink="/estados">Estados Disponibles</a>
+                <a routerLink="/categorias">Categorias Disponibles</a>
+            </li>
 
-            <li><a href="#">Itinerario</a></li>
+            <li>
+                <a routerLink="/itinerario/crear">Crear Itinerario</a>
+                <a routerLink="/itinerario/ver">Revisar Itinerario</a>
+            </li>
 
-            <li><a href="#">Buscar</a></li>
+            <li>
+                <a routerLink="/shopping/cart">Carrito</a>
+                <a routerLink="/buscar">Buscar</a>
+            </li>
         </ul>
     </div>
 </nav>

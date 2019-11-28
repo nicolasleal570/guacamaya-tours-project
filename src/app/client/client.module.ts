@@ -31,6 +31,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BigLoaderComponent } from './partials/big-loader/big-loader.component';
 import { CartComponent } from './cart/cart.component';
 import { FooterComponent } from './partials/footer/footer.component';
+import { AlternativeHeaderComponent } from './partials/alternative-header/alternative-header.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { FooterComponent } from './partials/footer/footer.component';
     BigLoaderComponent,
     CartComponent,
     FooterComponent,
+    AlternativeHeaderComponent,
   ],
   imports: [
     CommonModule,
