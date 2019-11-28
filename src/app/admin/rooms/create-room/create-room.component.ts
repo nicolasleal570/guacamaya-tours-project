@@ -17,7 +17,7 @@ export class CreateRoomComponent implements OnInit {
   hotels: Hotel[] = [];
   loading: boolean = false;
   hotelsLoading: boolean = false;
-  editarHabitacion: Room = null;
+  editarHab: Room = null;
 
   constructor(private fb: FormBuilder, private hotelService: AdminHotelService, private router: Router, private habService: AdminRoomsService, private rout: ActivatedRoute) { }
 
@@ -28,17 +28,19 @@ export class CreateRoomComponent implements OnInit {
     this.loading = false;
     this.rout.paramMap.subscribe(params => {
       const id = params.get('idHabitaciones');
-      this.selecHabitacionEdit(id);
+      if (id) {
+        this.selectHabitacionEdit(id);
+      }
     })
   }
 
-  selecHabitacionEdit(idHabitacion: string) {
+  selectHabitacionEdit(idHabitacion: string) {
     this.habService.getRoomById(idHabitacion).subscribe(item => {
       const room: Room = {
         $key: item.payload.id,
         ...item.payload.data()
       }
-      this.editarHabitacion = room;
+      this.editarHab = room;
       console.log(room);
       this.editHabitacion(room);
     
@@ -94,7 +96,7 @@ export class CreateRoomComponent implements OnInit {
       hotelId: [''],
       gallery: this.fb.array([]),
       adventajes: this.fb.array([]),
-      available: this.fb.array([]),
+      available: ['']
     });
   }
 
@@ -151,11 +153,19 @@ export class CreateRoomComponent implements OnInit {
     this.loading = true;
 
     const room: Room = {
-      ...this.createRoomForm.value
-    }
+      name: this.createRoomForm.value.name,
+      description: this.createRoomForm.value.description,
+      imgPresentation: this.createRoomForm.value.imgPresentation,
+      maxPersons: this.createRoomForm.value.maxPersons,
+      adventajes: this.createRoomForm.value.adventajes,
+      gallery: this.createRoomForm.value.gallery,
+      pricePerNight: this.createRoomForm.value.pricePerNight,
+      hotelId: this.createRoomForm.value.hotelId,
+      available: this.createRoomForm.value.available,
+    };
 
-    if(this.editHabitacion) {
-      this.habService.updateRoom(room, this.editarHabitacion.$key).then( () => {
+    if(this.editarHab) {
+      this.habService.updateRoom(room, this.editarHab.$key).then( () => {
         console.log('editado', room.$key);
         this.loading = false;
       }).catch(err => {

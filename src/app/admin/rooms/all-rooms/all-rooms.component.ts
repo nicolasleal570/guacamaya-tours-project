@@ -32,6 +32,20 @@ export class AllRoomsComponent implements OnInit {
     });
   }
 
+  deleteHotel(roomId: string){
+    this.deleting = true;
+    this.roomService.deleteRoom(roomId).then(() => {
+
+      console.log('HAB ELIMINADO');
+
+    }).catch((err) => {
+      this.deleting = false;
+      console.log(err);
+    }).finally(() => {
+      this.deleting = false;
+    });
+  }
+
 
 
 }

@@ -52,7 +52,9 @@ export class CreateHotelComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('hotelId');
-      this.selectHotelToEdit(id);
+      if (id) {
+        this.selectHotelToEdit(id);
+      }
     });
   }
 
@@ -227,7 +229,7 @@ export class CreateHotelComponent implements OnInit {
     if (this.editHotel) {
       this.hotelservice.updateHotel(hotel, this.editHotel.$key).then( ()=> {
   
-        console.log('Editado!', hotel.$key);
+        console.log('Editado!');
         this.loading = false;
   
       }).catch(err => {

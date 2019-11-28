@@ -27,7 +27,9 @@ export class CreateCategoryComponent implements OnInit {
     this.loading = false;
     this.route.paramMap.subscribe(params => {
       const id =params.get('idCategoria');
-      this.selectCategoryToEdit(id);
+      if (id) {
+        this.selectCategoryToEdit(id);
+      }
     });
 
   }

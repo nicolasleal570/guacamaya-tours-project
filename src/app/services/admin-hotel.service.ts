@@ -15,6 +15,7 @@ export class AdminHotelService {
 
   constructor(private afs: AngularFirestore) {
     this.hotelCollection = this.afs.collection<Hotel>('hotels');
+    this.habsCollection = this.afs.collection<Room>('rooms');
   }
 
   getHotelById(docId: string) {
