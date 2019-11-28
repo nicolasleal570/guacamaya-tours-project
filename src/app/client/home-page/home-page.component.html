@@ -14,13 +14,11 @@
 
         <ng-template #noCatLoading>
             <div class="table-section-vertical">
-                <a [routerLink]="['/categoria', 'uKArwRJndVG0VcqKKjaV']"><app-display title="NIEVE" subtitle="Merida" img="assets/img/merida.jpg" router-link> </app-display></a>
-                
-                <a [routerLink]="['/categoria', '87dAaPlgCSyXynl2GoV6']"><app-display title="Desierto" subtitle="Medanos de Coro" img="assets/img/medanos.png"> </app-display></a>
-                
-                <a [routerLink]="['/categoria', 'WQAAaDfehZT5uOxNP7S6']"><app-display title="SELVA" subtitle="Amazonas" img="assets/img/selva.jpg"> </app-display></a>
-                
-                <a [routerLink]="['/categoria', 'c0QJnFBhoHZD0kFjRW0g']"><app-display title="TRÓPICO" subtitle="Los Roques" img="assets/img/los-roques.jpg"> </app-display></a>
+                <div *ngFor="let category of categories; let i=index">
+                    <a [routerLink]="['/categoria', category.$key]" *ngIf="i < 4">
+                        <app-display [category]="category"> </app-display>
+                    </a>
+                </div>
             </div>
         </ng-template>
     </div>
@@ -58,8 +56,9 @@
 <!-- FIN SECCIONES DE HOTELES -->
 
 <section class="section wrap" id="profile">
-   <img class="logo-big" src="assets/img/guacamaya-tours-logo.svg" alt="logo"> 
-   <app-titulo title="Quienes somos" description="una gente bien chevere que por ahora no tiene descripcion peace out"> </app-titulo>
+    <img class="logo-big" src="assets/img/guacamaya-tours-logo.svg" alt="logo">
+    <app-titulo title="Quienes somos" description="una gente bien chevere que por ahora no tiene descripcion peace out">
+    </app-titulo>
 </section>
 
 <app-contact> </app-contact>

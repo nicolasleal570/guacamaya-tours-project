@@ -20,6 +20,14 @@
             flex-direction: column;
             padding: 0 100px;
 
+            /**
+            * PHONE
+            */
+            @media (max-width: 480px) {
+                width: 100%;
+                padding: 20px;
+            }
+
             h1 {
                 text-align: left;
                 margin-left: 0;
@@ -37,7 +45,7 @@
         * PHONE
         */
         @media (max-width: 480px) {
-            width: auto;
+            width: 100%;
             margin: 0 auto;
             top: 55%;
         }
@@ -55,11 +63,26 @@
             color: #fff;
             margin-bottom: 50px;
 
+            /**
+            * PHONE
+            */
+            @media (max-width: 480px) {
+                width: 100%;
+            }
+
             span {
                 font-size: 40px;
                 letter-spacing: 0;
                 font-family: $fontFamily;
                 font-weight: 300;
+
+                /**
+                * PHONE
+                */
+                @media (max-width: 480px) {
+                    display: block;
+                    width: 100%;
+                }
             }
 
             &.subtitle {

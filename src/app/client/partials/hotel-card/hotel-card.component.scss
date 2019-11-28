@@ -9,7 +9,7 @@
         margin-bottom: 0;
     }
 
-    &.bgDark > .card-body {
+    &.bgDark>.card-body {
         background: $darkColor;
     }
 
@@ -50,8 +50,7 @@
         * PHONE
         */
         @media (max-width: 480px) {
-            grid-column-start: auto;
-            grid-column-end: auto;
+            width: 100%;
         }
 
         img {
@@ -223,6 +222,22 @@
                 }
             }
 
+        }
+
+        &-footer {
+            display: block;
+            padding-top: 35px;
+                
+            /**
+            * PHONE
+            */
+            @media (max-width: 480px) {
+                display: none;
+            }
+
+            .btnMover {
+                float: right;
+            }
         }
     }
 }

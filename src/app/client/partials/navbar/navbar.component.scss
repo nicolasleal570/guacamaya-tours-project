@@ -108,6 +108,8 @@ nav.navbar-sm {
     */
     @media (max-width: 480px) {
         display: block;
+        position: fixed;
+        z-index: 1000;
     }
 
     ul {
@@ -122,6 +124,25 @@ nav.navbar-sm {
             width: 80px;
             height: 100%;
             padding: 20px;
+
+            button {
+                font-family: inherit;
+                font-size: inherit;
+                font-weight: inherit;
+                outline: none;
+                border: none;
+                color: #fff;
+                background: none;
+                cursor: pointer;
+                
+                i {
+                    line-height: 50px;
+                    float: right;
+                    margin: 0 auto;
+                    font-size: 1.7rem;
+                    cursor: pointer;
+                }
+            }
 
             a {
 
@@ -145,12 +166,13 @@ nav.navbar-sm {
     }
 
     .navbar-items {
-        display: none;
+        display: block; // Cambiar
         position: absolute;
         right: -100%;
         width: 100%;
         height: calc(100vh - 100px);
         transition: 300ms all ease-in;
+        overflow-y: scroll;
 
         &.active {
             display: block;
