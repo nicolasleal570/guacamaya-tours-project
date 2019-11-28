@@ -1,12 +1,14 @@
 <header class="header">
+    <div *ngIf="!paidFor">
     <div class="cart">
         <div class="saludo">
             <h1>Estas son tus reservaciones</h1>
         </div>
-        <div class="header-callToAction" *ngFor="let reservacion of reservaciones">
+        <div class="header-callToAction" *ngFor="let reservacion of reservaciones; let i = index">
             <div class="reservation-card">
                 <div class="btn-delete">
-                    <h3> <i class="fas fa-times"></i> </h3>
+                    <h3> <i class="fas fa-times" (click)="eliminarReserva(reservacion, 2)"></i> </h3>
+                    
                 </div>
                 <h1>{{reservacion.hotel}} - {{reservacion.destino}}</h1>
                 <div class="reservation-card-text">
@@ -23,10 +25,18 @@
         </div>
         <div class="total">
             <h1>Total     {{total}}</h1>
+            
         </div>
-
-
+    </div>    
     </div>
+
+    <div *ngIf=paidFor>
+        <h1>Yay, you bought a sweet couch!</h1>
+    </div>
+
+
+    <div #paypal></div>
+    
 
     <div class="header-background" style="background-image: url('assets/img/header-bg.gif')"></div>
 </header>

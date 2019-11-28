@@ -22,10 +22,11 @@ import { AllCategoriesComponent } from './categories/all-categories/all-categori
 import { CreateRoomComponent } from './rooms/create-room/create-room.component';
 import { AllRoomsComponent } from './rooms/all-rooms/all-rooms.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { OrdenesComponent } from './ordenes/ordenes.component';
 
 
 @NgModule({
-  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent, AllStatesComponent, CreateStatesComponent, CreateCategoryComponent, AllCategoriesComponent, CreateRoomComponent, AllRoomsComponent],
+  declarations: [AdminLayoutComponent, DashboardComponent, SidebarComponent, TreeviewComponent, AllHotelsComponent, CreateHotelComponent, AllDestinosComponent, CreateDestinoComponent, LoaderComponent, AllStatesComponent, CreateStatesComponent, CreateCategoryComponent, AllCategoriesComponent, CreateRoomComponent, AllRoomsComponent, OrdenesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
