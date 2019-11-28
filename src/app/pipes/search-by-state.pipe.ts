@@ -6,13 +6,27 @@ import { Destino } from '../models/destino';
 })
 export class SearchByStatePipe implements PipeTransform {
 
-  transform(destinos: Destino[], stateId?: string, categoryId?: string): Destino[] {
+  transform(destinos: Destino[], stateId?: string = '', categoryId?: string = ''): Destino[] {
 
     if (!stateId && !categoryId) return destinos;
 
-    return destinos.filter(destino => {
-      return (destino.stateId === stateId) || (destino.categoryId === categoryId);
-    });
+    if (stateId !== '' && stateId) {
+      return destinos.filter(item => {
+        return item.stateId === stateId;
+      });
+    } else {
+      if (categoryId !== '' && !categoryId) {
+        return destinos.filter(item => {
+          return item.categoryId === categoryId;
+        });
+      } else {
+        if (stateId !== '' && stateId && categoryId !== '' && categoryId) {
+          return destinos.filter(item => {
+            return item.stateId === stateId && item.categoryId === categoryId;
+          });
+        }
+      }
+    }
   }
 
 }

@@ -1,4 +1,59 @@
-<header class="header">
+<app-alternative-header title="Busca tu Destino" background="assets/img/principal.jpg"></app-alternative-header>
+
+<div class="section wrap">
+
+    <!-- filtros -->
+    <section class="section-title">
+        <h3>Selecciona cual filtro utilizar</h3>
+        <p>Puedes filtrar los destinos según el estado o la categoría a la que pertenecen</p>
+    </section>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="input-group vertical">
+                <h2><i class="fas fa-filter"></i> Filtros: </h2>
+            </div>
+            <div class="input-group vertical">
+                <select class="selector" [(ngModel)]="selectedCategory">
+                    <option value="">Seleccion la categoría de tu destino</option>
+                    <option *ngFor="let category of categories" value="{{category.$key}}">
+                        {{category.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group vertical">
+                <select class="selector" id="" [(ngModel)]="selectedState">
+                    <option value="">Seleccione el de estado donde se encuentra su destino</option>
+                    <option value="{{state.$key}}" *ngFor="let state of states">
+                        {{ state.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="cardNotInfinite">
+        <ng-container *ngIf="destinosLoading; then loader; else noLoader"></ng-container>
+
+        <ng-template #loader>
+            <app-big-loader></app-big-loader>
+        </ng-template>
+
+        <ng-template #noLoader>
+            <ng-container *ngFor="let destino of destinos | searchByState: selectedState : selectedCategory">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="input-group vertical">
+                            <app-destino-card [destino]=destino></app-destino-card>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-template>
+    </div>
+</div>
+
+<!-- <header class="header">
     <div class="general-buscar header-callToAction wrap">
         <app-titulo title="Ubica tu destino" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
         asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"></app-titulo>
@@ -29,7 +84,6 @@
                 </div>
             </section>
             <section>
-                <!-- <h2>Resultados</h2> -->
                 <div class="resultados">
                     <ng-container *ngIf="loading; then loader; else noLoader"></ng-container>
 
@@ -45,6 +99,14 @@
                                 <div class="body">
                                     <h3>{{destino.name}}</h3>
                                     <p>{{destino.description}}</p>
+
+                                    <div class="body-footer">
+                                        <a [routerLink]="['/destinos', destino.$key]" class="btn btn-primary">Ver
+                                            más</a>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <a [routerLink]="['/destinos', destino.$key]" class="btn btn-primary">Ver más</a>
                                 </div>
                             </div>
                         </ng-container>
@@ -56,4 +118,4 @@
     </div>
     <div class="header-background" style="background-image: url('assets/img/header-bg.gif')"></div>
 
-</header>
+</header> -->

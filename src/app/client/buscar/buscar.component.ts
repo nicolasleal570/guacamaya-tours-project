@@ -5,6 +5,8 @@ import { Destino } from 'src/app/models/destino';
 import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 import { FormsModule, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminCategoryService } from 'src/app/services/admin-category.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-buscar',
@@ -14,36 +16,57 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class BuscarComponent implements OnInit {
 
   states: State[] = [];
+  categories: Category[] = [];
   destinos: Destino[] = [];
   selectedState: string = '';
   selectedCategory: string = '';
-  loading: boolean = false;
+  destinosLoading: boolean = false;
+  categoriesLoading: boolean = false;
+  statesLoading: boolean = false;
 
 
-  constructor(private stateService: AdminStatesService, private dService: AdminDestinoService) { }
+  constructor(private stateService: AdminStatesService, private dService: AdminDestinoService, private categorySV: AdminCategoryService) { }
 
   ngOnInit() {
 
     this.getStatesFromService();
+    this.getCategoriesFromService();
     this.getDestinosFromService();
 
   }
 
   getStatesFromService() {
+    this.statesLoading = true;
     this.stateService.getStates().subscribe((states) => {
-      states.forEach((item) => {
+      this.states = states.map(item => {
         const state: State = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
         };
 
-        this.states.push(state);
+        return state;
       })
-    })
+      this.statesLoading = false;
+    });
+  }
+
+  getCategoriesFromService() {
+    this.categoriesLoading = true;
+    this.categorySV.getCategorys().subscribe(array => {
+      this.categories = array.map(item => {
+        const category: Category = {
+          $key: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+
+        return category;
+      });
+      this.categoriesLoading = false;
+    });
   }
 
   getDestinosFromService() {
-    this.loading = true;
+    this.destinosLoading = true;
     this.destinos = [];
     this.dService.getDestinos().subscribe((actionArray) => {
       this.destinos = actionArray.map(item => {
@@ -56,7 +79,7 @@ export class BuscarComponent implements OnInit {
 
       });
 
-      this.loading = false;
+      this.destinosLoading = false;
 
     });
   }
