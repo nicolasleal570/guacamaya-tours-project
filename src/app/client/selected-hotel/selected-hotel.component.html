@@ -9,24 +9,57 @@
     <app-alternative-header title="{{hotel.name}}" background="{{hotel.imgPresentation}}">
     </app-alternative-header>
     <!-- FIN HEADER -->
+    <!-- GALERIA DE FOTOS -->
+    <section class="section wrap">
+        <div class="section-body">
+            <div class="gallery">
+                <div class="gallery-img-control" *ngFor="let foto of galeria">
+                    <img [src]="foto.path" alt="Foto 1">    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN GALERIA DE FOTOS -->
+    <!-- SERVICIOS -->
+    <section class="secton wrap">
+        <app-titulo title="Actividades y Servicios"></app-titulo>
+        <div>
+            <div>
+                <h2>Actividades</h2>
+                <ul>
+                    <li *ngFor="let actividad of actividades">
+                        {{actividad}}
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>Servicios</h2>
+                <ul>
+                    <li *ngFor="let servicio of servicios">
+                        {{servicio}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        </section>
+    <!-- FIN DE SERVICIOS -->
     <!-- HABITACIONES -->
     <section class="section wrap">
-        <app-titulo title="Habitaciones" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
-                asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"> </app-titulo>
+        <app-titulo title="Habitaciones"> </app-titulo>
 
         <div class="section-body">
             <div class="table-section-vertical">
-                <!-- <ng-container *ngFor="let hab of hotel.rooms">
-                    <app-display title="{{hab.habName}}"
-                        subtitle="Capacidad: {{hab.maxPersons}} personas || Precio por Noche: {{hab.pricePerNight}}$"
-                        img="{{hab.imgPresentation}}">
-                    </app-display>
-                </ng-container> -->
-                <!-- <app-display title="DOBLE" subtitle="1 cama queen" img="assets/img/tamanaco-doble.jpg"> </app-display>
-                <app-display title="SENCILLA" subtitle="1 cama matrimonial" img="assets/img/tamanaco-sencilla.jpg">
-                </app-display>
-                <app-display title="BUSINESS" subtitle="2 camas individuales" img="assets/img/tamanaco-business.jpg">
-                </app-display> -->
+                <ng-container *ngFor="let hab of habs">
+                    <a href="#" class="card" *ngIf="hab.available > 0">
+                        <div class="card-footer">
+                            <h2>{{hab.name}}</h2>
+                            <p>{{hab.maxPersons}} personas</p>
+                            <p>$ {{hab.pricePerNight}}</p>
+                        </div>
+                        <div class="card-background" [ngStyle]="{'background-image': 'url('+hab.imgPresentation+')'}"></div>
+                    </a>
+                </ng-container>
             </div>
         </div>
     </section>

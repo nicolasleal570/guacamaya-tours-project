@@ -1,40 +1,30 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const nodemailer = require('nodemailer');
-const sgMail = require('@sendgrid/mail');
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
+
 
 admin.initializeApp();
-
-const API_KEY = 'SG.tkUfLNEtTC6cONGe7qE0eA.wFMCGehztxxN2PAFdRvj4aQ7Zl';
-const TEMPLATE_ID = functions.config().sendgrid.template;
-sgMail.setApiKey(API_KEY);
-
 require('dotenv').config();
 
-
 let authData = nodemailer.createTransport({
-    sercvice: 'gmail',
+    service: 'gmail',
     auth: {
-        user: 'elena.7moya@gmail.com',
-        pass: 'Esetontoatun'
+        user: 'guacamayatours1999@gmail.com',
+        pass: 'quewebo2'
     }
 });
 
-exports.sendEmailNotification = functions.firestore.document('submissions/{docId}').onCreate((snap,context) => {
+exports.sendEmail = functions.firestore.document('submissions/{docId}').onCreate((snap, ctx) => {
+
     const data = snap.data();
 
-    const msg = {
-        to: data.contactEmail,
+    authData.sendMail({
         from: 'info@guacamayatours.com',
-        templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            contactName: data.contactName,
-            contactEmail: data.contactEmail,
-            contactAsunto: data.contactAsunto,
-            contactMessage: data.contactMessage,
-        }
-    }
-
-    return sgMail.send(msg);
-
-});
+        to: data.contactEmail,
+        subject: 'Un cliente de Guacamaya Tours te quiere contactar',
+        text: data.contactName + data.contactAsunto + data.contactMessage,
+        html: data.contactName + data.contactAsunto + data.contactMessage,
+    }).then(res => console.log('mandaste esa mierda')).catch(
+        err=>console.log(err)
+    );
+})

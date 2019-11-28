@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
+import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { Hotel } from 'src/app/models/hotel';
+import { Room } from 'src/app/models/room';
 
 @Component({
   selector: 'app-selected-hotel',
@@ -13,8 +15,10 @@ export class SelectedHotelComponent implements OnInit {
   hotel: Hotel;
   hotelId: string = '';
   loading: boolean = false;
+  habs: Room[] = [];
+  galeria: string[] = [];
 
-  constructor(private route: ActivatedRoute, private hotelService: AdminHotelService) {
+  constructor(private route: ActivatedRoute, private hotelService: AdminHotelService, private roomService: AdminRoomsService) {
     this.route.paramMap.subscribe(params => {
       this.hotelId = params.get('hotelId');
     });
@@ -23,6 +27,25 @@ export class SelectedHotelComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
 
+    this.roomService.getRoomFromHotel(this.hotelId).then(array => {
+      array.forEach(item => {
+        const room: Room = {
+          $key: item.id,
+          name: item.get('name'),
+          description: item.get('description'),
+          imgPresentation: item.get('imgPresentation'),
+          maxPersons: item.get('maxPersons'),
+          adventajes: item.get('adventajes'),
+          gallery: item.get('gallery'),
+          pricePerNight: item.get('pricePerNight'),
+          hotelId: item.get('hotelId'),
+          available: item.get('available'),
+        }
+
+        this.habs.push(room);
+      });
+    });
+
     this.hotelService.getHotelById(this.hotelId).subscribe(array => {
 
       this.hotel = {
@@ -30,6 +53,7 @@ export class SelectedHotelComponent implements OnInit {
         ...array.payload.data()
       } as Hotel;
       this.loading = false;
+      this.galeria = this.hotel.gallery;
 
     });
   }

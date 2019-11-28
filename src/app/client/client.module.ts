@@ -31,6 +31,8 @@ import { BigLoaderComponent } from './partials/big-loader/big-loader.component';
 import { CartComponent } from './cart/cart.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { AlternativeHeaderComponent } from './partials/alternative-header/alternative-header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { AlternativeHeaderComponent } from './partials/alternative-header/altern
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule,
+    NgxPayPalModule,
 
   ]
 })
