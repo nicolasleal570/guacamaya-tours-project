@@ -25,6 +25,10 @@ export class AdminHotelService {
     return this.hotelCollection.ref.where('stars', '>', 3).get();
   }
 
+  getHotelsInDestino(destinoId: string){
+    return this.hotelCollection.ref.where('destinoId', '==', destinoId).get();
+  }
+
   getHotels() {
     return this.hotelCollection.snapshotChanges();
   }
