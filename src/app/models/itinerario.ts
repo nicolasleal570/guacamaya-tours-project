@@ -15,11 +15,15 @@ export interface Itinerario {
     destinoCategoryId: string;
     category?: string;
     destinoId: string;
-    destino: Destino;
-    checkIn: string;
-    checkOut: string;
+    destino: string;
+    checkInDays: number,
+    checkInMonth: number,
+    checkInYear: number,
+    checkOutDays: number,
+    checkOutMonth: number,
+    checkOutYear: number,
     hotelId: string;
-    hotel: Hotel;
+    hotel: string;
     numberOfHabs: number;
     habs: SelectedRoom[];
     totalPrice: number;

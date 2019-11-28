@@ -9,6 +9,7 @@ import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Itinerario } from 'src/app/models/itinerario';
 
 
+
 @Component({
   selector: 'app-create-itinerario',
   templateUrl: './create-itinerario.component.html',
@@ -38,8 +39,12 @@ export class CreateItinerarioComponent implements OnInit {
       destinoStateId: [''],
       destinoCategoryId: [''],
       destinoId: [''],
-      checkIn: [''],
-      checkOut: [''],
+      checkInDays: [''],
+      checkInMonth: [''],
+      checkInYear: [''],
+      checkOutDays: [''],
+      checkOutMonth: [''],
+      checkOutYear: [''],
       hotelId: [''],
       numberOfHabs: [''],
       numberOfDays: [''],
@@ -115,7 +120,6 @@ export class CreateItinerarioComponent implements OnInit {
             hotelId: item.get('hotelId'),
             available: item.get('available')
           }
-
           this.rooms.push(hab);
         });
       }).finally(() => {
@@ -223,8 +227,6 @@ export class CreateItinerarioComponent implements OnInit {
       }
     }
 
-    
-
   }
 
   // SE EJECUTA CUANDO SE ENVIA EL FORM
@@ -234,13 +236,20 @@ export class CreateItinerarioComponent implements OnInit {
     const itinerario: Itinerario = this.formItinerario.value as Itinerario;
 
     itinerario.totalPrice = itinerario.numberOfDays*this.selectedRoom.pricePerNight*itinerario.numberOfHabs;
-    itinerario.destino = this.selectedDestino;
-    itinerario.hotel = this.selectedHotel;
+    this.destinoSV.getDestinoById(itinerario.destinoId).subscribe(item => {
+      itinerario.destino = item.payload.get('name');
+    });
+    this.hotelService.getHotelById(itinerario.hotelId).subscribe(item => {
+      itinerario.hotel = item.payload.get('name');
+    });
 
     if (localStorage.getItem('cart') !== null) {
       array = JSON.parse(localStorage.getItem('cart'));
     }
+
     array.push(itinerario);
+
+    console.log(array);
 
     localStorage.setItem('cart', JSON.stringify(array));
     this.resetForm();

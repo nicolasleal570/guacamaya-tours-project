@@ -1,42 +1,46 @@
 <header class="header">
-    <div *ngIf="!paidFor">
     <div class="cart">
         <div class="saludo">
             <h1>Estas son tus reservaciones</h1>
         </div>
-        <div class="header-callToAction" *ngFor="let reservacion of reservaciones; let i = index">
-            <div class="reservation-card">
-                <div class="btn-delete">
-                    <h3> <i class="fas fa-times" (click)="eliminarReserva(reservacion, 2)"></i> </h3>
-                    
-                </div>
-                <h1>{{reservacion.hotel}} - {{reservacion.destino}}</h1>
-                <div class="reservation-card-text">
-                    <h3>Habitacion: {{reservacion.habs}}</h3>
-                    <h3>Habitaciones: {{reservacion.numberOfHabs}}</h3>
-                    <h3>Check-In: {{reservacion.checkIn}}</h3>
-                    <h3>Check-Out: {{reservacion.checkOut}}</h3>
-                </div>
-            </div>
-            <div class="subtotal">
-                <h2>sub-total      {{reservacion.totalPrice}}</h2>
-            </div>
 
-        </div>
-        <div class="total">
-            <h1>Total     {{total}}</h1>
-            
-        </div>
-    </div>    
+        <ng-container *ngIf="hotelsLoading || destLoading || roomsLoading; then loading; else noLoading"></ng-container>
+
+        <ng-template #loading>
+            <app-big-loader></app-big-loader>
+        </ng-template>
+
+        <ng-template #noLoading>
+            <div class="header-callToAction" *ngFor="let reservacion of reservaciones; let i = index">
+                <div class="reservation-card">
+                    <div class="btn-delete">
+                        <h3> <i class="fas fa-times" (click)="eliminarReserva(reservacion, 2)"></i> </h3>
+                    </div>
+                    <h1>{{getHotelName(i)}} - {{getDestinoName(i)}}</h1>
+                    <div class="reservation-card-text">
+                        {{getHabitaciones(reservacion) | json}}
+                        <div class="habs" *ngFor="let hab of getHabitaciones(i)">
+                            <p>{{hab.name}}</p>
+                        </div>
+                        <h3>Habitaciones: {{reservacion.numberOfHabs}}</h3>
+                        <h3>Check-In: {{reservacion.checkInDays}} / {{reservacion.checkInMonth}} /
+                            {{reservacion.checkInYear}}</h3>
+                        <h3>Check-Out: {{reservacion.checkOutDays}} / {{reservacion.checkOutMonth}} /
+                            {{reservacion.checkOutYear}}</h3>
+                    </div>
+                </div>
+                <div class="subtotal">
+                    <h2>sub-total {{reservacion.totalPrice}}</h2>
+                </div>
+
+            </div>
+            <div class="total">
+                <h1>Total {{total}}</h1>
+
+            </div>
+        </ng-template>
     </div>
 
-    <div *ngIf=paidFor>
-        <h1>Yay, you bought a sweet couch!</h1>
-    </div>
-
-
-    <div #paypal></div>
-    
 
     <div class="header-background" style="background-image: url('assets/img/header-bg.gif')"></div>
 </header>

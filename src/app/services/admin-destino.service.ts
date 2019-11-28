@@ -16,7 +16,7 @@ export class AdminDestinoService {
   }
 
   getDestinoById(docId: string) {
-    return this.destinoCollection.doc(docId).snapshotChanges();
+    return this.destinoCollection.doc<Destino>(docId).snapshotChanges();
   }
 
   getDestinosByCategories(id: string){
