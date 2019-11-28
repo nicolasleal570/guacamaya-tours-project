@@ -6,7 +6,7 @@ import { Destino } from '../models/destino';
 })
 export class SearchByStatePipe implements PipeTransform {
 
-  transform(destinos: Destino[], stateId?: string = '', categoryId?: string = ''): Destino[] {
+  transform(destinos: Destino[], stateId: string = '', categoryId: string = ''): Destino[] {
 
     if (!stateId && !categoryId) return destinos;
 

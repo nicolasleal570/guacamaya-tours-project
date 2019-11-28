@@ -6,17 +6,15 @@
             <a [routerLink]="['/hoteles', hotel.$key]">
                 <h1>{{hotel.name}}</h1>
             </a>
-            <ul class="ranking" *ngFor="let estrella of estrellas">
-                <li>
-                    <div *ngIf="'estrella' == 1">
-                        <a href="#"><i class="fas fa-star"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div *ngIf="'estrella' == 0">
-                        <a href="#"><i class="far fa-star"></i></a>
-                    </div>
-                </li>
+            <ul class="ranking">
+                <ng-container *ngFor="let estrella of estrellas">
+                    <li *ngIf="estrella === 1">
+                        <span><i class="fas fa-star"></i></span>
+                    </li>
+                    <li *ngIf="estrella !== 1">
+                        <span><i class="far fa-star colorWhite"></i></span>
+                    </li>
+                </ng-container>
             </ul>
         </div>
         <div class="card-body-content">

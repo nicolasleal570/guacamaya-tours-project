@@ -11,7 +11,7 @@ export class HotelCardComponent implements OnInit {
   @Input() hotel: Hotel;
   @Input() darkColor: boolean = false;
   @Input() footer: boolean = false;
-  estrellas: number[];
+  estrellas: number[] = [];
 
   constructor() {
 
@@ -22,14 +22,13 @@ export class HotelCardComponent implements OnInit {
   }
 
   hacerEstrellas() {
-    for ( var i = 0; i++; i<5) {
-    if (i < this.hotel.stars) {
-      this.estrellas[i] = 1;
-    }else{
-      this.estrellas[i] = 0;
+    for (let i = 0; i < 5; i++) {
+      if (i < this.hotel.stars) {
+        this.estrellas[i] = 1;
+      } else {
+        this.estrellas[i] = 0;
+      }
     }
-    console.log(this.estrellas[i]);
-  }
   }
 
 }
