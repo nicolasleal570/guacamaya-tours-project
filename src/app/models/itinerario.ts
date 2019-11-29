@@ -5,9 +5,6 @@ import { Category } from './category';
 import { State } from './state';
 
 export interface Itinerario {
-  itinerario: any;
-  [x: string]: any;
-
 
     $key?: string;
     destinoStateId: string;

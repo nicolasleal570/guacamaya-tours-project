@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SelectedHotelComponent implements OnInit {
 
-  lat = 40.730610;
-  lng = -73.935242;
+  
 
   hotel: Hotel;
   hotelId: string = '';
@@ -29,6 +28,9 @@ export class SelectedHotelComponent implements OnInit {
       this.hotelId = params.get('hotelId');
     });
   }
+
+  lat = 40.730610;
+  lng = -73.935242;
 
   ngOnInit() {
 
