@@ -29,6 +29,9 @@ export class AdminHotelService {
   getHotelsInDestino(destinoId: string){
     return this.hotelCollection.ref.where('destinoId', '==', destinoId).get();
   }
+  getHotelsInState(stateId: string){
+    return this.hotelCollection.ref.where('stateId', '==', stateId).get();
+  }
 
   getHotels() {
     return this.hotelCollection.snapshotChanges();

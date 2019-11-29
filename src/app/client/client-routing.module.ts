@@ -11,8 +11,8 @@ import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.compo
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
-
-
+import { EstadosComponent } from './estados/estados.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {
@@ -23,11 +23,16 @@ const routes: Routes = [
       { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
       { path: 'categoria/:categoryId', component: DestinoComponent },    
       { path: 'hoteles', component: HotelesComponent },
+      { path: 'hoteles/:stateId', component: HotelesComponent },
       { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
       { path: 'itinerario/:idRoom/hotel', component: CreateItinerarioComponent },
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
       { path: 'shopping/cart' , component: CartComponent },
+      { path: 'estados', component: EstadosComponent},
+      { path: 'estados/:stateId', component: DestinoComponent}
+      { path: 'category', component: CategoryComponent},
+
     ]
   },
   { path: 'login', component: LoginComponent },

@@ -27,7 +27,7 @@
                 </div>
     </div>
     <div class="section-footer">
-        <a href="#" class="card-btn-action">Ver Todos los Hoteles en {{destino.name}} <i class="fa fa-chevron-right"></i></a>
+        <!-- <a [routerLink]="['/hoteles', destino.$key]" class="card-btn-action">Ver Todos los Hoteles en {{destino.name}} <i class="fa fa-chevron-right"></i></a> -->
     </div>
     
 </section>
@@ -56,14 +56,14 @@
     </div>
 
     <div class="section-body">
-        <div class="gallery">
+        <div class="gallery-text">
             <div class="gallery-img-control" *ngFor="let cultura of destino.imgGallery">
                 <img [src]="cultura.path" alt="Foto 1">    
             </div>
         </div>
     </div>
     <div class="section-footer">
-        <a href="#" class="card-btn-action">Ver Otros Destinos <i class="fa fa-chevron-right"></i></a>
+        <a routerLink="/destinos" class="card-btn-action">Ver Otros Destinos <i class="fa fa-chevron-right"></i></a>
     </div>
 </section>
 <!-- FIN GALERIA DE FOTOS -->

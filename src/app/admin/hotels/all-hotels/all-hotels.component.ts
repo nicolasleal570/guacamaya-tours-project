@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/models/hotel';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-hotels',
@@ -13,7 +14,7 @@ export class AllHotelsComponent implements OnInit {
   loading: boolean = false;
   deleting: boolean = false;
 
-  constructor(private hService: AdminHotelService) {
+  constructor(private hService: AdminHotelService, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,6 +33,11 @@ export class AllHotelsComponent implements OnInit {
     }).finally(() => {
       this.deleting = false;
     });
+  }
+
+  editButtonClick(hotelId: string){
+    this.router.navigate(['/admin/hoteles', hotelId, 'editar']);
+    console.log(hotelId);
   }
 
   getHotelsFromService() {

@@ -1,0 +1,25 @@
+<div class="table-section-horizontal card">
+    <div class="card-brand" [ngStyle]="{ 'background-image': 'url('+category.img+')' }">
+    </div>
+    <div class="card-body">
+        <div class="card-body-title">
+            <a [routerLink]="['/category', category.$key]"><h1>{{category.name}}</h1></a>
+        </div>
+        <div class="card-body-content">
+            <div class="box-lg">
+               <!-- <h2>Descripción</h2> -->
+                 <p>{{category.description}}</p>
+            </div>
+            
+        </div>
+        
+        <div class="card-body-footer">
+            <div class="box-sm">
+                <a  [routerLink]="['/category', category.$key]" target="_blank" class="btn btn-primary" class="btn btn-primary btnMover">Ver Estados </a>
+            </div>
+        </div>   
+         
+    </div>
+
+
+</div>

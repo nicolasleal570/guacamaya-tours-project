@@ -1,0 +1,22 @@
+<app-alternative-header title="Estados" subtitle="de Venezuela" background="assets/img/principal.jpg">
+</app-alternative-header>
+
+<div class="section wrap">
+    <!-- <app-titulo title="Estados Disponibles" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, consequuntur sunt autem nam
+    asperiores amet necessitatibus ipsa cum perferendis non veritatis optio sequi totam"></app-titulo> -->
+
+    <ng-container *ngIf="loading; then loader; else noLoader"></ng-container>
+
+    <ng-template #loader>
+        <app-big-loader></app-big-loader>
+    </ng-template>
+
+    <ng-template #noLoader>
+        <ng-container *ngFor="let estado of estados">
+            <app-estado-card [estado]="estado"></app-estado-card>
+        </ng-container>
+    </ng-template>
+
+
+
+</div>

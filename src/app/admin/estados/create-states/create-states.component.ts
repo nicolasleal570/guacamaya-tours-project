@@ -23,6 +23,7 @@ export class CreateStatesComponent implements OnInit {
   ngOnInit() {
     this.createStateForm = this.fb.group({
       name: [''],
+      description: [''],
       imgBanner: [''],
     });
 
@@ -41,6 +42,7 @@ export class CreateStatesComponent implements OnInit {
       const state: State = {
         $key: estado.payload.id,
         name: estado.payload.get('name'),
+        description: estado.payload.get('description'),
         image: estado.payload.get('image'),
       };
       this.editEstado(state);
@@ -51,6 +53,7 @@ export class CreateStatesComponent implements OnInit {
     this.editState = estado;
     this.createStateForm.patchValue({
       name: estado.name,
+      description: estado.description,
       imgBanner: estado.image,
     });
   }
@@ -59,6 +62,7 @@ export class CreateStatesComponent implements OnInit {
 
     const state: State = {
       name: this.createStateForm.value.name,
+      description: this.createStateForm.value.description,
       image: this.createStateForm.value.imgBanner,
     };
 

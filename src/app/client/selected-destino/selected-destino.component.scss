@@ -1,163 +1,6 @@
 @import '_variables';
 @import '_functions';
 
-.header {
-    display: block;
-    width: 100%;
-    height: 100vh;
-    position: relative;
-
-    .header-callToAction {
-        position: absolute;
-        z-index: 9;
-        width: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        &.secondary-CallToAction {
-            display: flex;
-            flex-direction: column;
-            padding: 0 100px;
-
-            /**
-            * PHONE
-            */
-            @media (max-width: 480px) {
-                width: 100%;
-                padding: 20px;
-            }
-
-            h1 {
-                text-align: left;
-                margin-left: 0;
-            }
-
-            .btn-callToAction {
-                margin-left: 0;
-                &.subHeader {
-                    justify-content: flex-start;
-                }
-            }
-        }
-
-        /**
-        * PHONE
-        */
-        @media (max-width: 480px) {
-            width: 100%;
-            margin: 0 auto;
-            top: 55%;
-        }
-
-        h1 {
-            display: block;
-            position: relative;
-            width: 80%;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 100px;
-            font-family: 'Anton';
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #fff;
-            margin-bottom: 50px;
-
-            /**
-            * PHONE
-            */
-            @media (max-width: 480px) {
-                width: 100%;
-            }
-
-            span {
-                font-size: 40px;
-                letter-spacing: 0;
-                font-family: $fontFamily;
-                font-weight: 300;
-
-                /**
-                * PHONE
-                */
-                @media (max-width: 480px) {
-                    display: block;
-                    width: 100%;
-                }
-            }
-
-            &.subtitle {
-                &::before {
-                    content: '';
-                    position: absolute;
-                    display: block;
-                    width: 85%;
-                    height: 2px;
-                    background: $primaryColor;
-                    bottom: 0;
-                    left: 0;
-                }
-            }
-
-            /**
-            * PHONE
-            */
-            @media (max-width: 480px) {
-                font-size: 50px;
-                letter-spacing: 0px;
-            }
-
-        }
-
-        .btn-callToAction {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 450px;
-            // background: #ccc;
-            margin-right: auto;
-            margin-left: auto;
-
-            &.subHeader {
-                justify-content: flex-end;
-                width: 80%;
-            }
-
-            /**
-            * PHONE
-            */
-            @media (max-width: 480px) {
-                height: auto;
-                width: 100%;
-            }
-        }
-
-    }
-
-    .header-background {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        background-attachment: fixed;
-        background-size: cover;
-
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: $cardGradient;
-        }
-    }
-}
 .section {
     display: block;
     width: 100%;
@@ -193,6 +36,13 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
             column-gap: 16px;
             grid-auto-flow: dense;
+
+            /**
+            * PHONE
+            */
+            @media (max-width: 480px) {
+                grid-template-columns: 1fr 1fr;
+            }
 
             .container-gallery {
                 overflow: hidden;

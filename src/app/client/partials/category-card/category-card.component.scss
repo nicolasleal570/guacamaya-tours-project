@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 300px 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-
+    
 
     &:last-child {
         margin-bottom: 0;
@@ -47,7 +47,8 @@
         * PHONE
         */
         @media (max-width: 480px) {
-            width: 100%;
+            grid-column-start: auto;
+            grid-column-end: auto;
         }
 
         img {
@@ -72,8 +73,8 @@
         background: $secondaryColor;
         padding: 20px 40px;
         color: #fff;
-
-
+        
+        
 
         /**
         * PHONE
@@ -126,7 +127,7 @@
             display: flex;
             flex-direction: row;
             min-height: 100px;
-            padding: 10px 0;
+            padding:10px 0;
 
             /**
             * PHONE
@@ -135,44 +136,28 @@
                 flex-direction: column;
                 width: 100%;
             }
-        }
+        }        
+        
 
-        &-footer {
+    }
+    .card-footer{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        padding: 15px 0;
+
+        .box-sm{
             display: flex;
-            padding: 15px 0;
-            justify-content: right;
+            width: 100%;
+            
 
-            .box-sm {
-                display: none;
-                width: 100%;
-                // justify-content: right;
+            .btnMover{
+                
+                justify-content: flex-end;
 
-                /**
-                * PHONE
-                */
-                @media (max-width: 480px) {
-                    display: block;
-                }
-
-                .btnMover {
-                    float: right;
-                }
             }
         }
-
     }
-
-    .card-footer {
-        display: block;
-        /**
-        * PHONE
-        */
-        @media (max-width: 480px) {
-            display: none;            
-        }
-    }
-
-
-
+    
+    
 
 }
