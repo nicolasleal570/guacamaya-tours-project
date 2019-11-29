@@ -16,10 +16,34 @@
         margin: auto;
         display: block;
 
+        /**
+        * PHONE
+        */
+        @media (max-width: 1199px) {
+            width: 100%;
+        }
+
         h1 {
             text-align: left;
             padding: 1%;
             color: white;
+        }
+    }
+
+    .noReservaciones{
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            color: #fff;
+        }
+
+        a.btn {
+            margin-top: 50px;
         }
     }
 
@@ -36,6 +60,13 @@
         .paypal {
             padding-top: 50px;
             padding-left: 20%;
+
+            /**
+            * PHONE
+            */
+            @media (max-width: 1199px) {
+                width: 100%;
+            }
         }
 
         .header-callToAction {
@@ -49,6 +80,13 @@
         // transform: translate(-50%, -50%);
         margin: auto;
         margin-bottom: 3%;
+
+        /**
+        * PHONE
+        */
+        @media (max-width: 1199px) {
+            width: 100%;
+        }
 
 
         .reservation-card {
@@ -74,12 +112,16 @@
 
             .btn-delete {
                 display: flex;
-                background-color: red;
-                width: 4%;
-                height: 3%;
-                border-radius: 10%;
-                justify-content: center;
+                width: 100%;
+                justify-content: flex-start;
                 align-content: center; 
+
+                /**
+                * PHONE
+                */
+                @media (max-width: 1199px) {
+                    width: 100%;
+                }
 
                 h3 {
                     padding: 20%;

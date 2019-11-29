@@ -314,6 +314,7 @@ button:disabled {
 
                 th {
                     padding: 10px;
+                    overflow-wrap: break-word;
                 }
             }
 
@@ -326,6 +327,7 @@ button:disabled {
 
                     td {
                         padding: 5px 10px;
+                        overflow-wrap: break-word;
 
                         &>a.btn {
                             margin: 0 5px;

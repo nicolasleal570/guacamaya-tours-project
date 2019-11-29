@@ -68,8 +68,4 @@ export class SelectedHotelComponent implements OnInit {
 
   }
 
-  editButtonClick(id: string){
-    this.router.navigate(['/itinerario', id, 'hotel']);
-  }
-
 }

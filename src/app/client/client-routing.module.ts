@@ -28,10 +28,10 @@ const routes: Routes = [
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
       { path: 'itinerario/:idRoom/hotel', component: CreateItinerarioComponent },
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
-      { path: 'shopping/cart' , component: CartComponent },
+      { path: 'carrito' , component: CartComponent },
       { path: 'estados', component: EstadosComponent},
       { path: 'estados/:stateId', component: DestinoComponent},
-      { path: 'category', component: CategoryComponent},
+      { path: 'categoria', component: CategoryComponent},
     ]
   },
   { path: 'login', component: LoginComponent },

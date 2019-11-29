@@ -6,6 +6,13 @@
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 16px;
 
+    /**
+    * PHONE
+    */
+    @media (max-width: 1199px) {
+        grid-template-columns: 1fr;
+    }
+
     .card {
         position: relative;
         background: $darkColor;
