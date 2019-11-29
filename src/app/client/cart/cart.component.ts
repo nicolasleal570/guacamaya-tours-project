@@ -65,19 +65,19 @@ export class CartComponent implements OnInit {
 
   private initConfig(): void {
     this.payPalConfig = {
-      currency: 'EUR',
-      clientId: 'sb',
+      currency: 'USD',
+      clientId: 'AQdYWEj0ta_B2XjlZv9W38hBf7l67pjMyMM3g5u8OKmXa154gZwnq-WKkW1_bWwFwOTfWc4fH8bZAXLy',
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [
           {
             amount: {
-              currency_code: 'EUR',
-              value: '9.99',
+              currency_code: 'USD',
+              value: this.total.toString(),
               breakdown: {
                 item_total: {
-                  currency_code: 'EUR',
-                  value: '9.99'
+                  currency_code: 'USD',
+                  value: this.total.toString(),
                 }
               }
             },
@@ -87,8 +87,8 @@ export class CartComponent implements OnInit {
                 quantity: '1',
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
-                  currency_code: 'EUR',
-                  value: '9.99',
+                  currency_code: 'USD',
+                  value: this.total.toString(),
                 },
               }
             ]
