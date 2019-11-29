@@ -135,12 +135,43 @@
     }
 }
 
+.actividad {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    background-color: $secondaryColor;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+    li {
+        padding-top: 10px;
+    }
+
+    h2 {
+        font-size: 40px;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #fff;
+        text-align: center;
+        font-weight: 300;
+    }
+}
+
 .section {
     display: block;
     width: 100%;
     height: auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 
     /**
     * PHONE
@@ -148,6 +179,15 @@
     @media (max-width: 480px) {
         padding-top: 50px;
         padding-bottom: 50px;
+    }
+
+    .secsionsita {
+        display: flex;
+        justify-content: space-around;
+        background-clip: content-box;
+        background: $secondaryColor;
+        -moz-box-shadow: inset 0 0 0 0px $secondaryColor;
+	-webkit-box-shadow: inset 0 0 0 10px $secondaryColor;
     }
 
     .section-body {

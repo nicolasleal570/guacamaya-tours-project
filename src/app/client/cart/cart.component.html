@@ -19,8 +19,8 @@
                     <h1>{{getHotelName(i)}} - {{getDestinoName(i)}}</h1>
                     <div class="reservation-card-text">
                         {{getHabitaciones(reservacion) | json}}
-                        <div class="habs" *ngFor="let hab of getHabitaciones(i)">
-                            <p>{{hab.name}}</p>
+                        <div class="habs" *ngFor="let hab of getHabitaciones(reservacion)">
+                            <h3>{{hab.name}}</h3>
                         </div>
                         <h3>Habitaciones: {{reservacion.numberOfHabs}}</h3>
                         <h3>Check-In: {{reservacion.checkInDays}} / {{reservacion.checkInMonth}} /

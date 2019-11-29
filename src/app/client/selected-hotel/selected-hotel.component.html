@@ -14,35 +14,32 @@
         <div class="section-body">
             <div class="gallery">
                 <div class="gallery-img-control" *ngFor="let foto of galeria">
-                    <img [src]="foto.path" alt="Foto 1">    
+                    <img [src]="foto.path" alt="Foto 1">
                 </div>
             </div>
         </div>
     </section>
     <!-- FIN GALERIA DE FOTOS -->
     <!-- SERVICIOS -->
-    <section class="secton wrap">
-        <app-titulo title="Actividades y Servicios"></app-titulo>
-        <div>
-            <div>
-                <h2>Actividades</h2>
-                <ul>
-                    <li *ngFor="let actividad of actividades">
-                        {{actividad}}
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h2>Servicios</h2>
-                <ul>
-                    <li *ngFor="let servicio of servicios">
-                        {{servicio}}
-                    </li>
-                </ul>
-            </div>
+
+    <div class="actividad">
+        <div class="box-lg">
+            <h2>Servicios</h2>
+            <ul style="list-style-type:none">
+                <li *ngFor="let service of hotel.services">
+                    <p>{{ service.path }}</p>
+                </li>
+            </ul>
         </div>
-    
-        </section>
+        <div class="box-lg">
+            <h2>Actividades</h2>
+            <ul style="list-style-type:none">
+                <li *ngFor="let activity of hotel.activities">
+                    <p>{{ activity.path }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
     <!-- FIN DE SERVICIOS -->
     <!-- HABITACIONES -->
     <section class="section wrap">
@@ -55,9 +52,10 @@
                         <div class="card-footer">
                             <h2>{{hab.name}}</h2>
                             <p>{{hab.maxPersons}} personas</p>
-                            <p>$ {{hab.pricePerNight}}</p>
+                            <p>$ {{hab.pricePerNight}} / por noche</p>
                         </div>
-                        <div class="card-background" [ngStyle]="{'background-image': 'url('+hab.imgPresentation+')'}"></div>
+                        <div class="card-background" [ngStyle]="{'background-image': 'url('+hab.imgPresentation+')'}">
+                        </div>
                     </a>
                 </ng-container>
             </div>

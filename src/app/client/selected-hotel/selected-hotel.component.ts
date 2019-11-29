@@ -18,6 +18,8 @@ export class SelectedHotelComponent implements OnInit {
   loading: boolean = false;
   habs: Room[] = [];
   galeria: string[] = [];
+  actividades: string[] = [];
+  servicios: string[] = [];
 
   constructor(private route: ActivatedRoute, private hotelService: AdminHotelService, private roomService: AdminRoomsService, private router: Router) {
     this.route.paramMap.subscribe(params => {
@@ -55,6 +57,8 @@ export class SelectedHotelComponent implements OnInit {
       } as Hotel;
       this.loading = false;
       this.galeria = this.hotel.gallery;
+      this.actividades = this.hotel.activities;
+      this.servicios = this.hotel.services;
 
     });
   }
