@@ -22,6 +22,7 @@ export class SelectedHotelComponent implements OnInit {
   galeria: string[] = [];
   actividades: string[] = [];
   servicios: string[] = [];
+  darkColor: boolean = true;
 
   constructor(private route: ActivatedRoute, private hotelService: AdminHotelService, private roomService: AdminRoomsService, private router: Router) {
     this.route.paramMap.subscribe(params => {

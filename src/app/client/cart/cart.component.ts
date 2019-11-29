@@ -31,6 +31,9 @@ export class CartComponent implements OnInit {
   roomsLoading: boolean = false;
   showSuccess: boolean = false;
 
+  showCancel: boolean = false;
+  showError: boolean = false;
+
   constructor(private hotelSV: AdminHotelService, private destinoSV: AdminDestinoService, private roomSV: AdminRoomsService) {
 
   }
@@ -66,34 +69,30 @@ export class CartComponent implements OnInit {
   private initConfig(): void {
     this.payPalConfig = {
       currency: 'USD',
-      clientId: 'AQdYWEj0ta_B2XjlZv9W38hBf7l67pjMyMM3g5u8OKmXa154gZwnq-WKkW1_bWwFwOTfWc4fH8bZAXLy',
+      clientId: 'sb',
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
-        purchase_units: [
-          {
-            amount: {
+        purchase_units: [{
+          amount: {
+            currency_code: 'USD',
+            value: this.total.toString(),
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: this.total.toString()
+              }
+            }
+          },
+          items: [{
+            name: 'Enterprise Subscription',
+            quantity: '1',
+            category: 'DIGITAL_GOODS',
+            unit_amount: {
               currency_code: 'USD',
               value: this.total.toString(),
-              breakdown: {
-                item_total: {
-                  currency_code: 'USD',
-                  value: this.total.toString(),
-                }
-              }
             },
-            items: [
-              {
-                name: 'Enterprise Subscription',
-                quantity: '1',
-                category: 'DIGITAL_GOODS',
-                unit_amount: {
-                  currency_code: 'USD',
-                  value: this.total.toString(),
-                },
-              }
-            ]
-          }
-        ]
+          }]
+        }]
       },
       advanced: {
         commit: 'true'
@@ -107,6 +106,7 @@ export class CartComponent implements OnInit {
         actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
+
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
@@ -114,14 +114,17 @@ export class CartComponent implements OnInit {
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
+        this.showCancel = true;
+
       },
       onError: err => {
         console.log('OnError', err);
+        this.showError = true;
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
-      },
-    };
+      }
+    }
   }
 
   getHotelsFromService(item: Itinerario) {

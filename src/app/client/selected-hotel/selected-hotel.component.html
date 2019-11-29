@@ -59,7 +59,7 @@
         <div class="section-body">
             <div class="table-section-vertical">
                 <ng-container *ngFor="let hab of habs">
-                    <a (click)='editButtonClick(hab.$key)' class="card" *ngIf="hab.available > 0">
+                    <a class="card" *ngIf="hab.available > 0">
                         <div class="card-footer">
                             <h2>{{hab.name}}</h2>
                             <p>{{hab.maxPersons}} personas</p>
