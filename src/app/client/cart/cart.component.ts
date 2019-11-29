@@ -29,9 +29,9 @@ export class CartComponent implements OnInit {
   destLoading: boolean = false;
   hotelsLoading: boolean = false;
   roomsLoading: boolean = false;
-  showSuccess: boolean = false; 
-  
-  constructor(private hotelSV: AdminHotelService, private destinoSV: AdminDestinoService, private roomSV: AdminRoomsService) { 
+  showSuccess: boolean = false;
+
+  constructor(private hotelSV: AdminHotelService, private destinoSV: AdminDestinoService, private roomSV: AdminRoomsService) {
 
   }
 
@@ -48,7 +48,7 @@ export class CartComponent implements OnInit {
       this.reservaciones = JSON.parse(localStorage.getItem('cart')) as Itinerario[];
     }
 
-    this.reservaciones.forEach((item: Itinerario, index)=>{
+    this.reservaciones.forEach((item: Itinerario, index) => {
       this.numReservaciones = this.numReservaciones + 1;
       this.total = this.total + item.totalPrice;
 
@@ -65,66 +65,66 @@ export class CartComponent implements OnInit {
 
   private initConfig(): void {
     this.payPalConfig = {
-    currency: 'USD',
-    clientId: 'AQdYWEj0ta_B2XjlZv9W38hBf7l67pjMyMM3g5u8OKmXa154gZwnq-WKkW1_bWwFwOTfWc4fH8bZAXLy',
-    createOrderOnClient: (data) => <ICreateOrderRequest>{
-      intent: 'CAPTURE',
-      purchase_units: [
-        {
-          amount: {
-            currency_code: 'USD',
-            value: 'this.total',
-            breakdown: {
-              item_total: {
-                currency_code: 'USD',
-                value: 'this.total'
+      currency: 'EUR',
+      clientId: 'sb',
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent: 'CAPTURE',
+        purchase_units: [
+          {
+            amount: {
+              currency_code: 'EUR',
+              value: '9.99',
+              breakdown: {
+                item_total: {
+                  currency_code: 'EUR',
+                  value: '9.99'
+                }
               }
-            }
-          },
-          items: [
-            {
-              name: 'Itinerario de viaje',
-              quantity: '1',
-              category: 'DIGITAL_GOODS',
-              unit_amount: {
-                currency_code: 'USD',
-                value: 'this.total',
-              },
-            }
-          ]
-        }
-      ]
-    },
-    advanced: {
-      commit: 'true'
-    },
-    style: {
-      label: 'paypal',
-      layout: 'vertical'
-    },
-    onApprove: (data, actions) => {
-      console.log('onApprove - transaction was approved, but not authorized', data, actions);
-      actions.order.get().then(details => {
-        console.log('onApprove - you can get full order details inside onApprove: ', details);
-      });
-    },
-    onClientAuthorization: (data) => {
-      console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-      this.showSuccess = true;
-    },
-    onCancel: (data, actions) => {
-      console.log('OnCancel', data, actions);
-    },
-    onError: err => {
-      console.log('OnError', err);
-    },
-    onClick: (data, actions) => {
-      console.log('onClick', data, actions);
-    },
-  };
+            },
+            items: [
+              {
+                name: 'Enterprise Subscription',
+                quantity: '1',
+                category: 'DIGITAL_GOODS',
+                unit_amount: {
+                  currency_code: 'EUR',
+                  value: '9.99',
+                },
+              }
+            ]
+          }
+        ]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical'
+      },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        this.showSuccess = true;
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: err => {
+        console.log('OnError', err);
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      },
+    };
   }
 
-  getHotelsFromService(item: Itinerario){
+  getHotelsFromService(item: Itinerario) {
     this.hotelsLoading = true;
     this.hotelSV.getHotelById(item.hotelId).subscribe(item => {
       const hotel: Hotel = {
@@ -137,7 +137,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  getDestinosFromService(item: Itinerario){
+  getDestinosFromService(item: Itinerario) {
     this.destLoading = true;
     this.destinoSV.getDestinoById(item.destinoId).subscribe(item => {
       const destino: Destino = {
@@ -150,7 +150,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  getRoomsFromService(item: Itinerario, index){
+  getRoomsFromService(item: Itinerario, index) {
     this.roomsLoading = true;
     this.roomSV.getRoomById(item.habs[index].habType).subscribe(hab => {
       const habi: Room = {
@@ -172,23 +172,23 @@ export class CartComponent implements OnInit {
   }
 
   getHabitaciones(reservacion: Itinerario) {
-   reservacion.habs.forEach((item) => {
-     this.roomSV.getRoomById(item.habType).subscribe(obj => {
-       const hab: Room = {
-         $key: obj.payload.id,
-         ...obj.payload.data()
-       }
+    reservacion.habs.forEach((item) => {
+      this.roomSV.getRoomById(item.habType).subscribe(obj => {
+        const hab: Room = {
+          $key: obj.payload.id,
+          ...obj.payload.data()
+        }
 
-       this.habitaciones.push(hab);
-     });
-   });
+        this.habitaciones.push(hab);
+      });
+    });
   }
- 
+
   eliminarReserva(index: number) {
     this.total = this.total - this.reservaciones[index].totalPrice;
     this.reservaciones[index] = null;
     for (let i = index; i < this.numReservaciones; i++) {
-      this.reservaciones[index] = this.reservaciones[index+1]
+      this.reservaciones[index] = this.reservaciones[index + 1]
     }
     this.reservaciones.splice(this.numReservaciones, 1);
     this.numReservaciones = this.numReservaciones - 1;
