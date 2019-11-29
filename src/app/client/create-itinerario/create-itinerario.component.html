@@ -244,9 +244,9 @@
         <!-- FIN REALIZAR RESERVA -->
 
         <!-- BOTON PARA ENVIAR -->
-        <div class="card">
+        <div class="card" *ngIf="numberOfHabs > 0">
             <div class="card-body">
-                <button type="submit" class="btn btn-primary btn-block" *ngIf="numberOfHabs > 0">
+                <button type="submit" class="btn btn-primary btn-block">
                     Enviar
                 </button>
             </div>

@@ -1,8 +1,5 @@
 <header class="header">
     <div class="cart">
-        <div class="saludo">
-            <h1>Estas son tus reservaciones</h1>
-        </div>
 
         <ng-container *ngIf="hotelsLoading || destLoading || roomsLoading; then loading; else noLoading"></ng-container>
 
@@ -11,37 +8,53 @@
         </ng-template>
 
         <ng-template #noLoading>
-            <div class="header-callToAction" *ngFor="let reservacion of reservaciones; let i = index">
-                <div class="reservation-card">
-                    <div class="btn-delete">
-                        <h3> <i class="fas fa-times" (click)="eliminarReserva(i)"></i> </h3>
-                    </div>
-                    <h1>{{getHotelName(i)}} - {{getDestinoName(i)}}</h1>
-                    <div class="reservation-card-text">
-                        {{getHabitaciones(reservacion) | json}}
-                        <div class="habs" *ngFor="let hab of getHabitaciones(reservacion)">
-                            <h3>{{hab.name}}</h3>
+            <ng-container *ngIf="reservaciones.length > 0; then hayReservaciones; else noReservaciones"></ng-container>
+            <ng-template #hayReservaciones>
+                <div class="saludo">
+                    <h1>Estas son tus reservaciones</h1>
+                </div>
+                <div class="header-callToAction" *ngFor="let reservacion of reservaciones; let i = index">
+                    <div class="reservation-card">
+                        <div class="btn-delete">
+                            <button class="btn btn-primary btn-danger" (click)="eliminarReserva(i)">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
-                        <h3>Habitaciones: {{reservacion.numberOfHabs}}</h3>
-                        <h3>Check-In: {{reservacion.checkInDays}} / {{reservacion.checkInMonth}} /
-                            {{reservacion.checkInYear}}</h3>
-                        <h3>Check-Out: {{reservacion.checkOutDays}} / {{reservacion.checkOutMonth}} /
-                            {{reservacion.checkOutYear}}</h3>
+                        <h1>{{getHotelName(i)}} - {{getDestinoName(i)}}</h1>
+                        <div class="reservation-card-text">
+                            {{getHabitaciones(reservacion) | json}}
+                            <div class="habs" *ngFor="let hab of getHabitaciones(reservacion)">
+                                <h3>{{hab.name}}</h3>
+                            </div>
+                            <h3>Habitaciones: {{reservacion.numberOfHabs}}</h3>
+                            <h3>Check-In: {{reservacion.checkInDays}} / {{reservacion.checkInMonth}} /
+                                {{reservacion.checkInYear}}</h3>
+                            <h3>Check-Out: {{reservacion.checkOutDays}} / {{reservacion.checkOutMonth}} /
+                                {{reservacion.checkOutYear}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="subtotal">
-                    <h2>sub-total {{reservacion.totalPrice}}</h2>
-                </div>
+                    <div class="subtotal">
+                        <h2>sub-total {{reservacion.totalPrice}}</h2>
+                    </div>
 
-            </div>
-            <div class="total">
-                <h1>Total {{total}}</h1>
-            </div>
+                </div>
+                <div class="total">
+                    <h1>Total {{total}}</h1>
+                </div>
+                <div class="paypal">
+                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                </div>
+            </ng-template>
+
+            <ng-template #noReservaciones>
+                <div class="noReservaciones">
+                    <h1>No hay reservaciones aún</h1>
+                    <a routerLink="/itinerario/crear" class="btn btn-primary">Crear Reservaciones</a>
+                </div>
+            </ng-template>
+
 
         </ng-template>
-        <div class="paypal">
-            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-        </div>
 
     </div>
 
