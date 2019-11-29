@@ -25,8 +25,9 @@ export class CategoryComponent implements OnInit {
         const category: Category = {
           $key: item.payload.doc.id,
           ...item.payload.doc.data()
-        };
 
+        };
+        console.log(category);
 
         return category;
 
