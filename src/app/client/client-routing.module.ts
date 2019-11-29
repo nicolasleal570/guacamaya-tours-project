@@ -11,6 +11,7 @@ import { ShowItinerarioComponent } from './show-itinerario/show-itinerario.compo
 import { CreateItinerarioComponent } from './create-itinerario/create-itinerario.component';
 import { LoginComponent } from './login/login.component';
 import { EstadosComponent } from './estados/estados.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -26,7 +27,9 @@ const routes: Routes = [
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
       { path: 'estados', component: EstadosComponent},
-      { path: 'estados/:id', component: EstadosComponent}
+      { path: 'estados/:id', component: EstadosComponent},
+      { path: 'category', component: CategoryComponent},
+
     ]
   },
   { path: 'login', component: LoginComponent },

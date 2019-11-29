@@ -31,6 +31,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BigLoaderComponent } from './partials/big-loader/big-loader.component';
 import { EstadosComponent } from './estados/estados.component';
 import { EstadoCardComponent } from './partials/estado-card/estado-card.component';
+import { CategoryComponent } from './category/category.component';
+import { CategoryCardComponent } from './partials/category-card/category-card.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { EstadoCardComponent } from './partials/estado-card/estado-card.componen
     LoginComponent,
     BigLoaderComponent,
     EstadosComponent,
-    EstadoCardComponent
+    EstadoCardComponent,
+    CategoryComponent,
+    CategoryCardComponent
+
   ],
   imports: [
     CommonModule,

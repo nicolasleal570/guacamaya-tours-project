@@ -6,6 +6,9 @@ import { Category } from '../models/category';
   providedIn: 'root'
 })
 export class AdminCategoryService {
+  getCategories() {
+    throw new Error("Method not implemented.");
+  }
 
   private stateCollection: AngularFirestoreCollection<Category>;
 

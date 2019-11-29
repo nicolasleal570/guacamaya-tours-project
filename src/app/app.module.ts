@@ -11,9 +11,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { FormsModule} from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { FormsModule} from '@angular/forms';
     AngularFireAuthModule,
     AngularFireFunctionsModule,
     FormsModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
