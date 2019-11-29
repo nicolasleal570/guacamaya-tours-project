@@ -10,21 +10,19 @@ export class SearchByStatePipe implements PipeTransform {
 
     if (!stateId && !categoryId) return destinos;
 
-    if (stateId !== '' && stateId) {
+    if (stateId && !categoryId) {
       return destinos.filter(item => {
         return item.stateId === stateId;
       });
     } else {
-      if (categoryId !== '' && !categoryId) {
+      if (categoryId && !stateId) {
         return destinos.filter(item => {
           return item.categoryId === categoryId;
         });
       } else {
-        if (stateId !== '' && stateId && categoryId !== '' && categoryId) {
-          return destinos.filter(item => {
-            return item.stateId === stateId && item.categoryId === categoryId;
-          });
-        }
+        return destinos.filter(item => {
+          return item.stateId === stateId && item.categoryId === categoryId;
+        });
       }
     }
   }
