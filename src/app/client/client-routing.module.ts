@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'hoteles', component: HotelesComponent },
       { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
+      { path: 'itinerario/:idRoom/hotel', component: CreateItinerarioComponent },
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
       { path: 'shopping/cart' , component: CartComponent },
     ]

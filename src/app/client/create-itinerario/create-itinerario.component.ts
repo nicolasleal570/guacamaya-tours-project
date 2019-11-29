@@ -7,7 +7,7 @@ import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 import { Destino } from 'src/app/models/destino';
 import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { Itinerario } from 'src/app/models/itinerario';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -29,9 +29,10 @@ export class CreateItinerarioComponent implements OnInit {
   destinosLoading: boolean = false;
   hotelsLoading: boolean = false;
   habsLoading: boolean = false;
+  editarRoom: Room = null;
 
   constructor(private fb: FormBuilder, private destinoSV: AdminDestinoService,
-    private hotelService: AdminHotelService, private roomSV: AdminRoomsService) {
+    private hotelService: AdminHotelService, private roomSV: AdminRoomsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -53,6 +54,32 @@ export class CreateItinerarioComponent implements OnInit {
 
 
     this.getDestinosFromService();
+
+    this.route.paramMap.subscribe(params => {
+      const roomId = params.get('idRoom');
+      if (roomId) {
+        this.getRoom(roomId);
+      }
+    });
+  }
+
+  getRoom(id: string) {
+    this.roomSV.getRoomById(id).subscribe(habitacion => {
+      const room: Room = {
+        $key: habitacion.payload.id,
+        name: habitacion.payload.data.name,
+        ...habitacion.payload.data(),
+      };
+      this.hotelService.getHotelById(room.hotelId).subscribe(hotels => {
+        const hotel: Hotel = {
+          $key: hotels.payload.id,
+          ...hotels.payload.data(),
+        };this.editRoom(room, hotel); 
+      }); 
+      
+    }, err => console.log(err));
+
+    
   }
 
   getDestinosFromService() {
@@ -72,6 +99,20 @@ export class CreateItinerarioComponent implements OnInit {
       this.destinosLoading = false;
 
     });
+  }
+
+  editRoom(habitacion: Room, hotel: Hotel) {
+    this.editarRoom = habitacion;
+    console.log(habitacion);
+
+    // SE LLENAN LOS CAMPOS NORMALES
+    this.formItinerario.patchValue({
+      hotelId: habitacion.hotelId,
+      habs: habitacion.$key,
+      destinoId: hotel.destinoId,
+      destinoStateId: hotel.stateId,
+    });
+
   }
 
   getHotelsFromService() {

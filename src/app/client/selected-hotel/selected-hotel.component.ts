@@ -4,6 +4,7 @@ import { AdminHotelService } from 'src/app/services/admin-hotel.service';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { Hotel } from 'src/app/models/hotel';
 import { Room } from 'src/app/models/room';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-selected-hotel',
@@ -18,7 +19,7 @@ export class SelectedHotelComponent implements OnInit {
   habs: Room[] = [];
   galeria: string[] = [];
 
-  constructor(private route: ActivatedRoute, private hotelService: AdminHotelService, private roomService: AdminRoomsService) {
+  constructor(private route: ActivatedRoute, private hotelService: AdminHotelService, private roomService: AdminRoomsService, private router: Router) {
     this.route.paramMap.subscribe(params => {
       this.hotelId = params.get('hotelId');
     });
@@ -56,6 +57,10 @@ export class SelectedHotelComponent implements OnInit {
       this.galeria = this.hotel.gallery;
 
     });
+  }
+
+  editButtonClick(id: string){
+    this.router.navigate(['/itinerario', id, 'hotel']);
   }
 
 }

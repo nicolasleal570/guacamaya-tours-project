@@ -7,6 +7,7 @@ import { AdminDestinoService } from 'src/app/services/admin-destino.service';
 import { Room } from 'src/app/models/room';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { SelectedRoom } from 'src/app/models/SelectedRoom';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 
 @Component({
@@ -16,11 +17,14 @@ import { SelectedRoom } from 'src/app/models/SelectedRoom';
 })
 export class CartComponent implements OnInit {
 
+  public payPalConfig?: IPayPalConfig;
+
   reservaciones: Itinerario[] = [];
   destinos: Destino[] = [];
   hoteles: Hotel[] = [];
   habitaciones: Room[] = [];
   total: number = 0;
+  numReservaciones: number = -1;
 
   destLoading: boolean = false;
   hotelsLoading: boolean = false;
@@ -31,6 +35,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+
 
     this.total = 0;
     this.reservaciones = [];
@@ -43,15 +48,79 @@ export class CartComponent implements OnInit {
     }
 
     this.reservaciones.forEach((item: Itinerario, index)=>{
-
+      this.numReservaciones = this.numReservaciones + 1;
       this.total = this.total + item.totalPrice;
 
       this.getHotelsFromService(item);
       this.getDestinosFromService(item);
       this.getRoomsFromService(item, index);
 
+
     });
 
+    this.initConfig();
+
+  }
+
+  private initConfig(): void {
+    this.payPalConfig = {
+    currency: 'USD',
+    clientId: 'AQdYWEj0ta_B2XjlZv9W38hBf7l67pjMyMM3g5u8OKmXa154gZwnq-WKkW1_bWwFwOTfWc4fH8bZAXLy',
+    createOrderOnClient: (data) => <ICreateOrderRequest>{
+      intent: 'CAPTURE',
+      purchase_units: [
+        {
+          amount: {
+            currency_code: 'USD',
+            value: 'this.total',
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: 'this.total'
+              }
+            }
+          },
+          items: [
+            {
+              name: 'Itinerario de viaje',
+              quantity: '1',
+              category: 'DIGITAL_GOODS',
+              unit_amount: {
+                currency_code: 'USD',
+                value: 'this.total',
+              },
+            }
+          ]
+        }
+      ]
+    },
+    advanced: {
+      commit: 'true'
+    },
+    style: {
+      label: 'paypal',
+      layout: 'vertical'
+    },
+    onApprove: (data, actions) => {
+      console.log('onApprove - transaction was approved, but not authorized', data, actions);
+      actions.order.get().then(details => {
+        console.log('onApprove - you can get full order details inside onApprove: ', details);
+      });
+    },
+    onClientAuthorization: (data) => {
+      console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      this.showSuccess = true;
+    },
+    onCancel: (data, actions) => {
+      console.log('OnCancel', data, actions);
+    },
+    onError: err => {
+      console.log('OnError', err);
+    },
+    onClick: (data, actions) => {
+      console.log('onClick', data, actions);
+    },
+  };
   }
 
   getHotelsFromService(item: Itinerario){
@@ -114,10 +183,18 @@ export class CartComponent implements OnInit {
    });
   }
  
-  eliminarReserva(currentItem: string, index: number) {
-    // delete this.reservaciones[currentItem];
-    // localStorage.removeItem(currentItem);
-    // location.reload();
+  eliminarReserva(index: number) {
+    this.total = this.total - this.reservaciones[index].totalPrice;
+    this.reservaciones[index] = null;
+    for (let i = index; i < this.numReservaciones; i++) {
+      this.reservaciones[index] = this.reservaciones[index+1]
+    }
+    this.reservaciones.splice(this.numReservaciones, 1);
+    this.numReservaciones = this.numReservaciones - 1;
+    localStorage.clear;
+    localStorage.setItem('cart', JSON.stringify(this.reservaciones));
+    console.log(this.total);
+    window.location.reload();
   }
 
 }

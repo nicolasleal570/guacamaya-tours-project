@@ -493,7 +493,7 @@
 
 .section-title {
     display: block;
-    background: transparentize($color: $primaryColor, $amount: 0.4);
+    background: $primaryColor;
     padding: 20px 40px;
     color: white;
     border-top-left-radius: 3px;
