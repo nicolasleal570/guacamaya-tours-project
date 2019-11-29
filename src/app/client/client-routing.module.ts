@@ -12,6 +12,7 @@ import { CreateItinerarioComponent } from './create-itinerario/create-itinerario
 import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
 import { EstadosComponent } from './estados/estados.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,8 @@ const routes: Routes = [
       { path: 'shopping/cart' , component: CartComponent },
       { path: 'estados', component: EstadosComponent},
       { path: 'estados/:stateId', component: DestinoComponent}
+      { path: 'category', component: CategoryComponent},
+
     ]
   },
   { path: 'login', component: LoginComponent },
