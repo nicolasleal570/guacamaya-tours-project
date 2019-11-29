@@ -45,6 +45,13 @@ export class ContactComponent implements OnInit {
       console.log(item);
     });
 
+    this.contactForm.patchValue({
+      contactName: '',
+      contactAsunto: '',
+      contactEmail: '',
+      contactMessage: '',
+    });
+
   }
 
 
