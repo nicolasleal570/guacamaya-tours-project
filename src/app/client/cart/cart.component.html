@@ -20,7 +20,7 @@
                     <div class="reservation-card-text">
                         {{getHabitaciones(reservacion) | json}}
                         <div class="habs" *ngFor="let hab of getHabitaciones(reservacion)">
-                            <p>{{hab.name}}</p>
+                            <h3>{{hab.name}}</h3>
                         </div>
                         <h3>Habitaciones: {{reservacion.numberOfHabs}}</h3>
                         <h3>Check-In: {{reservacion.checkInDays}} / {{reservacion.checkInMonth}} /

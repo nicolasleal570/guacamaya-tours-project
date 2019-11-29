@@ -14,7 +14,7 @@
         <div class="section-body">
             <div class="gallery">
                 <div class="gallery-img-control" *ngFor="let foto of galeria">
-                    <img [src]="foto.path" alt="Foto 1">    
+                    <img [src]="foto.path" alt="Foto 1">
                 </div>
             </div>
         </div>
@@ -41,8 +41,15 @@
                 </ul>
             </div>
         </div>
-    
-        </section>
+        <div class="box-lg">
+            <h2>Actividades</h2>
+            <ul style="list-style-type:none">
+                <li *ngFor="let activity of hotel.activities">
+                    <p>{{ activity.path }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
     <!-- FIN DE SERVICIOS -->
     <!-- HABITACIONES -->
     <section class="section wrap">
@@ -55,9 +62,10 @@
                         <div class="card-footer">
                             <h2>{{hab.name}}</h2>
                             <p>{{hab.maxPersons}} personas</p>
-                            <p>$ {{hab.pricePerNight}}</p>
+                            <p>$ {{hab.pricePerNight}} / por noche</p>
                         </div>
-                        <div class="card-background" [ngStyle]="{'background-image': 'url('+hab.imgPresentation+')'}"></div>
+                        <div class="card-background" [ngStyle]="{'background-image': 'url('+hab.imgPresentation+')'}">
+                        </div>
                     </a>
                 </ng-container>
             </div>
