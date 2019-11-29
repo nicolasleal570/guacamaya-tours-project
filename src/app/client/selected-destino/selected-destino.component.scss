@@ -11,7 +11,7 @@
     /**
     * PHONE
     */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         padding-top: 50px;
         padding-bottom: 50px;
     }
@@ -40,7 +40,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 grid-template-columns: 1fr 1fr;
             }
 

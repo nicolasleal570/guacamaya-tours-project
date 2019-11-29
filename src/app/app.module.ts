@@ -10,11 +10,13 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { FormsModule} from '@angular/forms';
+import { Error404Component } from './partials/error404/error404.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    Error404Component,
 
   ],
   imports: [

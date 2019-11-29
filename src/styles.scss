@@ -34,7 +34,7 @@ body {
 /**
  * PHONE
 */
-@media (max-width: 480px) {
+@media (max-width: 1199px) {
     body {
         // background: violet;+
     }
@@ -79,7 +79,7 @@ select, input {
     /**
     * PHONE
     */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         width: 100%;
         margin: 0;
         padding-right: 20px;
@@ -125,7 +125,7 @@ button:disabled {
     /**
     * PHONE
     */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         padding: 8px;
         font-size: 13px;
         border-radius: 2px;
@@ -231,6 +231,13 @@ button:disabled {
 
     &.admin-box-sm {
         width: 480px;
+
+        /**
+        * PHONE
+        */
+        @media (max-width: 1199px) {
+            width: 100%;
+        }
     }
 
     .box-header {

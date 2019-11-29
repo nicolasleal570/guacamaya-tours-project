@@ -30,9 +30,8 @@ const routes: Routes = [
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
       { path: 'shopping/cart' , component: CartComponent },
       { path: 'estados', component: EstadosComponent},
-      { path: 'estados/:stateId', component: DestinoComponent}
+      { path: 'estados/:stateId', component: DestinoComponent},
       { path: 'category', component: CategoryComponent},
-
     ]
   },
   { path: 'login', component: LoginComponent },

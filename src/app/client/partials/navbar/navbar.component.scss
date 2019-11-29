@@ -16,7 +16,7 @@ nav.navbar-lg {
     /**
         * PHONE
         */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         display: none;
     }
 
@@ -106,7 +106,7 @@ nav.navbar-sm {
     /**
     * PHONE
     */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         display: block;
         position: fixed;
         z-index: 1000;

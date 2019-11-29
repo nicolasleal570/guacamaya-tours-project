@@ -34,7 +34,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 flex-direction: column;
             }
 
@@ -53,7 +53,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     width: 100%;
                     margin-bottom: 5px;
                 }
@@ -73,7 +73,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     margin-right: 0;
                 }
 
@@ -90,7 +90,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     min-height: 100px;
                 }
             }

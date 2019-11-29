@@ -18,7 +18,7 @@
     /**
     * PHONE
     */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         padding-top: 50px;
         padding-bottom: 50px;
     }
@@ -45,7 +45,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 grid-template-rows: repeat(4, 1fr);
                 grid-template-columns: 1fr;
                 row-gap: 16px;

@@ -1,2 +1,96 @@
-<p>dashboard works!</p>
+<div class="cards-wrapper">
 
+    <!-- HOTELES -->
+    <div class="card">
+        <ng-container *ngIf="hotelLoading; then hotelLoader; else noHotelLoader"></ng-container>
+        <ng-template #hotelLoader>
+            <div class="loader-center">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
+        <ng-template #noHotelLoader>
+            <div class="card-title">
+                <h2>Total de Hoteles:</h2>
+            </div>
+            <div class="card-body">
+                <p>{{hoteles.length}}</p>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <!-- DESTINOS -->
+    <div class="card">
+        <ng-container *ngIf="destLoading; then destinoLoading; else noDestLoading"></ng-container>
+        <ng-template #noDestLoading>
+            <div class="card-title">
+                <h2>Total de Destinos:</h2>
+            </div>
+            <div class="card-body">
+                <p>{{destinos.length}}</p>
+            </div>
+        </ng-template>
+        <ng-template #destinoLoading>
+            <div class="loader-center">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
+    </div>
+
+    <!-- HABITACIONES -->
+    <div class="card">
+        <ng-container *ngIf="habsLoading; then habLoading; else noHabsLoading"></ng-container>
+        <ng-template #habLoading>
+            <div class="loader-center">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
+        <ng-template #noHabsLoading>
+            <div class="card-title">
+                <h2>Total de Habitaciones:</h2>
+            </div>
+            <div class="card-body">
+                <p>{{habitaciones.length}}</p>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <!-- ESTADOS -->
+    <div class="card">
+        <ng-container *ngIf="stateLoading; then stateAreLoading; else nosStateLoading"></ng-container>
+        <ng-template #stateAreLoading>
+            <div class="loader-center">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
+        <ng-template #nosStateLoading>
+            <div class="card-title">
+                <h2>Total de Estados:</h2>
+            </div>
+            <div class="card-body">
+                <p>{{estados.length}}</p>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <!-- CATEGORIAS -->
+    <div class="card">
+        <ng-container *ngIf="catLoading; then categoryLoading; else nosCatLoading"></ng-container>
+        <ng-template #categoryLoading>
+            <div class="loader-center">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
+        <ng-template #nosCatLoading>
+            <div class="card-title">
+                <h2>Total de Categorías:</h2>
+            </div>
+            <div class="card-body">
+                <p>{{categories.length}}</p>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

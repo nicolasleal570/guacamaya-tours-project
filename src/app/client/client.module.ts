@@ -38,7 +38,6 @@ import { EstadoCardComponent } from './partials/estado-card/estado-card.componen
 import { CategoryComponent } from './category/category.component';
 import { CategoryCardComponent } from './partials/category-card/category-card.component';
 
-
 @NgModule({
   declarations: [
     HomePageComponent, HeaderComponent, ClientLayoutComponent,
@@ -62,8 +61,7 @@ import { CategoryCardComponent } from './partials/category-card/category-card.co
     EstadosComponent,
     EstadoCardComponent,
     CategoryComponent,
-    CategoryCardComponent
-
+    CategoryCardComponent,
   ],
   imports: [
     CommonModule,

@@ -16,7 +16,7 @@
     /**
     * PHONE
     */
-    @media (max-width: 480px) {
+    @media (max-width: 1199px) {
         grid-template-rows: 200px 1fr;
         grid-template-columns: 1fr;
     }
@@ -29,7 +29,7 @@
         /**
         * PHONE
         */
-        @media (max-width: 480px) {
+        @media (max-width: 1199px) {
             height: auto;
         }
     }
@@ -49,7 +49,7 @@
         /**
         * PHONE
         */
-        @media (max-width: 480px) {
+        @media (max-width: 1199px) {
             width: 100%;
         }
 
@@ -60,7 +60,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 width: 100%;
                 height: 100%;
             }
@@ -154,7 +154,7 @@
         /**
         * PHONE
         */
-        @media (max-width: 480px) {
+        @media (max-width: 1199px) {
             padding: 20px 15px;
             grid-column-start: auto;
             grid-column-end: auto;
@@ -167,7 +167,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 20px;
@@ -188,7 +188,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     height: auto;
                     text-align: center;
                     width: 100%;
@@ -201,7 +201,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     margin: auto;
                 }
 
@@ -239,7 +239,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 flex-direction: column;
                 width: 100%;
             }
@@ -250,7 +250,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     display: none;
                 }
 
@@ -261,7 +261,7 @@
                     /**
                     * PHONE
                     */
-                    @media (max-width: 480px) {
+                    @media (max-width: 1199px) {
                         text-align: center;
                     }
                 }
@@ -272,7 +272,7 @@
                     /**
                     * PHONE
                     */
-                    @media (max-width: 480px) {
+                    @media (max-width: 1199px) {
                         margin-bottom: 10px;
                     }
 
@@ -293,7 +293,7 @@
                 /**
                 * PHONE
                 */
-                @media (max-width: 480px) {
+                @media (max-width: 1199px) {
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
@@ -310,7 +310,7 @@
             /**
             * PHONE
             */
-            @media (max-width: 480px) {
+            @media (max-width: 1199px) {
                 display: none;
             }
 

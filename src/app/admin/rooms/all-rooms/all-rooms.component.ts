@@ -21,6 +21,8 @@ export class AllRoomsComponent implements OnInit {
   }
 
   getAllRooms(){
+    this.loading = true;
+    this.rooms = [];
     this.roomService.getRooms().subscribe(array => {
       this.rooms = array.map(item => {
         const room: Room = {
@@ -28,6 +30,7 @@ export class AllRoomsComponent implements OnInit {
           ...item.payload.doc.data()
         }
 
+        this.loading = false;
         return room;
       });
     });

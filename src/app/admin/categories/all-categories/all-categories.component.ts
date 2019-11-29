@@ -17,6 +17,7 @@ export class AllCategoriesComponent implements OnInit {
   constructor(private catService: AdminCategoryService , private router: Router) { }
 
   ngOnInit() {
+    this.loading = true;
     this.catService.getCategorys().subscribe(arr => {
       this.categories = arr.map(x => {
         const cat: Category = {
@@ -26,6 +27,7 @@ export class AllCategoriesComponent implements OnInit {
 
         return cat;
       });
+      this.loading = false;
     });
   }
 
