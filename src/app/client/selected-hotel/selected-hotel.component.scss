@@ -54,14 +54,14 @@
                 display: block;
                 position: relative;
                 width: 100%;
-                height: 400px;
+                height: 50vh;
 
                 .card-footer {
                     display: block;
                     position: absolute;
                     width: 100%;
                     bottom: 0;
-                    height: 100px;
+                    height: 200px;
                     z-index: 10;
                     // background: green;
 
@@ -315,14 +315,25 @@
         }
     }
 
+    agm-map {
+        height: 35vh;
+        width: 100%;
+      }
+
     .card-body {
         position: relative;
-        grid-column-start: 2;
-        grid-column-end: 5;
-        width: 100%;
+        // grid-column-start: 2;
+        // grid-column-end: 5;
+        width: 800px;
+        height: 35vh;
         background: $secondaryColor;
         padding: 20px 40px;
         color: #fff;
+        justify-content: space-around;
+        
+        li {
+            padding-top: 5px;
+        }
 
         /**
         * PHONE

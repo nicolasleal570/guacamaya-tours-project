@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
       { path: 'categoria/:categoryId', component: DestinoComponent },    
       { path: 'hoteles', component: HotelesComponent },
-      { path: 'hoteles/:stateId', component: HotelesComponent },
+      { path: 'hoteles/:stateId/estado', component: HotelesComponent },
       { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
       { path: 'itinerario/:idRoom/hotel', component: CreateItinerarioComponent },

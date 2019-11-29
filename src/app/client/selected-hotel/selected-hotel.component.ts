@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 })
 export class SelectedHotelComponent implements OnInit {
 
+  lat = 40.730610;
+  lng = -73.935242;
+
   hotel: Hotel;
   hotelId: string = '';
   loading: boolean = false;
@@ -28,6 +31,7 @@ export class SelectedHotelComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.loading = true;
 
     this.roomService.getRoomFromHotel(this.hotelId).then(array => {
@@ -61,6 +65,7 @@ export class SelectedHotelComponent implements OnInit {
       this.servicios = this.hotel.services;
 
     });
+
   }
 
   editButtonClick(id: string){

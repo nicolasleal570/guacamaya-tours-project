@@ -37,6 +37,8 @@ import { EstadosComponent } from './estados/estados.component';
 import { EstadoCardComponent } from './partials/estado-card/estado-card.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryCardComponent } from './partials/category-card/category-card.component';
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { CategoryCardComponent } from './partials/category-card/category-card.co
     AngularFireAuthModule,
     HttpClientModule,
     NgxPayPalModule,
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAaj-UrvOQ_3PFuq_JO9LuixQhXw6eZOq8',
+    }),
   ]
 })
 export class ClientModule { }
