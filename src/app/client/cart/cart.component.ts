@@ -8,6 +8,8 @@ import { Room } from 'src/app/models/room';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { SelectedRoom } from 'src/app/models/SelectedRoom';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { ItinerarioService} from 'src/app/services/itinerario.service';
+import { Reserva } from 'src/app/models/reserva';
 
 
 @Component({
@@ -34,7 +36,7 @@ export class CartComponent implements OnInit {
   showCancel: boolean = false;
   showError: boolean = false;
 
-  constructor(private hotelSV: AdminHotelService, private destinoSV: AdminDestinoService, private roomSV: AdminRoomsService) {
+  constructor(private itinServ: ItinerarioService, private hotelSV: AdminHotelService, private destinoSV: AdminDestinoService, private roomSV: AdminRoomsService) {
 
   }
 
@@ -125,6 +127,13 @@ export class CartComponent implements OnInit {
         console.log('onClick', data, actions);
       }
     }
+  }
+
+  createReservacion() {
+    const reserva : Reserva = {
+      itinerario: this.reservaciones,
+    }
+    this.itinServ.createReserva(reserva);
   }
 
   getHotelsFromService(item: Itinerario) {

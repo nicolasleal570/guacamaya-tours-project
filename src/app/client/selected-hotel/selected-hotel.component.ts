@@ -30,8 +30,8 @@ export class SelectedHotelComponent implements OnInit {
     });
   }
 
-  lat = 40.730610;
-  lng = -73.935242;
+  lat = 9.377661;
+  lng = -62.381538;
 
   ngOnInit() {
 
@@ -68,6 +68,9 @@ export class SelectedHotelComponent implements OnInit {
       this.servicios = this.hotel.services;
 
     });
+
+    console.log(this.hotel.location.latitud);
+    console.log(this.hotel.location.longitud);
 
   }
 
