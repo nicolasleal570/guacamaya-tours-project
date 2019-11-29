@@ -33,6 +33,8 @@ import { FooterComponent } from './partials/footer/footer.component';
 import { AlternativeHeaderComponent } from './partials/alternative-header/alternative-header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { EstadosComponent } from './estados/estados.component';
+import { EstadoCardComponent } from './partials/estado-card/estado-card.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     CartComponent,
     FooterComponent,
     AlternativeHeaderComponent,
+    EstadosComponent,
+    EstadoCardComponent
   ],
   imports: [
     CommonModule,

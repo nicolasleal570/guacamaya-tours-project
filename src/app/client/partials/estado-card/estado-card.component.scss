@@ -47,7 +47,8 @@
         * PHONE
         */
         @media (max-width: 480px) {
-            width: 100%;
+            grid-column-start: auto;
+            grid-column-end: auto;
         }
 
         img {
@@ -137,25 +138,25 @@
             }
         }        
         
-        .card-footer{
-                display: flex;
-                padding: 15px 0;
-                justify-content: right;
-
-                .box-sm{
-                    display: block;
-                    width: 100%;
-                    // justify-content: right;
-
-                    .btnMover {
-                        float: right;
-                    }
-                }
-            }
-
 
     }
-    
+    .card-footer{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        padding: 15px 0;
+
+        .box-sm{
+            display: flex;
+            width: 100%;
+            
+
+            .btnMover{
+                
+                justify-content: flex-end;
+
+            }
+        }
+    }
     
     
 
