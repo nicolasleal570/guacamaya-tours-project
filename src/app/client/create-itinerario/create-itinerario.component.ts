@@ -247,7 +247,7 @@ export class CreateItinerarioComponent implements OnInit {
     if (localStorage.getItem('cart') !== null) {
       array = JSON.parse(localStorage.getItem('cart'));
     }
-
+    
     array.push(itinerario);
 
     console.log(array);
