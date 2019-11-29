@@ -23,6 +23,10 @@ export class AdminDestinoService {
     return this.destinoCollection.ref.where('categoryId', '==', id).get();
   }
 
+  getDestinosByState(id: string){
+    return this.destinoCollection.ref.where('stateId', '==', id).get();
+  }
+
   getDestinos() {
     return this.destinoCollection.snapshotChanges();
   }

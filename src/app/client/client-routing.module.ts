@@ -13,8 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
 import { EstadosComponent } from './estados/estados.component';
 
-
-
 const routes: Routes = [
   {
     path: '', component: ClientLayoutComponent, children: [
@@ -24,13 +22,14 @@ const routes: Routes = [
       { path: 'destinos/:destinoId', component: SelectedDestinoComponent },
       { path: 'categoria/:categoryId', component: DestinoComponent },    
       { path: 'hoteles', component: HotelesComponent },
+      { path: 'hoteles/:stateId', component: HotelesComponent },
       { path: 'hoteles/:hotelId', component: SelectedHotelComponent },
       { path: 'itinerario/crear', component: CreateItinerarioComponent },
       { path: 'itinerario/:idRoom/hotel', component: CreateItinerarioComponent },
       { path: 'itinerario/ver', component: ShowItinerarioComponent },
       { path: 'shopping/cart' , component: CartComponent },
       { path: 'estados', component: EstadosComponent},
-      { path: 'estados/:id', component: EstadosComponent}
+      { path: 'estados/:stateId', component: DestinoComponent}
     ]
   },
   { path: 'login', component: LoginComponent },

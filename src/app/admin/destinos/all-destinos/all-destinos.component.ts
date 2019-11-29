@@ -55,7 +55,8 @@ export class AllDestinosComponent implements OnInit {
   }
 
   editButtonClick(id: string){
-    this.router.navigate(['/destinos', id, 'editar']);
+    this.router.navigate(['/admin/destinos', id, 'editar']);
+    console.log(id);
   }
 
 }

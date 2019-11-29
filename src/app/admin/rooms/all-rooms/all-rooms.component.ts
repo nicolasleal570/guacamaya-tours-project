@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/models/room';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-rooms',
@@ -13,7 +14,7 @@ export class AllRoomsComponent implements OnInit {
   loading: boolean = false;
   deleting: boolean = false;
 
-  constructor(private roomService: AdminRoomsService) { }
+  constructor(private roomService: AdminRoomsService, private router: Router) { }
 
   ngOnInit() {
     this.getAllRooms();
@@ -44,6 +45,11 @@ export class AllRoomsComponent implements OnInit {
     }).finally(() => {
       this.deleting = false;
     });
+  }
+  
+  editButtonClick(id: string){
+    this.router.navigate(['/admin/habitaciones', id, 'editar']);
+    console.log(id);
   }
 
 

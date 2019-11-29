@@ -66,6 +66,7 @@ export class CreateHotelComponent implements OnInit {
       }
 
       this.editHotel = hotel;
+      console.log(hotel);
       this.editSelectedHotel(hotel);
     });
   }
