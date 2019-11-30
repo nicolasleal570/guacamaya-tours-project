@@ -10,15 +10,16 @@ export interface Itinerario {
     destinoStateId: string;
     state?: string;
     destinoCategoryId: string;
+    email: string;
     category?: string;
     destinoId: string;
     destino: string;
-    checkInDays: number,
-    checkInMonth: number,
-    checkInYear: number,
-    checkOutDays: number,
-    checkOutMonth: number,
-    checkOutYear: number,
+    checkInDays: number;
+    checkInMonth: number;
+    checkInYear: number;
+    checkOutDays: number;
+    checkOutMonth: number;
+    checkOutYear: number;
     hotelId: string;
     hotel: string;
     numberOfHabs: number;

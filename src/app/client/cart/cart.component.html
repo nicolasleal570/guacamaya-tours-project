@@ -8,12 +8,12 @@
         </ng-template>
 
         <ng-template #noLoading>
-            <ng-container *ngIf="reservaciones.length > 0; then hayReservaciones; else noReservaciones"></ng-container>
+            <ng-container *ngIf="itinerario.length > 0; then hayReservaciones; else noReservaciones"></ng-container>
             <ng-template #hayReservaciones>
                 <div class="saludo">
                     <h1>Estas son tus reservaciones</h1>
                 </div>
-                <div class="header-callToAction" *ngFor="let reservacion of reservaciones; let i = index">
+                <div class="header-callToAction" *ngFor="let reservacion of itinerario; let i = index">
                     <div class="reservation-card">
                         <div class="btn-delete">
                             <button class="btn btn-primary btn-danger" (click)="eliminarReserva(i)">

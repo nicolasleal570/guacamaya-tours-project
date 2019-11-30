@@ -8,7 +8,7 @@ import { Room } from 'src/app/models/room';
 import { AdminRoomsService } from 'src/app/services/admin-rooms.service';
 import { SelectedRoom } from 'src/app/models/SelectedRoom';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import { ItinerarioService} from 'src/app/services/itinerario.service';
+import { ItinerarioService } from 'src/app/services/itinerario.service';
 import { Reserva } from 'src/app/models/reserva';
 
 
@@ -21,7 +21,8 @@ export class CartComponent implements OnInit {
 
   public payPalConfig?: IPayPalConfig;
 
-  reservaciones: Itinerario[] = [];
+  itinerario: Itinerario[] = [];
+  reserva: Reserva = null;
   destinos: Destino[] = [];
   hoteles: Hotel[] = [];
   habitaciones: Room[] = [];
@@ -44,16 +45,16 @@ export class CartComponent implements OnInit {
 
 
     this.total = 0;
-    this.reservaciones = [];
+    this.itinerario = [];
     this.hoteles = [];
     this.destinos = [];
     this.habitaciones = [];
 
     if (localStorage.getItem('cart') !== null) {
-      this.reservaciones = JSON.parse(localStorage.getItem('cart')) as Itinerario[];
+      this.itinerario = JSON.parse(localStorage.getItem('cart')) as Itinerario[];
     }
 
-    this.reservaciones.forEach((item: Itinerario, index) => {
+    this.itinerario.forEach((item: Itinerario, index) => {
       this.numReservaciones = this.numReservaciones + 1;
       this.total = this.total + item.totalPrice;
 
@@ -70,31 +71,35 @@ export class CartComponent implements OnInit {
 
   private initConfig(): void {
     this.payPalConfig = {
-      currency: 'USD',
+      currency: 'EUR',
       clientId: 'sb',
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
-        purchase_units: [{
-          amount: {
-            currency_code: 'USD',
-            value: this.total.toString(),
-            breakdown: {
-              item_total: {
-                currency_code: 'USD',
-                value: this.total.toString()
-              }
-            }
-          },
-          items: [{
-            name: 'Enterprise Subscription',
-            quantity: '1',
-            category: 'DIGITAL_GOODS',
-            unit_amount: {
-              currency_code: 'USD',
+        purchase_units: [
+          {
+            amount: {
+              currency_code: 'EUR',
               value: this.total.toString(),
+              breakdown: {
+                item_total: {
+                  currency_code: 'EUR',
+                  value: this.total.toString()
+                }
+              }
             },
-          }]
-        }]
+            items: [
+              {
+                name: 'Enterprise Subscription',
+                quantity: '1',
+                category: 'DIGITAL_GOODS',
+                unit_amount: {
+                  currency_code: 'EUR',
+                  value: this.total.toString(),
+                },
+              }
+            ]
+          }
+        ]
       },
       advanced: {
         commit: 'true'
@@ -105,10 +110,11 @@ export class CartComponent implements OnInit {
       },
       onApprove: (data, actions) => {
         console.log('onApprove - transaction was approved, but not authorized', data, actions);
+
+
         actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
-
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
@@ -116,24 +122,35 @@ export class CartComponent implements OnInit {
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        this.showCancel = true;
-
       },
       onError: err => {
         console.log('OnError', err);
-        this.showError = true;
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
-      }
-    }
+        const reserva: Reserva = {
+          itinerario: this.itinerario,
+        }
+        this.itinServ.createReserva(reserva).then(item => {
+          console.log(item.id);
+        }).finally(()=>{
+          localStorage.clear()
+          window.location.reload();
+        });
+      },
+    };
   }
 
   createReservacion() {
-    const reserva : Reserva = {
-      itinerario: this.reservaciones,
+    const reserva: Reserva = {
+      itinerario: this.itinerario,
     }
-    this.itinServ.createReserva(reserva);
+    this.itinServ.createReserva(reserva).then(item => {
+      console.log(item.id);
+    }).finally(()=>{
+      localStorage.clear()
+      window.location.reload();
+    });
   }
 
   getHotelsFromService(item: Itinerario) {
@@ -197,15 +214,15 @@ export class CartComponent implements OnInit {
   }
 
   eliminarReserva(index: number) {
-    this.total = this.total - this.reservaciones[index].totalPrice;
-    this.reservaciones[index] = null;
+    this.total = this.total - this.itinerario[index].totalPrice;
+    this.itinerario[index] = null;
     for (let i = index; i < this.numReservaciones; i++) {
-      this.reservaciones[index] = this.reservaciones[index + 1]
+      this.itinerario[index] = this.itinerario[index + 1]
     }
-    this.reservaciones.splice(this.numReservaciones, 1);
+    this.itinerario.splice(this.numReservaciones, 1);
     this.numReservaciones = this.numReservaciones - 1;
     localStorage.clear;
-    localStorage.setItem('cart', JSON.stringify(this.reservaciones));
+    localStorage.setItem('cart', JSON.stringify(this.itinerario));
     console.log(this.total);
     window.location.reload();
   }

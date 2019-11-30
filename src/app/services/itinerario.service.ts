@@ -17,4 +17,8 @@ export class ItinerarioService {
   createReserva(data: Reserva) {
     return this.itinerarioCollection.add(data);
   }
+
+  getReservas(){
+    return this.itinerarioCollection.snapshotChanges();
+  }
 }

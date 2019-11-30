@@ -1,1 +1,35 @@
-<p>ordenes works!</p>
+<div class="admin-box">
+    <div class="box-header with-border">
+        <h2 class="box-title">Todos los Hoteles del Sistema</h2>
+    </div>
+    <div class="box-body">
+        <ng-container *ngIf="reservaciones.length > 0; then hotelsExists; else notHotels"></ng-container>
+
+        <ng-template #hotelsExists>
+            <table class="table table-border">
+                <thead>
+                    <th>Nro</th>
+                    <th>Identificador</th>
+                    <th>Email</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reserva of reservaciones; let i=index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ reserva.$key }}</td>
+                        <td>
+                            <ng-container *ngFor="let itin of reserva.itinerario; let j=index">
+                              <p>{{itin.email}}</p>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+
+        <ng-template #notHotels>
+            <div class="loader-center">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
+    </div>
+</div>

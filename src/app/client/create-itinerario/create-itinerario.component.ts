@@ -37,6 +37,7 @@ export class CreateItinerarioComponent implements OnInit {
 
   ngOnInit() {
     this.formItinerario = this.fb.group({
+      email: [''],
       destinoStateId: [''],
       destinoCategoryId: [''],
       destinoId: [''],
@@ -236,7 +237,7 @@ export class CreateItinerarioComponent implements OnInit {
 
     const itinerario: Itinerario = this.formItinerario.value as Itinerario;
 
-    itinerario.totalPrice = itinerario.numberOfDays*this.selectedRoom.pricePerNight*itinerario.numberOfHabs;
+    itinerario.totalPrice = itinerario.numberOfDays * this.selectedRoom.pricePerNight * itinerario.numberOfHabs;
     this.destinoSV.getDestinoById(itinerario.destinoId).subscribe(item => {
       itinerario.destino = item.payload.get('name');
     });
@@ -247,7 +248,7 @@ export class CreateItinerarioComponent implements OnInit {
     if (localStorage.getItem('cart') !== null) {
       array = JSON.parse(localStorage.getItem('cart'));
     }
-    
+
     array.push(itinerario);
 
     console.log(array);
@@ -267,6 +268,7 @@ export class CreateItinerarioComponent implements OnInit {
     this.numberOfDays = 0;
 
     this.formItinerario.patchValue({
+      email: '',
       destinoStateId: '',
       destinoCategoryId: '',
       destinoId: '',
